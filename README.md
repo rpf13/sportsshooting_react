@@ -22,12 +22,22 @@ The plattform also gives the IPSC Shooter the option to create his own and priva
 
 Further messaging and collaboration featuers are built in.
 
-Link to deployed SportsShooting site: `INSERT LINK HERE`
+Link to deployed SportsShooting site: [SportsShooting](https://sportsshooting-rpf13-d2b23798b278.herokuapp.com/)
+
+Link to the deployed backend Django API: [SportsShooting API](https://sportsshooting-drf-rpf13-5060e23f8756.herokuapp.com/)
 
 Link to the backend Django API repository: [SportsShooting API Repo](https://github.com/rpf13/sportsshooting_drf)
 
 
 `INSERT AM I RESPONSIVE HERE`
+
+---
+
+Workaround for Node Version
+
+In order to run the project correctly on gitpod, one has to use the following node verision command
+
+`nvm install 16 && nvm use 16`
 
 ---
 
