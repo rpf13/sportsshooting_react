@@ -4,6 +4,10 @@
     min-height: 100vh;
 }
 
+.Main {
+  padding-top: 115px;
+}
+
 * {
     box-sizing: border-box;
   }
@@ -15,6 +19,7 @@
   
   a:hover {
     text-decoration: none;
+    color: red;
   }
   
   a:hover i {
