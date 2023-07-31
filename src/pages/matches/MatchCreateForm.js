@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -12,7 +12,9 @@ import styles from "../../styles/MatchCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
-import { Image } from "react-bootstrap";
+import { Alert, Image } from "react-bootstrap";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function MatchCreateForm() {
   const [errors, setErrors] = useState({});
@@ -29,6 +31,9 @@ function MatchCreateForm() {
 
   const { title, match_date, division, match_location, level, details, image } =
     matchData;
+
+  const imageInput = useRef(null)
+  const history = useHistory()
 
   const handleChange = (event) => {
     setMatchData({
@@ -47,6 +52,32 @@ function MatchCreateForm() {
     }
   };
 
+  // function to submit the image and form data and redirect to the
+  // just submitted match event
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const formData = new FormData();
+
+    formData.append('title', title)
+    formData.append('match_date', match_date)
+    formData.append('division', division)
+    formData.append('match_location', match_location)
+    formData.append('level', level)
+    formData.append('details', details)
+    formData.append('image', imageInput.current.files[0])
+
+    try {
+      const {data} = await axiosReq.post('/matches/', formData);
+      history.push(`/matches/${data.id}`)
+    } catch (err) {
+      console.log(err)
+      if (err.response?.status !== 401){
+        setErrors(err.response?.data)
+      }
+    }
+  }
+
   const textFields = (
     <div className="text-center">
       <Form.Group>
@@ -58,6 +89,11 @@ function MatchCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group>
         <Form.Label>Match Date</Form.Label>
@@ -68,6 +104,11 @@ function MatchCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors.match_date?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}      
 
       <Form.Group>
         <Form.Label>Division</Form.Label>
@@ -78,6 +119,11 @@ function MatchCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors.division?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group>
         <Form.Label>Location</Form.Label>
@@ -88,6 +134,11 @@ function MatchCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors.match_location?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group>
         <Form.Label>Level</Form.Label>
@@ -104,6 +155,11 @@ function MatchCreateForm() {
           <option>Level-5</option>
         </Form.Control>
       </Form.Group>
+      {errors.level?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group>
         <Form.Label>Details</Form.Label>
@@ -115,21 +171,29 @@ function MatchCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors.details?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Bright}`}
-        onClick={() => {}}
+        onClick={() => history.goBack()}
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Bright}`} type="submit">
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Bright}`}
+        type="submit"
+      >
         create
       </Button>
     </div>
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
@@ -159,13 +223,19 @@ function MatchCreateForm() {
                 </Form.Label>
               )}
 
-                <Form.File 
+              <Form.File
                 id="image-upload"
                 accept="image/*"
-                onChange={handleChangeImage}                
-                />
-
+                onChange={handleChangeImage}
+                ref={imageInput}
+              />
             </Form.Group>
+            {errors.image?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
