@@ -24,12 +24,12 @@ function MatchCreateForm() {
     match_date: "",
     division: "",
     match_location: "",
-    level: "",
+    level_filter: "",
     details: "",
     image: "",
   });
 
-  const { title, match_date, division, match_location, level, details, image } =
+  const { title, match_date, division, match_location, level_filter, details, image } =
     matchData;
 
   const imageInput = useRef(null)
@@ -63,7 +63,7 @@ function MatchCreateForm() {
     formData.append('match_date', match_date)
     formData.append('division', division)
     formData.append('match_location', match_location)
-    formData.append('level', level)
+    formData.append('level_filter', level_filter)
     formData.append('details', details)
     formData.append('image', imageInput.current.files[0])
 
@@ -144,8 +144,8 @@ function MatchCreateForm() {
         <Form.Label>Level</Form.Label>
         <Form.Control
           as="select"
-          name="level"
-          value={level}
+          name="level_filter"
+          value={level_filter}
           onChange={handleChange}
         >
           <option>Level-1</option>
