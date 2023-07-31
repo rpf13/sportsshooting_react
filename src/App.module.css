@@ -31,53 +31,54 @@
     box-sizing: border-box;
   }
   
-  a {
-    color: #555555;
-    transition: color ease-in-out 0.3s;
-  }
-  
-  a:hover {
-    text-decoration: none;
-    color: red;
-  }
-  
-  a:hover i {
-    color: red;
-    transition: color ease-in-out 0.3s;
-  }
+a {
+  color: #555555;
+  transition: color ease-in-out 0.3s;
+}
 
-  input[type="file"] {
-    display: none;
-  }
-  
-  i {
-    color: #9d9ca3;
-    font-size: 1.6rem;
-    padding: 4px;
-    vertical-align: middle;
-  }
-  
-  i:hover {
-    cursor: pointer;
-    transition: color ease-in-out 0.3s;
-    color: #2142b2;
-  }
+a:hover {
+  text-decoration: none;
+  color: red;
+}
 
-  figure {
-    text-align: center;
-    display: inline-block;
-  }
-  
-  /* scrollbar */
-  *::-webkit-scrollbar {
-    width: 5px;
-  }
-  *::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  *::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-  *::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+a:hover i {
+  color: red;
+  transition: color ease-in-out 0.3s;
+}
+
+/* setting to hide the file upload button when
+using a form input element */
+input[type="file"] {
+  display: none;
+}
+
+i {
+  color: #9d9ca3;
+  font-size: 1.6rem;
+  padding: 4px;
+  vertical-align: middle;
+}
+
+i:hover {
+  cursor: pointer;
+  transition: color ease-in-out 0.3s;
+  color: #2142b2;
+}
+figure {
+  text-align: center;
+  display: inline-block;
+}
+
+/* scrollbar */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+*::-webkit-scrollbar-thumb {
+  background: #888;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

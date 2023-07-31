@@ -117,12 +117,12 @@ function MatchCreateForm() {
       </Form.Group>
 
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.Button} ${btnStyles.Bright}`}
         onClick={() => {}}
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button className={`${btnStyles.Button} ${btnStyles.Bright}`} type="submit">
         create
       </Button>
     </div>
@@ -143,7 +143,7 @@ function MatchCreateForm() {
                   </figure>
                   <div>
                     <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                      className={`${btnStyles.Button} ${btnStyles.Bright}`}
                       htmlFor="image-upload"
                     >
                       Change the image
