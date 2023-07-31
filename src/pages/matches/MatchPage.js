@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import Match from "./Match";
 
 function MatchPage() {
   const { id } = useParams();
@@ -40,7 +41,7 @@ function MatchPage() {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>TO BE DELETED</p>
-        <p>Match component</p>
+        <Match {...match.results[0]} setMatches={setMatch} matchPage />
         <Container className={appStyles.Content}>
           Comments
         </Container>
