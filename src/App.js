@@ -23,14 +23,14 @@ function App() {
             exact
             path="/"
             render={() => (
-              <MatchesPage message="No results found. Adjust teh search keyword." />
+              <MatchesPage message="No results found. Adjust the search keyword." />
             )}
           />
           <Route
             exact
             path="/attending"
             render={() => (
-              <MatchesPage message="No results found. Adjust teh search keyword or attend a match."
+              <MatchesPage message="No results found. Adjust the search keyword or attend a match."
               filter={`attendings__owner__profile=${profile_id}&ordering=-attendings__created_at&`}
               />
             )}
