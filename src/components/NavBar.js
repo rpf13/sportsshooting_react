@@ -40,7 +40,7 @@ const NavBar = () => {
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="/attendings"
+        to="/attending"
       >
         <i className="fa-solid fa-calendar-days"></i>MySchedule
       </NavLink>

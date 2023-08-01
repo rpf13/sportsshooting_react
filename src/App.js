@@ -7,17 +7,41 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import MatchCreateForm from "./pages/matches/MatchCreateForm";
 import MatchPage from "./pages/matches/MatchPage";
+import MatchesPage from "./pages/matches/MatchesPage";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || "";
+
   return (
     <div className={styles.App}>
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
-          <Route exact path="/" render={() => <h1>Matches</h1>} />
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <MatchesPage message="No results found. Adjust teh search keyword." />
+            )}
+          />
+          <Route
+            exact
+            path="/attending"
+            render={() => (
+              <MatchesPage message="No results found. Adjust teh search keyword or attend a match."
+              filter={`attendings__owner__profile=${profile_id}&ordering=-attendings__created_at&`}
+              />
+            )}
+          />          
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route exact path="/matches/create" render={() => <MatchCreateForm />} />
+          <Route
+            exact
+            path="/matches/create"
+            render={() => <MatchCreateForm />}
+          />
           <Route exact path="/matches/:id" render={() => <MatchPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
