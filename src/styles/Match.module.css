@@ -1,4 +1,4 @@
-.Post {
+.Match {
     background-color: #ffffff;
     border: 1px solid #dadadf;
     border-radius: 2px;
@@ -16,9 +16,13 @@
   }
   
   .Attend:hover {
-    color: #2142b2;
+    color: #f85032;
   }
   
   .AttendOutline:hover {
     color: #f85032;
+  }
+
+  .AttendUnauth:hover {
+    color: black;
   }
