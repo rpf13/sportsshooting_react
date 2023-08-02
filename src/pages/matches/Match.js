@@ -4,8 +4,8 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
-import FormatDate from '../../helper/FormatDate';
 import { axiosRes } from "../../api/axiosDefaults";
+import FormatDay from '../../helper/FormatDay';
 
 const Match = (props) => {
     const {
@@ -85,7 +85,7 @@ const Match = (props) => {
     </Link>
     <Card.Body>
       {/* check if title, details, ... props have been passed and only then style them  */}
-      {title && <Card.Title className='text-center'>{title} - <FormatDate match_date={match_date} /></Card.Title>}
+      {title && <Card.Title className='text-center'>{title} - <FormatDay match_date={match_date} /></Card.Title>}
       {title && <Card.Text className='text-center'>{match_location}</Card.Text>}
       {title && <Card.Text className='text-center'>{level_filter}</Card.Text>}
       {title && <Card.Text className='text-center'>{division}</Card.Text>}

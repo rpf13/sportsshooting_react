@@ -21,26 +21,55 @@ function MatchesPage({ message, filter = "" }) {
     // Matches and MySchedule is detected
     const { pathname } = useLocation();
 
+    // used for search query
+    const [query, setQuery] = useState("");
+
     useEffect(() => {
-        const fetchMatches = async () => {
-            try {
-                // the filter comes from the filter prop we 
-                // have set in the routes on app.js
-                const {data} = await axiosReq.get(`/matches/?${filter}`)
-                setMatches(data)
-                setHasLoaded(true)
-            } catch (err) {
-                console.log(err)
-            }
-        };
-        setHasLoaded(false);
+      const fetchMatches = async () => {
+        try {
+          // the filter comes from the filter prop we
+          // have set in the routes on app.js
+          // the search content comes from the query argument passed
+          const { data } = await axiosReq.get(
+            `/matches/?${filter}search=${query}`
+          );
+          setMatches(data);
+          setHasLoaded(true);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      setHasLoaded(false);
+    // set timeout to fetchMatches, also for search, to not render
+    // after each user key input
+      const timer = setTimeout(() => {
         fetchMatches();
-    }, [filter, pathname]);
+      }, 1000)
+      return () => {
+        clearTimeout(timer);
+      }
+      
+    }, [filter, query, pathname]);
   
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>TO BE REUSED POP PROFILES MOBILE</p>
+        <i className={`fas fa-search ${styles.SearchIcon}`} />
+        <Form className={styles.SearchBar}
+        onSubmit={(event) => event.preventDefault()}
+        >
+            <Form.Control
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                type="text" 
+                className="mr-sm-2"
+                placeholder="Search matches by title, location, advertiser" 
+            />
+        
+
+        </Form>
+
         {hasLoaded ? (
             <>
             {matches.results.length ? (
