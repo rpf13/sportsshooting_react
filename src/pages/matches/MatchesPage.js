@@ -13,6 +13,8 @@ import Match from "./Match";
 
 import NoResults from "../../assets/no_results.png"
 import Asset from "../../components/Asset";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../helper/utils";
 
 function MatchesPage({ message, filter = "" }) {
     const [matches, setMatches] = useState({ results: [] });
@@ -56,37 +58,43 @@ function MatchesPage({ message, filter = "" }) {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>TO BE REUSED POP PROFILES MOBILE</p>
         <i className={`fas fa-search ${styles.SearchIcon}`} />
-        <Form className={styles.SearchBar}
-        onSubmit={(event) => event.preventDefault()}
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(event) => event.preventDefault()}
         >
-            <Form.Control
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                type="text" 
-                className="mr-sm-2"
-                placeholder="Search matches by title, location, advertiser" 
-            />
-        
-
+          <Form.Control
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search matches by title, location, advertiser"
+          />
         </Form>
 
         {hasLoaded ? (
-            <>
+          <>
             {matches.results.length ? (
-                matches.results.map(match => (
-                    <Match key={match.id} {...match} setMatches={setMatches} />
-                ))
+              <InfiniteScroll
+                children={
+                    matches.results.map((match) => (
+                        <Match key={match.id} {...match} setMatches={setMatches} />
+                    ))
+                }
+                dataLength={matches.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!matches.next}
+                next={() => fetchMoreData(matches, setMatches)}
+              />
             ) : (
-                <Container className={appStyles.Content}>
-                    <Asset src={NoResults} message={message} />
-                </Container>
+              <Container className={appStyles.Content}>
+                <Asset src={NoResults} message={message} />
+              </Container>
             )}
-            </>
+          </>
         ) : (
-            <Container className={appStyles.Content}>
-                <Asset spinner />
-
-            </Container>
+          <Container className={appStyles.Content}>
+            <Asset spinner />
+          </Container>
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
