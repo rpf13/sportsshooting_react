@@ -2,7 +2,7 @@ import React from 'react';
 import styles from "../../styles/Match.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import FormatDay from '../../helper/FormatDay';

@@ -36,6 +36,16 @@ const NavBar = () => {
       </NavLink>
   )
 
+  const addGunIcon = (
+    <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/guns/create"
+      >
+        <i className="fa-solid fa-plus"></i>Add gun
+      </NavLink>
+  )
+
   const loggedInIcons = <> 
       <NavLink
         className={styles.NavLink}
@@ -97,8 +107,10 @@ const NavBar = () => {
           </Navbar.Brand>
         </NavLink>
 
-        {/* only show icon if user exists / logged in */}
+        {/* only show match icon if user exists / logged in */}
         {currentUser && addMatchIcon}
+        {/* only show gun icon if user exists / logged in */}
+        {currentUser && addGunIcon}
 
         <Navbar.Toggle 
           ref={ref}
