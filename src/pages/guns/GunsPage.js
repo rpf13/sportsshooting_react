@@ -15,6 +15,8 @@ import NoResults from "../../assets/no_results.png"
 import Asset from "../../components/Asset";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { FormControl } from "react-bootstrap";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../helper/utils";
 
 
 function GunsPage({ message }) {
@@ -88,9 +90,18 @@ function GunsPage({ message }) {
           ) : (
             <>
               {guns.results.length ? (
-                guns.results.map((gun) => {
-                  return <Gun key={gun.id} {...gun} setGuns={setGuns} />;
+                <InfiniteScroll 
+                    children={
+                        guns.results.map((gun) => {
+                        return <Gun key={gun.id} {...gun} setGuns={setGuns} />;
                 })
+                    }
+                    dataLength={guns.results.length}
+                    loader={<Asset spinner />}
+                    hasMore={!!guns.next}
+                    next={() => fetchMoreData(guns, setGuns)}
+                />
+                
               ) : (
                 <Container className={appStyles.Content}>
                   <Asset src={NoResults} message={message} />
