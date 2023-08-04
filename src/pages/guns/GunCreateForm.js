@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -12,7 +12,9 @@ import styles from "../../styles/GunCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
-import { Image } from "react-bootstrap";
+import { Alert, Image } from "react-bootstrap";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function GunCreateForm() {
   const [errors, setErrors] = useState({});
@@ -26,6 +28,9 @@ function GunCreateForm() {
     image: "",
   });
   const { brand, gun_model, type, serial_number, details, image } = gunData;
+
+  const imageInput = useRef(null);
+  const history = useHistory();
 
   const handleChange = (event) => {
     setGunData({
@@ -44,6 +49,27 @@ function GunCreateForm() {
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const formData = new FormData();
+    formData.append('brand', brand)
+    formData.append('gun_model', gun_model)
+    formData.append('type', type)
+    formData.append('serial_number', serial_number)
+    formData.append('details', details)
+    formData.append('image', imageInput.current.files[0])
+
+    try {
+        const {data} = await axiosReq.post('/guns/', formData);
+        history.push(`/guns/${data.id}`)
+    } catch (err) {
+        console.log(err)
+        if (err.response?.status !== 401){
+            setErrors(err.response?.data)
+          }
+    }
+  }
+
   const textFields = (
     <div className="text-center">
       <Form.Group>
@@ -55,6 +81,11 @@ function GunCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors.brand?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group>
         <Form.Label>Gun Model</Form.Label>
@@ -65,6 +96,11 @@ function GunCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors.gun_model?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}      
 
       <Form.Group>
         <Form.Label>Type</Form.Label>
@@ -78,6 +114,11 @@ function GunCreateForm() {
           <option>Rifle</option>
         </Form.Control>
       </Form.Group>
+      {errors.type?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}      
 
       <Form.Group>
         <Form.Label>Serial Number</Form.Label>
@@ -88,6 +129,11 @@ function GunCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors.serial_number?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}      
 
       <Form.Group>
         <Form.Label>Details</Form.Label>
@@ -99,10 +145,15 @@ function GunCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors.details?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}      
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Bright}`}
-        onClick={() => {}}
+        onClick={() => history.goBack()}
       >
         cancel
       </Button>
@@ -113,7 +164,7 @@ function GunCreateForm() {
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
@@ -150,6 +201,7 @@ function GunCreateForm() {
                 id="image-upload"
                 accept="image/*"
                 onChange={handleChangeImage}
+                ref={imageInput}
               />
             </Form.Group>
             <div className="d-md-none">{textFields}</div>
