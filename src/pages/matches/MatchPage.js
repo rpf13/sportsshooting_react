@@ -41,6 +41,7 @@ function MatchPage() {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>TO BE DELETED</p>
+        {/* import of the match component and all it's data from match.js */}
         <Match {...match.results[0]} setMatches={setMatch} matchPage />
         <Container className={appStyles.Content}>
           Comments
