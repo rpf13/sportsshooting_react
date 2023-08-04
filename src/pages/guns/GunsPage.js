@@ -14,19 +14,23 @@ import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no_results.png"
 import Asset from "../../components/Asset";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { FormControl } from "react-bootstrap";
 
 
-function GunsPage( { message }) {
+function GunsPage({ message }) {
   const [guns, setGuns] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const { pathname } = useLocation();
   const currentUser = useCurrentUser();
 
+  // used for search query
+  const [query, setQuery] = useState("");
+
   useEffect(() => {
     const fetchGuns = async () => {
       try {
-        const { data } = await axiosReq.get(`/guns`);
+        const { data } = await axiosReq.get(`/guns?search=${query}`);
         setGuns(data);
         setHasLoaded(true);
       } catch (err) {
@@ -38,31 +42,46 @@ function GunsPage( { message }) {
 
     // Only fetch guns when a user is logged in
     if (currentUser) {
-        setHasLoaded(false);
-        const timer = setTimeout(() => {
-          fetchGuns();
-        }, 1000);
-        return () => {
-          clearTimeout(timer);
-        }
-      } else {  
-        // If no user is logged in, set 'hasLoaded' and 'hasError' to true
-        // which will cause re-render and display the not authorized error
-        setHasLoaded(true);
-        setHasError(true);
-      }
-    }, [pathname, currentUser]);
+      setHasLoaded(false);
+      const timer = setTimeout(() => {
+        fetchGuns();
+      }, 1000);
+      return () => {
+        clearTimeout(timer);
+      };
+    } else {
+      // If no user is logged in, set 'hasLoaded' and 'hasError' to true
+      // which will cause re-render and display the not authorized error
+      setHasLoaded(true);
+      setHasError(true);
+      setGuns({ results: [] }); // clear the guns state
+    }
+  }, [pathname, query, currentUser]);
 
   return (
     <Row className="h-100">
       {/* maybe need to adjust this class to use the whole space */}
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p> no need for guns Popular profiles mobile</p>
+        <i className={`fas fa-search ${styles.SearchIcon}`} />
+              <Form
+                className={styles.SearchBar}
+                onSubmit={(event) => event.preventDefault()}
+              >
+                <FormControl
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                    type="text"
+                    className="mr-sm-2"
+                    placeholder="Search by brand, model, serialnumber"
+                />
+              </Form>
         {hasLoaded ? (
           hasError ? (
             <Container className={appStyles.Content}>
               <p>
-                You are not authorized to view this content.<br />
+                You are not authorized to view this content.
+                <br />
                 Create an account and login first.
               </p>
             </Container>
@@ -86,7 +105,10 @@ function GunsPage( { message }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        <p>No need for guns Popular profiles for desktop</p>
+        <p>
+            No need for guns Popular profiles for desktop
+            Maybe add the last added guns to a component
+        </p>
       </Col>
     </Row>
   );
