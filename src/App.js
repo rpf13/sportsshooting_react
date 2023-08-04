@@ -10,6 +10,7 @@ import MatchPage from "./pages/matches/MatchPage";
 import MatchesPage from "./pages/matches/MatchesPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import GunCreateForm from "./pages/guns/GunCreateForm";
+import GunPage from "./pages/guns/GunPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -49,6 +50,7 @@ function App() {
             render={() => <GunCreateForm />}
           />          
           <Route exact path="/matches/:id" render={() => <MatchPage />} />
+          <Route exact path="/guns/:id" render={() => <GunPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
