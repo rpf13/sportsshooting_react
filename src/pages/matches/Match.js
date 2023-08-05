@@ -2,10 +2,11 @@ import React from 'react';
 import styles from "../../styles/Match.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import FormatDay from '../../helper/FormatDay';
+import { MoreDropdown } from '../../components/MoreDropdown';
 
 const Match = (props) => {
     const {
@@ -30,6 +31,20 @@ const Match = (props) => {
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner
+    const history = useHistory();
+
+    const handleEdit = () => {
+      history.push(`/matches/${id}/edit`);
+    };
+
+    const handleDelete = async () => {
+      try {
+        await axiosRes.delete(`/matches/${id}/`);
+        history.goBack();
+      } catch (err) {
+        console.log(err);
+      }
+    };    
 
     // function to handle the attending logic
     const handleAttend = async () => {
@@ -76,7 +91,12 @@ const Match = (props) => {
         <div className='d-flex align-items-center'>
           <span>{updated_at}</span>
           {/* if user created match, is owner, we display edit option */}
-          {is_owner && matchPage && "..."}
+          {is_owner && matchPage && (
+            <MoreDropdown 
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+            />
+          )}
         </div>
       </Media>
     </Card.Body>

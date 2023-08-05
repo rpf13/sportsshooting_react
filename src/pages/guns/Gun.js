@@ -2,7 +2,9 @@ import React from 'react'
 import styles from "../../styles/Gun.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { MoreDropdown } from '../../components/MoreDropdown';
+import { axiosRes } from '../../api/axiosDefaults';
 
 const Gun = (props) => {
     const {
@@ -21,6 +23,20 @@ const Gun = (props) => {
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner
+    const history = useHistory();
+
+    const handleEdit = () => {
+      history.push(`/guns/${id}/edit`);
+    };
+    
+    const handleDelete = async () => {
+        try {
+          await axiosRes.delete(`/guns/${id}/`);
+          history.goBack();
+        } catch (err) {
+          console.log(err);
+        }
+      };
 
   return (
     <Card className={styles.Gun}>
@@ -33,7 +49,12 @@ const Gun = (props) => {
                     <span>last update: {updated_at}</span>
                     {/* if user created gun item, is owner, and the gunPage prop exists
                      we display edit option */}
-                    {is_owner && gunPage && "..."}                    
+                    {is_owner && gunPage && (
+                        <MoreDropdown 
+                            handleEdit={handleEdit}
+                            handleDelete={handleDelete}
+                        />
+                    )}                    
                 </div>
             </Media>
         </Card.Body>
