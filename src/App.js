@@ -12,6 +12,8 @@ import { useCurrentUser } from "./contexts/CurrentUserContext";
 import GunCreateForm from "./pages/guns/GunCreateForm";
 import GunPage from "./pages/guns/GunPage";
 import GunsPage from "./pages/guns/GunsPage";
+import MatchEditForm from "./pages/matches/MatchEditForm";
+import GunEditForm from "./pages/guns/GunEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -45,18 +47,20 @@ function App() {
             path="/matches/create"
             render={() => <MatchCreateForm />}
           />
+          <Route exact path="/matches/:id/edit" render={() => <MatchEditForm />} />
+          <Route exact path="/matches/:id" render={() => <MatchPage />} />
           <Route
             exact
             path="/guns/create"
             render={() => <GunCreateForm />}
           />          
-          <Route exact path="/matches/:id" render={() => <MatchPage />} />
           <Route 
             exact 
             path="/guns" 
             render={() => <GunsPage message="No resuls found. Adjust the search or add a gun" />}
             filter={`owner__profile=${profile_id}`}
           />
+          <Route exact path="/guns/:id/edit" render={() => <GunEditForm />} />
           <Route exact path="/guns/:id" render={() => <GunPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
