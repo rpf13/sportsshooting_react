@@ -11,6 +11,7 @@ import Match from "./Match";
 
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Comment from "../comments/Comment";
 
 
 function MatchPage() {
@@ -29,11 +30,12 @@ function MatchPage() {
     // in this API call, we can request multiple data endpoints
     const handleMount = async () => {
       try {
-        const [{ data: match }] = await Promise.all([
+        const [{ data: match }, {data: comments}] = await Promise.all([
           axiosReq.get(`/matches/${id}`),
+          axiosReq.get(`/comments/?match=${id}`)
         ]);
         setMatch({ results: [match] });
-        console.log(match);
+        setComments(comments)
       } catch (err) {
         console.log(err);
       }
@@ -60,6 +62,15 @@ function MatchPage() {
           ) : comments.results.length ? (
             "Comments"
           ) : null}
+          {comments.results.length ? (
+            comments.results.map(comment => (
+              <Comment key={comment.id} {...comment} />
+            ))
+          ) : currentUser ? (
+            <span>Create the first comment!</span>
+          ) : (
+            <span>No comments yet</span>
+          )}
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">

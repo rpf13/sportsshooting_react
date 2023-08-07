@@ -1,0 +1,15 @@
+.Owner {
+    font-weight: bold;
+    color: #c88b74;
+    margin-right: 8px;
+  }
+
+  .Owner:hover {
+    color: red;
+    cursor: pointer;
+    transition: color ease-in-out 0.3s;
+  }
+  
+  .Date {
+    font-weight: lighter;
+  }
