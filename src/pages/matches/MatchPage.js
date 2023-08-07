@@ -12,6 +12,9 @@ import Match from "./Match";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Comment from "../comments/Comment";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../helper/utils";
 
 
 function MatchPage() {
@@ -63,14 +66,20 @@ function MatchPage() {
             "Comments"
           ) : null}
           {comments.results.length ? (
-            comments.results.map(comment => (
+            <InfiniteScroll
+              children={comments.results.map(comment => (
               <Comment
                 // props handed over when Comment is called
                 key={comment.id} {...comment}
                 setMatch={setMatch}
                 setComments={setComments}
               />
-            ))
+              ))}
+              dataLength={comments.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+            />
           ) : currentUser ? (
             <>
             {/* empty fragment, since we don't want any text here */}
