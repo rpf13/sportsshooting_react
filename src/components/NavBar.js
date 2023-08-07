@@ -32,7 +32,7 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/matches/create"
       >
-        <i className="fa-solid fa-plus"></i>Add match
+        <i className="fa-regular fa-calendar-plus"></i>Add match
       </NavLink>
   )
 
@@ -42,7 +42,7 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/guns/create"
       >
-        <i className="fa-solid fa-plus"></i>Add gun
+        <i className="fa-regular fa-square-plus"></i>Add gun
       </NavLink>
   )
 
