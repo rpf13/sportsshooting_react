@@ -64,12 +64,21 @@ function MatchPage() {
           ) : null}
           {comments.results.length ? (
             comments.results.map(comment => (
-              <Comment key={comment.id} {...comment} />
+              <Comment
+                // props handed over when Comment is called
+                key={comment.id} {...comment}
+                setMatch={setMatch}
+                setComments={setComments}
+              />
             ))
           ) : currentUser ? (
-            <span>Create the first comment!</span>
+            <>
+            {/* empty fragment, since we don't want any text here */}
+            </>
           ) : (
-            <span>No comments yet</span>
+            <span className={appStyles.FontLight}>
+              No comments yet. SignIn to create a comment.
+            </span>
           )}
         </Container>
       </Col>
