@@ -41,7 +41,7 @@ const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
         <>
           <p><strong>Attending Shooters:</strong></p>
           {mobile ? (
-            <div className={appStyles.scrollableContainerMob}>
+            <div className={`d-flex justify-content-center flex-wrap ${appStyles.scrollableContainerMob}`}>
               {attendings.map((attending) => (
                 <Link to={`/profile/${attending.owner}`} key={attending.id}>
                   <Avatar src={attending.profile_image} />
@@ -52,10 +52,12 @@ const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
           ) : (
             <div className={appStyles.scrollableContainerDsk}>
             {attendings.map((attending) => (
-              <Link to={`/profile/${attending.owner}`} key={attending.id}>
+              <div key={attending.id}>
+              <Link to={`/profile/${attending.owner}`}>
                 <Avatar src={attending.profile_image} />
-                <strong>{attending.owner}</strong>
+                <strong className="ml-3">{attending.owner}</strong>
               </Link>
+              </div>
             ))}
             </div>
           )}
