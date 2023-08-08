@@ -6,7 +6,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-const AttendingShooters = ({ matchId, mobile }) => {
+const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
     const [attendeesData, setAttendeesData] = useState({ attendings: [] });
       const { attendings } = attendeesData;
     
@@ -23,7 +23,7 @@ const AttendingShooters = ({ matchId, mobile }) => {
           }
         };
         handleMount();
-      }, [matchId]);
+      }, [matchId, attendingsCount]);
     
       return (
         <Container
@@ -50,6 +50,8 @@ const AttendingShooters = ({ matchId, mobile }) => {
                 ))
               )}
             </>
+          ) : attendings.length === 0 ? (
+            <p>No Shooter is attending this match</p>
           ) : (
             <Asset spinner />
           )}

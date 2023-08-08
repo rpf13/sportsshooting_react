@@ -94,7 +94,10 @@ function MatchPage() {
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         List of attending shooters
-        <AttendingShooters matchId={id} />
+        <AttendingShooters 
+          matchId={id}
+          attendingsCount={match.results[0]?.attendings_count} 
+        />
       </Col>
     </Row>
   );
