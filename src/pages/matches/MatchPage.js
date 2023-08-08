@@ -51,7 +51,11 @@ function MatchPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>TO BE DELETED</p>
+        <AttendingShooters
+          mobile 
+          matchId={id}
+          attendingsCount={match.results[0]?.attendings_count} 
+        />
         {/* import of the match component and all it's data from match.js */}
         <Match {...match.results[0]} setMatches={setMatch} matchPage />
         <Container className={appStyles.Content}>
@@ -93,7 +97,6 @@ function MatchPage() {
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        List of attending shooters
         <AttendingShooters 
           matchId={id}
           attendingsCount={match.results[0]?.attendings_count} 

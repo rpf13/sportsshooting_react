@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import appStyles from "../../App.module.css";
 import popStyles from "../../styles/PopularMatches.module.css"
 import { Container } from 'react-bootstrap';
 import { axiosReq } from "../../api/axiosDefaults";

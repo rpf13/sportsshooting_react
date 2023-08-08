@@ -1,0 +1,9 @@
+.scrollableContainerMob {
+    max-height: 90px;
+    overflow-y: auto;
+}
+
+.scrollableContainerDsk {
+    max-height: 200px;
+    overflow-y: auto;
+}
