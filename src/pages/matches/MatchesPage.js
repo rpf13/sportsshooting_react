@@ -57,7 +57,7 @@ function MatchesPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>TO BE REUSED POP PROFILES MOBILE</p>
+        <PopularMatches mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
