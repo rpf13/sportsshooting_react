@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import FormatDay from "../../helper/FormatDay";
 
 
 const PopularMatches = ({ mobile }) => {
@@ -38,13 +39,13 @@ const PopularMatches = ({ mobile }) => {
     >
       {popularMatches.results.length ? (
         <>
-          <p>Most popular Matches.</p>
+          <p>Most popular Matches:</p>
           {mobile ? (
             <div>
               {popularMatches.results.slice(0, 3).map((match) => (
                 <p key={match.id}>
                   <Link to={`/matches/${match.id}`}>
-                    <strong>{match.title}</strong> - {match.match_date}
+                    <strong>{match.title}</strong> - <FormatDay match_date={match.match_date} />
                   </Link>
                 </p>
               ))}
@@ -53,7 +54,7 @@ const PopularMatches = ({ mobile }) => {
             popularMatches.results.slice(0, 5).map((match) => (
               <p key={match.id}>
                 <Link to={`/matches/${match.id}`}>
-                    <strong>{match.title}</strong> - {match.match_date}
+                    <strong>{match.title}</strong> - <FormatDay match_date={match.match_date} />
                   </Link>
               </p>
             ))
