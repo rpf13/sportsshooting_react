@@ -33,13 +33,13 @@ const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
 
   return (
     <Container
-      className={`${popStyles.PopContent} ${
+      className={`p-3 ${popStyles.PopContent} ${
         mobile && "d-lg-none text-center mb-3"
       }`}
     >
       {attendings.length ? (
         <>
-          <p><strong>Attending Shooters:</strong></p>
+          <p className="text-center" ><strong>Attending Shooters:</strong></p>
           {mobile ? (
             <div className={`d-flex justify-content-center flex-wrap ${appStyles.scrollableContainerMob}`}>
               {attendings.map((attending) => (
@@ -50,12 +50,12 @@ const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
               ))}
             </div>
           ) : (
-            <div className={appStyles.scrollableContainerDsk}>
+            <div className={`d-flex flex-wrap justify-content-between ${appStyles.scrollableContainerDsk}`}>
             {attendings.map((attending) => (
               <div key={attending.id}>
               <Link to={`/profile/${attending.owner}`}>
                 <Avatar src={attending.profile_image} />
-                <strong className="ml-3">{attending.owner}</strong>
+                <strong className="ml-3 mr-2">{attending.owner}</strong>
               </Link>
               </div>
             ))}
