@@ -10,6 +10,7 @@ import Avatar from "../../components/Avatar";
 const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
   const [attendeesData, setAttendeesData] = useState({ attendings: [] });
   const { attendings } = attendeesData;
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -21,22 +22,14 @@ const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
         }));
       } catch (err) {
         console.log(err);
+      } finally {
+        setIsLoading(false); // Set loading to false when done, whether success or failure
       }
     };
     handleMount();
   }, [matchId, attendingsCount]);
 
-  if (attendings.length === 0) {
-    return (
-      <Container
-        className={`${popStyles.PopContent} ${
-          mobile && "d-lg-none text-center mb-3"
-        }`}
-      >
-        <Asset spinner />
-      </Container>
-    );
-  }
+  if (isLoading) return <Asset spinner />;
 
   return (
     <Container
@@ -44,27 +37,31 @@ const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
         mobile && "d-lg-none text-center mb-3"
       }`}
     >
-      <p>
-        <strong>Attending Shooters:</strong>
-      </p>
-      {mobile ? (
-        <div className={appStyles.scrollableContainerMob}>
-          {attendings.map((attending) => (
-            <Link to={`/profile/${attending.owner}`} key={attending.id}>
-              <Avatar src={attending.profile_image} />
-              <strong>{attending.owner}</strong>
-            </Link>
-          ))}
-        </div>
+      {attendings.length ? (
+        <>
+          <p><strong>Attending Shooters:</strong></p>
+          {mobile ? (
+            <div className={appStyles.scrollableContainerMob}>
+              {attendings.map((attending) => (
+                <Link to={`/profile/${attending.owner}`} key={attending.id}>
+                  <Avatar src={attending.profile_image} />
+                  <strong>{attending.owner}</strong>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className={appStyles.scrollableContainerDsk}>
+            {attendings.map((attending) => (
+              <Link to={`/profile/${attending.owner}`} key={attending.id}>
+                <Avatar src={attending.profile_image} />
+                <strong>{attending.owner}</strong>
+              </Link>
+            ))}
+            </div>
+          )}
+        </>
       ) : (
-        <div className={appStyles.scrollableContainerDsk}>
-          {attendings.map((attending) => (
-            <Link to={`/profile/${attending.owner}`} key={attending.id}>
-              <Avatar src={attending.profile_image} />
-              <strong>{attending.owner}</strong>
-            </Link>
-          ))}
-        </div>
+        <p>No Shooter is attending this match</p>
       )}
     </Container>
   );
