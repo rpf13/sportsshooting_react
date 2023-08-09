@@ -102,6 +102,7 @@ const ProfileEditForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
+    formData.append("name", name);
     formData.append("club", club);
     formData.append("division", division);
     formData.append("license", license);
