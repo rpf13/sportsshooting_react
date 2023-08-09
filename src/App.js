@@ -14,6 +14,7 @@ import GunPage from "./pages/guns/GunPage";
 import GunsPage from "./pages/guns/GunsPage";
 import MatchEditForm from "./pages/matches/MatchEditForm";
 import GunEditForm from "./pages/guns/GunEditForm";
+import ProfilePage from "./pages/profiles/ProfilePage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -62,6 +63,7 @@ function App() {
           />
           <Route exact path="/guns/:id/edit" render={() => <GunEditForm />} />
           <Route exact path="/guns/:id" render={() => <GunPage />} />
+          <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
