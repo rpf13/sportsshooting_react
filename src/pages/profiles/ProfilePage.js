@@ -8,11 +8,9 @@ import Asset from "../../components/Asset";
 
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
 import NoResults from "../../assets/no_results.png"
 
 import PopularMatches from "../matches/PopularMatches";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Image } from "react-bootstrap";
@@ -20,13 +18,11 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Match from "../matches/Match";
 import { fetchMoreData } from "../../helper/utils";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
-import { Link } from "react-router-dom/cjs/react-router-dom";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profile, setProfile] = useState(null);
   const [profileMatches, setProfileMatches] = useState({ results: [] });
-  const currentUser = useCurrentUser();
 //   useParams is used to fetch the user id out of the URL
   const {id} = useParams();
 
