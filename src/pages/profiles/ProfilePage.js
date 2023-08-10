@@ -20,6 +20,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Match from "../matches/Match";
 import { fetchMoreData } from "../../helper/utils";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -49,23 +50,102 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
-    {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
-          <Image 
+          <Image
             className={styles.ProfileImage}
             roundedCircle
             src={profile?.image}
-        />
+          />
         </Col>
         <Col lg={6}>
           <h3 className="m-2">{profile?.owner}</h3>
-          <h5>{profile?.club}CLUB Placeholder</h5>
+          <h5>{profile?.club}</h5>
         </Col>
         <Col lg={3} className="text-lg-right">
-        <p>Edit profile</p>
         </Col>
-        <Col className="p-3">Profile content</Col>
+      </Row>
+      <Row className="justify-content-center no-gutters font-weight-lighter">
+      <Col className="p-3" sm={8} lg={12}>
+        <Container className={`${appStyles.Content}`}>
+        <p className="text-center p-2"><strong>{profile?.owner}'s Bio</strong></p>
+        {profile?.note && (
+              <>
+                <Col className="p-1">{profile?.note}</Col>
+              </>
+            )}
+
+        </Container>
+        
+        </Col>
+      </Row>
+
+      <Row className="justify-content-center no-gutters font-weight-lighter">
+        <Col className="p-3" sm={8} lg={6}>
+          <Container className={`${appStyles.Content}`}>
+            <p className="text-center p-2"><strong>About {profile?.owner}</strong></p>
+            {profile?.name && (
+              <>
+                <Col className="p-1">Name: {profile?.name}</Col>
+              </>
+            )}
+            {profile?.club && (
+              <>
+                <Col className="p-1">Club: {profile?.club}</Col>
+              </>
+            )}
+            {profile?.country && (
+              <>
+                <Col className="p-1">Country: {profile?.country}</Col>
+              </>
+            )}
+            {profile?.division && (
+              <>
+                <Col className="p-1">Division: {profile?.division}</Col>
+              </>
+            )}
+            {profile?.license && (
+              <>
+                <Col className="p-1">License: {profile?.license}</Col>
+              </>
+            )}
+          </Container>
+        </Col>
+        <Col className="p-3" sm={8} lg={6}>
+          <Container className={appStyles.Content}>
+            <p className="text-center p-2"><strong>Contact {profile?.owner}</strong></p>
+            {profile?.phone && (
+              <Col className="p-1">
+                <i className="fa-solid fa-phone-volume"></i> {profile?.phone}
+              </Col>
+            )}
+            {profile?.mail && (
+              <Col className="p-1">
+                <i className="fa-solid fa-at"></i>
+                <a
+                  href={`mailto:${profile?.mail}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {profile?.mail}
+                </a>
+              </Col>
+            )}
+            {profile?.social_media && (
+              <Col className={`${styles.Social} p-1`}>
+                <a
+                  href={profile.social_media}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fa-brands fa-facebook-f"></i>
+                  {profile?.social_media}
+                </a>
+              </Col>
+            )}
+          </Container>
+        </Col>
       </Row>
     </>
   );
