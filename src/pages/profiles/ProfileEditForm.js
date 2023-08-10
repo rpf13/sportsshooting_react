@@ -41,6 +41,7 @@ const ProfileEditForm = () => {
     owner,
     name,
     club,
+    country,
     division,
     license,
     mail,
@@ -60,6 +61,7 @@ const ProfileEditForm = () => {
             owner,
             name,
             club,
+            country,
             division,
             license,
             mail,
@@ -72,6 +74,7 @@ const ProfileEditForm = () => {
                 owner,
                 name,
                 club,
+                country,
                 division,
                 license,
                 mail,
@@ -104,6 +107,7 @@ const ProfileEditForm = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("club", club);
+    formData.append("country", country);
     formData.append("division", division);
     formData.append("license", license);
     formData.append("mail", mail);
@@ -151,6 +155,21 @@ const ProfileEditForm = () => {
           value={club}
           onChange={handleChange}
           name="club"
+        />
+      </Form.Group>
+      {errors?.content?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Form.Group>
+        <Form.Label>Country</Form.Label>
+        <Form.Control
+          type="text"
+          value={country}
+          onChange={handleChange}
+          name="country"
         />
       </Form.Group>
       {errors?.content?.map((message, idx) => (
