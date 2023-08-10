@@ -38,12 +38,14 @@ const PopularMatches = ({ mobile }) => {
     >
       {popularMatches.results.length ? (
         <>
-          <p>Most popular Matches:</p>
+          <h5 className="text-center p-3">Upcoming popular Matches</h5>
           {mobile ? (
             <div>
               {popularMatches.results
-                // filter to display only matches in the future and limit to 4
+                // filter to display only matches in the future
+                // sort them by most recent first and limit to 4
                 .filter((input) => new Date(input.match_date) - new Date() > 0)
+                .sort((a, b) => new Date(a.match_date) - new Date(b.match_date))
                 .slice(0, 3)
                 .map((match) => (
                   <p key={match.id}>
@@ -56,8 +58,10 @@ const PopularMatches = ({ mobile }) => {
             </div>
           ) : (
             popularMatches.results
-              // filter to display only matches in the future and limit to 6
+              // filter to display only matches in the future 
+              // sort them by most recent first and limit to 6
               .filter((input) => new Date(input.match_date) - new Date() > 0)
+              .sort((a, b) => new Date(a.match_date) - new Date(b.match_date))
               .slice(0, 5)
               .map((match) => (
                 <p key={match.id}>
