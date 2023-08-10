@@ -8,8 +8,10 @@ import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Gun from "./Gun";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function GunPage() {
+  useRedirect('loggedOut')
   const { id } = useParams();
   const [gun, setGun] = useState({ results: [] });
 

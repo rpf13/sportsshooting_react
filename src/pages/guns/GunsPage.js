@@ -18,9 +18,11 @@ import { FormControl } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../helper/utils";
 import PopularMatches from "../matches/PopularMatches";
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 function GunsPage({ message }) {
+  useRedirect('loggedOut')
   const [guns, setGuns] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
