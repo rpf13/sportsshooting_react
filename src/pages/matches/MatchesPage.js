@@ -36,6 +36,14 @@ function MatchesPage({ message, filter = "" }) {
           const { data } = await axiosReq.get(
             `/matches/?${filter}search=${query}`
           );
+          // if filter prop is passed, only display future
+          // matches and sort them to display the next one first
+          if (filter) {
+            data.results = data.results
+            .filter((match) => new Date(match.match_date) - new Date() > 0)
+            .sort((a, b) => new Date(a.match_date) - new Date(b.match_date));
+          }
+
           setMatches(data);
           setHasLoaded(true);
         } catch (err) {
