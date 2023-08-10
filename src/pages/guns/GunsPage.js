@@ -63,7 +63,6 @@ function GunsPage({ message }) {
 
   return (
     <Row className="h-100">
-      {/* maybe need to adjust this class to use the whole space */}
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularMatches mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />

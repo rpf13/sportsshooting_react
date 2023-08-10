@@ -39,7 +39,7 @@ const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
     >
       {attendings.length ? (
         <>
-          <p className="text-center" ><strong>Attending Shooters:</strong></p>
+          <h5 className="text-center p-3">Participating Shooters</h5>
           {mobile ? (
             <div className={`d-flex justify-content-center flex-wrap ${appStyles.scrollableContainerMob}`}>
               {attendings.map((attending) => (
@@ -63,7 +63,7 @@ const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
           )}
         </>
       ) : (
-        <p>No Shooter is attending this match</p>
+        <h5 className="text-center p-3">No Participating Shooters</h5>
       )}
     </Container>
   );
