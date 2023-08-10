@@ -41,22 +41,32 @@ const PopularMatches = ({ mobile }) => {
           <p>Most popular Matches:</p>
           {mobile ? (
             <div>
-              {popularMatches.results.slice(0, 3).map((match) => (
-                <p key={match.id}>
-                  <Link to={`/matches/${match.id}`}>
-                    <strong>{match.title}</strong> - <FormatDay match_date={match.match_date} />
-                  </Link>
-                </p>
-              ))}
+              {popularMatches.results
+                // filter to display only matches in the future and limit to 4
+                .filter((input) => new Date(input.match_date) - new Date() > 0)
+                .slice(0, 3)
+                .map((match) => (
+                  <p key={match.id}>
+                    <Link to={`/matches/${match.id}`}>
+                      <strong>{match.title}</strong> -{" "}
+                      <FormatDay match_date={match.match_date} />
+                    </Link>
+                  </p>
+                ))}
             </div>
           ) : (
-            popularMatches.results.slice(0, 5).map((match) => (
-              <p key={match.id}>
-                <Link to={`/matches/${match.id}`}>
-                    <strong>{match.title}</strong> - <FormatDay match_date={match.match_date} />
+            popularMatches.results
+              // filter to display only matches in the future and limit to 6
+              .filter((input) => new Date(input.match_date) - new Date() > 0)
+              .slice(0, 5)
+              .map((match) => (
+                <p key={match.id}>
+                  <Link to={`/matches/${match.id}`}>
+                    <strong>{match.title}</strong> -{" "}
+                    <FormatDay match_date={match.match_date} />
                   </Link>
-              </p>
-            ))
+                </p>
+              ))
           )}
         </>
       ) : (
