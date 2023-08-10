@@ -18,50 +18,49 @@ import { fetchMoreData } from "../../helper/utils";
 import PopularMatches from "./PopularMatches";
 
 function MatchesPage({ message, filter = "" }) {
-    const [matches, setMatches] = useState({ results: [] });
-    const [hasLoaded, setHasLoaded] = useState(false);
-    // used to refetch matches when url change between
-    // Matches and MySchedule is detected
-    const { pathname } = useLocation();
+  const [matches, setMatches] = useState({ results: [] });
+  const [hasLoaded, setHasLoaded] = useState(false);
+  // used to refetch matches when url change between
+  // Matches and MySchedule is detected
+  const { pathname } = useLocation();
 
-    // used for search query
-    const [query, setQuery] = useState("");
+  // used for search query
+  const [query, setQuery] = useState("");
 
-    useEffect(() => {
-      const fetchMatches = async () => {
-        try {
-          // the filter comes from the filter prop we
-          // have set in the routes on app.js
-          // the search content comes from the query argument passed
-          const { data } = await axiosReq.get(
-            `/matches/?${filter}search=${query}`
-          );
-          // if filter prop is passed, only display future
-          // matches and sort them to display the next one first
-          if (filter) {
-            data.results = data.results
+  useEffect(() => {
+    const fetchMatches = async () => {
+      try {
+        // the filter comes from the filter prop we
+        // have set in the routes on app.js
+        // the search content comes from the query argument passed
+        const { data } = await axiosReq.get(
+          `/matches/?${filter}search=${query}`
+        );
+        // if filter prop is passed, only display future
+        // matches and sort them to display the next one first
+        if (filter) {
+          data.results = data.results
             .filter((match) => new Date(match.match_date) - new Date() > 0)
             .sort((a, b) => new Date(a.match_date) - new Date(b.match_date));
-          }
-
-          setMatches(data);
-          setHasLoaded(true);
-        } catch (err) {
-          console.log(err);
         }
-      };
-      setHasLoaded(false);
+
+        setMatches(data);
+        setHasLoaded(true);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    setHasLoaded(false);
     // set timeout to fetchMatches, also for search, to not render
     // after each user key input
-      const timer = setTimeout(() => {
-        fetchMatches();
-      }, 1000)
-      return () => {
-        clearTimeout(timer);
-      }
-      
-    }, [filter, query, pathname]);
-  
+    const timer = setTimeout(() => {
+      fetchMatches();
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [filter, query, pathname]);
+
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
@@ -84,11 +83,9 @@ function MatchesPage({ message, filter = "" }) {
           <>
             {matches.results.length ? (
               <InfiniteScroll
-                children={
-                    matches.results.map((match) => (
-                        <Match key={match.id} {...match} setMatches={setMatches} />
-                    ))
-                }
+                children={matches.results.map((match) => (
+                  <Match key={match.id} {...match} setMatches={setMatches} />
+                ))}
                 dataLength={matches.results.length}
                 loader={<Asset spinner />}
                 hasMore={!!matches.next}

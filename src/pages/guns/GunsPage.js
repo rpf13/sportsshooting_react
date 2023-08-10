@@ -17,6 +17,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { FormControl } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../helper/utils";
+import PopularMatches from "../matches/PopularMatches";
 
 
 function GunsPage({ message }) {
@@ -64,7 +65,7 @@ function GunsPage({ message }) {
     <Row className="h-100">
       {/* maybe need to adjust this class to use the whole space */}
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p> no need for guns Popular profiles mobile</p>
+        <PopularMatches mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
               <Form
                 className={styles.SearchBar}
@@ -116,10 +117,7 @@ function GunsPage({ message }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        <p>
-            No need for guns Popular profiles for desktop
-            Maybe add the last added guns to a component
-        </p>
+        <PopularMatches />
       </Col>
     </Row>
   );
