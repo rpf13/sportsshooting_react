@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from "../../styles/Match.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from 'react-bootstrap';
@@ -7,6 +7,7 @@ import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import FormatDay from '../../helper/FormatDay';
 import { MoreDropdown } from '../../components/MoreDropdown';
+import DeleteModal from '../../components/DeleteModal';
 
 const Match = (props) => {
     const {
@@ -37,14 +38,25 @@ const Match = (props) => {
       history.push(`/matches/${id}/edit`);
     };
 
-    const handleDelete = async () => {
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+    const handleDeleteClick = () => {
+      setShowDeleteModal(true);
+    };
+
+    const handleConfirmDelete = async () => {
       try {
         await axiosRes.delete(`/matches/${id}/`);
-        history.goBack();
+        history.push('/');
       } catch (err) {
         console.log(err);
       }
-    };    
+      setShowDeleteModal(false);
+    };
+
+    const handleCloseDeleteModal = () => {
+      setShowDeleteModal(false);
+    };
 
     // function to handle the attending logic
     const handleAttend = async () => {
@@ -81,7 +93,9 @@ const Match = (props) => {
     };
 
 
-  return <Card className={styles.Match}>
+  return (
+  <>
+  <Card className={styles.Match}>
     <Card.Body>
       <Media className='align-items-center justify-content-between'>
         <Link to={`/profiles/${profile_id}`}>
@@ -94,7 +108,7 @@ const Match = (props) => {
           {is_owner && matchPage && (
             <MoreDropdown 
               handleEdit={handleEdit}
-              handleDelete={handleDelete}
+              handleDelete={handleDeleteClick}
             />
           )}
         </div>
@@ -136,6 +150,14 @@ const Match = (props) => {
       </div>
     </Card.Body>
   </Card>
+    <DeleteModal
+      show={showDeleteModal}
+      handleClose={handleCloseDeleteModal}
+      handleConfirm={handleConfirmDelete}
+    />
+  </>
+  );
 }
+
 
 export default Match
