@@ -33,12 +33,11 @@ const Match = (props) => {
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner
     const history = useHistory();
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const handleEdit = () => {
       history.push(`/matches/${id}/edit`);
     };
-
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const handleDeleteClick = () => {
       setShowDeleteModal(true);
@@ -158,6 +157,5 @@ const Match = (props) => {
   </>
   );
 }
-
 
 export default Match
