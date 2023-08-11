@@ -89,7 +89,7 @@ const Match = (props) => {
           {owner}
         </Link>
         <div className='d-flex align-items-center'>
-          <span>last updated - {updated_at}</span>
+          {title && <span>last updated - <FormatDay updated_at={updated_at} /></span>}
           {/* if user created match, is owner, we display edit option */}
           {is_owner && matchPage && (
             <MoreDropdown 
