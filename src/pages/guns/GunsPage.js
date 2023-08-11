@@ -31,11 +31,12 @@ function GunsPage({ message }) {
 
   // used for search query
   const [query, setQuery] = useState("");
+  const [gunType, setGunType] = useState("");
 
   useEffect(() => {
     const fetchGuns = async () => {
       try {
-        const { data } = await axiosReq.get(`/guns?search=${query}`);
+        const { data } = await axiosReq.get(`/guns?search=${query}&type=${gunType}`);
         setGuns(data);
         setHasLoaded(true);
       } catch (err) {
@@ -61,25 +62,37 @@ function GunsPage({ message }) {
       setHasError(true);
       setGuns({ results: [] }); // clear the guns state
     }
-  }, [pathname, query, currentUser]);
+  }, [pathname, query, currentUser, gunType]);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularMatches mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
-              <Form
-                className={styles.SearchBar}
-                onSubmit={(event) => event.preventDefault()}
-              >
-                <FormControl
-                    value={query}
-                    onChange={(event) => setQuery(event.target.value)}
-                    type="text"
-                    className="mr-sm-2"
-                    placeholder="Search by brand, model, serialnumber"
-                />
-              </Form>
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <FormControl
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search by brand, model, serialnumber"
+          />
+
+          <Form.Control
+            as="select"
+            placeholder="Choose GunType"
+            value={gunType}
+            onChange={(event) => setGunType(event.target.value)}
+            className="mb-3"
+          >
+            <option value="">All Gun Types or Select</option>
+            <option>Handgun</option>
+            <option>Rifle</option>
+          </Form.Control>
+        </Form>
         {hasLoaded ? (
           hasError ? (
             <Container className={appStyles.Content}>
@@ -92,18 +105,15 @@ function GunsPage({ message }) {
           ) : (
             <>
               {guns.results.length ? (
-                <InfiniteScroll 
-                    children={
-                        guns.results.map((gun) => {
-                        return <Gun key={gun.id} {...gun} setGuns={setGuns} />;
-                })
-                    }
-                    dataLength={guns.results.length}
-                    loader={<Asset spinner />}
-                    hasMore={!!guns.next}
-                    next={() => fetchMoreData(guns, setGuns)}
+                <InfiniteScroll
+                  children={guns.results.map((gun) => {
+                    return <Gun key={gun.id} {...gun} setGuns={setGuns} />;
+                  })}
+                  dataLength={guns.results.length}
+                  loader={<Asset spinner />}
+                  hasMore={!!guns.next}
+                  next={() => fetchMoreData(guns, setGuns)}
                 />
-                
               ) : (
                 <Container className={appStyles.Content}>
                   <Asset src={NoResults} message={message} />
