@@ -26,6 +26,7 @@ function MatchesPage({ message, filter = "" }) {
 
   // used for search query
   const [query, setQuery] = useState("");
+  const [level, setLevel] = useState("");
 
   useEffect(() => {
     const fetchMatches = async () => {
@@ -34,7 +35,7 @@ function MatchesPage({ message, filter = "" }) {
         // have set in the routes on app.js
         // the search content comes from the query argument passed
         const { data } = await axiosReq.get(
-          `/matches/?${filter}search=${query}`
+          `/matches/?${filter}search=${query}&level_filter=${level}`
         );
         // if filter prop is passed, only display future
         // matches and sort them to display the next one first
@@ -59,7 +60,7 @@ function MatchesPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, level]);
 
   return (
     <Row className="h-100">
@@ -77,6 +78,21 @@ function MatchesPage({ message, filter = "" }) {
             className="mr-sm-2"
             placeholder="Search matches by title, location, advertiser"
           />
+
+          <Form.Control
+            as="select"
+            placeholder="Choose Level"
+            value={level}
+            onChange={(event) => setLevel(event.target.value)}
+            className="mb-3"
+          >
+            <option value="">All Match Levels or Select</option>
+            <option>Level-1</option>
+            <option>Level-2</option>
+            <option>Level-3</option>
+            <option>Level-4</option>
+            <option>Level-5</option>
+          </Form.Control>
         </Form>
 
         {hasLoaded ? (
