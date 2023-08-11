@@ -5,6 +5,7 @@ import { Card, Media } from 'react-bootstrap';
 import { Link, useHistory } from "react-router-dom";
 import { MoreDropdown } from '../../components/MoreDropdown';
 import { axiosRes } from '../../api/axiosDefaults';
+import FormatDay from '../../helper/FormatDay';
 
 const Gun = (props) => {
     const {
@@ -43,10 +44,10 @@ const Gun = (props) => {
         <Card.Body>
             <Media className='align-items-center justify-content-between'>
                 <div className='d-flex align-items-center'>
-                    <span>added: {created_at}</span>
+                    {brand && <span>added - <FormatDay created_at={created_at} /></span>}
                 </div>                
                 <div className='d-flex align-items-center'>
-                    <span>last update: {updated_at}</span>
+                    {brand && <span>last updated - <FormatDay updated_at={updated_at} /></span>}
                     {/* if user created gun item, is owner, and the gunPage prop exists
                      we display edit option */}
                     {is_owner && gunPage && (
