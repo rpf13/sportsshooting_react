@@ -16,10 +16,12 @@ import Asset from "../../components/Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../helper/utils";
 import PopularMatches from "./PopularMatches";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function MatchesPage({ message, filter = "" }) {
   const [matches, setMatches] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+  const currentUser = useCurrentUser();
   // used to refetch matches when url change between
   // Matches and MySchedule is detected
   const { pathname } = useLocation();
@@ -60,7 +62,7 @@ function MatchesPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname, level]);
+  }, [filter, query, pathname, level, currentUser]);
 
   return (
     <Row className="h-100">
