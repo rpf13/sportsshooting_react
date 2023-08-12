@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -16,10 +16,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../helper/utils";
 import AttendingShooters from "./AttendingShooters";
+import { ErrorContext } from "../../App";
 
 
 function MatchPage() {
   const { id } = useParams();
+  const handleError = useContext(ErrorContext);
 
   // set the default object we get from api to an array
   // independet of only 1 or multiple objects are returned
@@ -40,13 +42,13 @@ function MatchPage() {
         ]);
         setMatch({ results: [match] });
         setComments(comments)
-      } catch (err) {
-        console.log(err);
+      } catch {
+        handleError();
       }
     };
 
     handleMount();
-  }, [id]);
+  }, [id, handleError]);
 
   return (
     <Row className="h-100">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from "../../styles/Match.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Card from 'react-bootstrap/Card';
@@ -12,6 +12,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import FormatDay from '../../helper/FormatDay';
 import { MoreDropdown } from '../../components/MoreDropdown';
 import DeleteModal from '../../components/DeleteModal';
+import { ErrorContext } from '../../App';
 
 const Match = (props) => {
     const {
@@ -38,6 +39,7 @@ const Match = (props) => {
     const is_owner = currentUser?.username === owner
     const history = useHistory();
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const handleError = useContext(ErrorContext);
 
     const handleEdit = () => {
       history.push(`/matches/${id}/edit`);
@@ -51,8 +53,8 @@ const Match = (props) => {
       try {
         await axiosRes.delete(`/matches/${id}/`);
         history.push('/');
-      } catch (err) {
-        console.log(err);
+      } catch {
+        handleError();
       }
       setShowDeleteModal(false);
     };
@@ -73,8 +75,8 @@ const Match = (props) => {
             : match;
           })
         }))
-      } catch (err) {
-        console.log(err)
+      } catch {
+        handleError();
       }
     };
 
@@ -90,8 +92,8 @@ const Match = (props) => {
             : match;
           }),
         }));
-      } catch (err) {
-        console.log(err);
+      } catch {
+        handleError();
       }
     };
 

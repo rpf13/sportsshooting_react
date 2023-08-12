@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -18,11 +18,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Match from "../matches/Match";
 import { fetchMoreData } from "../../helper/utils";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
+import { ErrorContext } from "../../App";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profile, setProfile] = useState(null);
   const [profileMatches, setProfileMatches] = useState({ results: [] });
+  const handleError = useContext(ErrorContext);
 //   useParams is used to fetch the user id out of the URL
   const {id} = useParams();
 
@@ -37,12 +39,12 @@ function ProfilePage() {
             setProfile(pageProfile);
             setProfileMatches(matches);
             setHasLoaded(true);
-        } catch (err) {
-            console.log(err)
+        } catch {
+          handleError();
         }
     }
      fetchData() ;
-  }, [id]);
+  }, [id, handleError]);
 
   const mainProfile = (
     <>

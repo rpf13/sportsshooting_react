@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import appStyles from "../../styles/AttendingShooters.module.css";
 import popStyles from "../../styles/PopularMatches.module.css";
 import Container from "react-bootstrap/Container";
@@ -6,11 +6,13 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Avatar from "../../components/Avatar";
+import { ErrorContext } from "../../App";
 
 const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
   const [attendeesData, setAttendeesData] = useState({ attendings: [] });
   const { attendings } = attendeesData;
   const [isLoading, setIsLoading] = useState(true);
+  const handleError = useContext(ErrorContext);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -20,14 +22,14 @@ const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
           ...prevState,
           attendings: data.attendings,
         }));
-      } catch (err) {
-        console.log(err);
+      } catch {
+        handleError();
       } finally {
         setIsLoading(false); // Set loading to false when done, whether success or failure
       }
     };
     handleMount();
-  }, [matchId, attendingsCount]);
+  }, [matchId, attendingsCount, handleError]);
 
   if (isLoading) return <Asset spinner />;
 

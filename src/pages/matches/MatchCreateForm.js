@@ -74,7 +74,6 @@ function MatchCreateForm() {
       const {data} = await axiosReq.post('/matches/', formData);
       history.push(`/matches/${data.id}`)
     } catch (err) {
-      console.log(err)
       if (err.response?.status !== 401){
         setErrors(err.response?.data)
       }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -13,9 +13,11 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import { ErrorContext } from '../../App';
 
 function MatchEditForm() {
   const [errors, setErrors] = useState({});
+  const handleError = useContext(ErrorContext);
 
     // Helper function to format date to 'YYYY-MM-DD'
     const formatMatchDate = (date) => {
@@ -71,12 +73,12 @@ function MatchEditForm() {
                 details,
                 image
             }) : history.push('/')
-        } catch (err) {
-            console.log(err);
+        } catch {
+          handleError();
         }
     };
     handleMount();
-  }, [history, id])
+  }, [history, id, handleError])
 
   const handleChange = (event) => {
     setMatchData({
@@ -117,7 +119,6 @@ function MatchEditForm() {
       await axiosReq.put(`matches/${id}/`, formData);
       history.push(`/matches/${id}`)
     } catch (err) {
-      console.log(err)
       if (err.response?.status !== 401){
         setErrors(err.response?.data)
       }

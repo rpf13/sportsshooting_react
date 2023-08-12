@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -17,11 +17,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../helper/utils";
 import PopularMatches from "./PopularMatches";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { ErrorContext } from "../../App";
 
 function MatchesPage({ message, filter = "" }) {
   const [matches, setMatches] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const currentUser = useCurrentUser();
+  const handleError = useContext(ErrorContext);
   // used to refetch matches when url change between
   // Matches and MySchedule is detected
   const { pathname } = useLocation();
@@ -49,8 +51,8 @@ function MatchesPage({ message, filter = "" }) {
 
         setMatches(data);
         setHasLoaded(true);
-      } catch (err) {
-        console.log(err);
+      } catch {
+        handleError();
       }
     };
     setHasLoaded(false);
@@ -62,7 +64,7 @@ function MatchesPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname, level, currentUser]);
+  }, [filter, query, pathname, level, currentUser, handleError]);
 
   return (
     <Row className="h-100">

@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import popStyles from "../../styles/PopularMatches.module.css";
 import Container from "react-bootstrap/Container";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import FormatDay from "../../helper/FormatDay";
+import { ErrorContext } from "../../App";
 
 const PopularMatches = ({ mobile }) => {
   const [matchData, setMatchData] = useState({
     popularMatches: { results: [] },
   });
   const { popularMatches } = matchData;
+  const handleError = useContext(ErrorContext);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -22,12 +24,12 @@ const PopularMatches = ({ mobile }) => {
           ...prevState,
           popularMatches: data,
         }));
-      } catch (err) {
-        console.log(err);
+      } catch {
+        handleError();
       }
     };
     handleMount();
-  }, []);
+  }, [handleError]);
 
   return (
     <Container
