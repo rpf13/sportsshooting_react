@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import styles from "../../styles/Gun.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import Media from 'react-bootstrap/Media';
 import { Link, useHistory } from "react-router-dom";
 import { MoreDropdown } from '../../components/MoreDropdown';
 import { axiosRes } from '../../api/axiosDefaults';

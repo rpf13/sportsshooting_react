@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import popStyles from "../../styles/PopularMatches.module.css"
-import { Container } from 'react-bootstrap';
+import Container from "react-bootstrap/Container";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
