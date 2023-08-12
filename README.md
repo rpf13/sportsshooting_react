@@ -103,7 +103,7 @@ In order to run the project correctly on gitpod, one has to use the following no
 - Documentation - Create README: As a developer I can write the README documentation based on the guideline so another coder can understand how the project was built: [Link](https://github.com/rpf13/sportsshooting_react/issues/38)
 - Deployment - Execute Deployment: As a developer I can execute the final deployment on Heroku so I can submit my PP5 project to CI: [Link](https://github.com/rpf13/sportsshooting_react/issues/39)
 
-### Stretch User Stories
+### Stretch User Stories - Not implemented
 
 #### Shooters - Messages
 

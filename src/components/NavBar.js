@@ -7,6 +7,7 @@ import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContex
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+import { removeTokenTimestamp } from "../helper/utils";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -15,14 +16,13 @@ const NavBar = () => {
   // destructure the objects of the useClickOutsideToggle custom hook
   const {expanded, setExpanded, ref} = useClickOutsideToggle();
 
-
-
   const handleSignOut = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      removeTokenTimestamp();
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   };
 
