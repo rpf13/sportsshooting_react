@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import popStyles from "../../styles/PopularMatches.module.css"
+import popStyles from "../../styles/PopularMatches.module.css";
 import Container from "react-bootstrap/Container";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import FormatDay from "../../helper/FormatDay";
-
 
 const PopularMatches = ({ mobile }) => {
   const [matchData, setMatchData] = useState({
@@ -58,7 +57,7 @@ const PopularMatches = ({ mobile }) => {
             </div>
           ) : (
             popularMatches.results
-              // filter to display only matches in the future 
+              // filter to display only matches in the future
               // sort them by most recent first and limit to 6
               .filter((input) => new Date(input.match_date) - new Date() > 0)
               .sort((a, b) => new Date(a.match_date) - new Date(b.match_date))
