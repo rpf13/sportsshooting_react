@@ -31,8 +31,18 @@
     padding: 10px 50px;
     width: 100%;
   }
+
+  .Bright {
+    background-color: #e3dedb;
+    color: red;
+    /* font-size: 0.9rem; */
+  }
   
-  .Blue,
+
+
+/* DELETE THE FOLLOWING CODE */
+
+  /* .Blue,
   .BlueOutline:hover,
   .Bright:hover {
     background-color: #c88b74;
@@ -41,30 +51,24 @@
   
   .BlueOutline,
   .Blue:hover {
-    /* border: 1px solid #2142b2; */
+    border: 1px solid #2142b2;
     background-color: #ffffff;
     color: #2142b2;
   }
   
   .Black,
   .BlackOutline:hover {
-    /* background-color: #242a3d;
-    color: white; */
+    background-color: #242a3d;
+    color: white;
     background-color: #242a3d;
     color: aliceblue;
   }
   
   .Black:hover,
   .BlackOutline {
-    /* background-color: #dadadf;
+    background-color: #dadadf;
     color: #242a3d;
-    border-color: #242a3d; */
+    border-color: #242a3d;
     background-color: aliceblue;
     color: #242a3d;
-  }
-  
-  .Bright {
-    background-color: #e3dedb;
-    color: red;
-    /* font-size: 0.9rem; */
-  }
+  } */
