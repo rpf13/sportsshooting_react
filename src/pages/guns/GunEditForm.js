@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -13,9 +13,11 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import { ErrorContext } from "../../App";
 
 function GunEditForm() {
   const [errors, setErrors] = useState({});
+  const handleError = useContext(ErrorContext);
 
   const [gunData, setGunData] = useState({
     brand: "",
@@ -53,12 +55,12 @@ function GunEditForm() {
             details,
             image
         }) : history.push('/')
-        } catch (err) {
-            console.log(err);
+        } catch {
+          handleError();
         }
     };
     handleMount();
-  }, [history, id])
+  }, [history, id, handleError])
 
   const handleChange = (event) => {
     setGunData({
@@ -90,12 +92,10 @@ function GunEditForm() {
         formData.append('image', imageInput.current.files[0]);
     }
     
-
     try {
         await axiosReq.put(`/guns/${id}/`, formData);
         history.push(`/guns/${id}`)
     } catch (err) {
-        console.log(err)
         if (err.response?.status !== 401){
             setErrors(err.response?.data)
           }

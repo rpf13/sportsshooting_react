@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
 
 import styles from "../../styles/CommentForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import { ErrorContext } from "../../App";
 
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
-
+  const handleError = useContext(ErrorContext);
   const [formContent, setFormContent] = useState(content);
 
   const handleChange = (event) => {
@@ -34,8 +35,8 @@ function CommentEditForm(props) {
         }),
       }));
       setShowEditForm(false);
-    } catch (err) {
-      console.log(err);
+    } catch {
+      handleError();
     }
   };
 

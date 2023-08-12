@@ -65,7 +65,6 @@ function GunCreateForm() {
         const {data} = await axiosReq.post('/guns/', formData);
         history.push(`/guns/${data.id}`)
     } catch (err) {
-        console.log(err)
         if (err.response?.status !== 401){
             setErrors(err.response?.data)
           }

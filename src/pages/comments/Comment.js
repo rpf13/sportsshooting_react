@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from '../../styles/Comment.module.css'
 import Media from "react-bootstrap/Media";
 import Avatar from '../../components/Avatar'
@@ -7,6 +7,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { MoreDropdown } from '../../components/MoreDropdown';
 import { axiosRes } from '../../api/axiosDefaults';
 import CommentEditForm from "./CommentEditForm";
+import { ErrorContext } from "../../App";
 
 const Comment = (props) => {
   const {
@@ -24,6 +25,7 @@ const Comment = (props) => {
   const currentUser = useCurrentUser();
   // check if currentUser is the owner of the comment
   const is_owner = currentUser?.username === owner;
+  const handleError = useContext(ErrorContext);
 
   const handleDelete = async () => {
     try {
@@ -41,8 +43,8 @@ const Comment = (props) => {
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
-    } catch (err) {
-      console.log(err);
+    } catch {
+      handleError();
     }
   };
 

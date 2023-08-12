@@ -39,8 +39,7 @@ function GunsPage({ message }) {
         const { data } = await axiosReq.get(`/guns?search=${query}&type=${gunType}`);
         setGuns(data);
         setHasLoaded(true);
-      } catch (err) {
-        console.log(err);
+      } catch {
         setHasError(true);
         setHasLoaded(true);
       }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Form from "react-bootstrap/Form";
@@ -8,10 +8,12 @@ import styles from "../../styles/CommentForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
+import { ErrorContext } from "../../App";
 
 function CommentCreateForm(props) {
   const { match, setMatch, setComments, profileImage, profile_id } = props;
   const [content, setContent] = useState("");
+  const handleError = useContext(ErrorContext);
 
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -37,8 +39,8 @@ function CommentCreateForm(props) {
         ],
       }));
       setContent("");
-    } catch (err) {
-      console.log(err);
+    } catch {
+      handleError();
     }
   };
 

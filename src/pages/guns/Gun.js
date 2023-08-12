@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from "../../styles/Gun.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Card from 'react-bootstrap/Card';
@@ -8,6 +8,7 @@ import { MoreDropdown } from '../../components/MoreDropdown';
 import { axiosRes } from '../../api/axiosDefaults';
 import FormatDay from '../../helper/FormatDay';
 import DeleteModal from '../../components/DeleteModal';
+import { ErrorContext } from '../../App';
 
 const Gun = (props) => {
   const {
@@ -28,6 +29,7 @@ const Gun = (props) => {
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const handleError = useContext(ErrorContext);
 
   const handleEdit = () => {
     history.push(`/guns/${id}/edit`);
@@ -41,8 +43,8 @@ const Gun = (props) => {
     try {
       await axiosRes.delete(`/guns/${id}/`);
       history.push('/');
-    } catch (err) {
-      console.log(err);
+    } catch {
+      handleError();
     }
     setShowDeleteModal(false);
   };
