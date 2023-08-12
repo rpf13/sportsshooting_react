@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -8,11 +8,13 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Gun from "./Gun";
 import { useRedirect } from "../../hooks/useRedirect";
 import PopularMatches from "../matches/PopularMatches";
+import { ErrorContext } from "../../App";
 
 function GunPage() {
   useRedirect('loggedOut')
   const { id } = useParams();
   const [gun, setGun] = useState({ results: [] });
+  const handleError = useContext(ErrorContext)
 
   useEffect(() => {
     const handleMount = async () => {
@@ -21,15 +23,13 @@ function GunPage() {
                 axiosReq.get(`/guns/${id}`)
             ])
             setGun({results: [gun]})
-            console.log(gun)
-        } catch (err) {
-            console.log(err)
-            
+        } catch {
+          handleError();
         }
     };
 
     handleMount();
-  }, [id])
+  }, [id, handleError])
 
 
   return (
