@@ -13,22 +13,35 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import { ErrorContext } from '../../App';
+import { ErrorContext } from "../../App";
 
 function MatchEditForm() {
   const [errors, setErrors] = useState({});
   const handleError = useContext(ErrorContext);
 
-    // Helper function to format date to 'YYYY-MM-DD'
-    const formatMatchDate = (date) => {
-        const [day, month, year] = date.split(' ');
-        const monthNames = [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-        ];
-        const monthNumber = monthNames.indexOf(month) + 1;
-        return `${year}-${monthNumber.toString().padStart(2, '0')}-${day.padStart(2, '0')}`;
-    };
+  // Helper function to format date to 'YYYY-MM-DD'
+  const formatMatchDate = (date) => {
+    const [day, month, year] = date.split(" ");
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const monthNumber = monthNames.indexOf(month) + 1;
+    return `${year}-${monthNumber.toString().padStart(2, "0")}-${day.padStart(
+      2,
+      "0"
+    )}`;
+  };
 
   const [matchData, setMatchData] = useState({
     title: "",
@@ -40,45 +53,54 @@ function MatchEditForm() {
     image: "",
   });
 
-  const { title, match_date, division, match_location, level_filter, details, image } =
-    matchData;
+  const {
+    title,
+    match_date,
+    division,
+    match_location,
+    level_filter,
+    details,
+    image,
+  } = matchData;
 
-  const imageInput = useRef(null)
-  const history = useHistory()
+  const imageInput = useRef(null);
+  const history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
     const handleMount = async () => {
-        try {
-            const {data} = await axiosReq.get(`/matches/${id}/`)
-            const {
-                title,
-                match_date,
-                division, 
-                match_location,
-                level_filter,
-                details,
-                image,
-                is_owner
-            } = data;
+      try {
+        const { data } = await axiosReq.get(`/matches/${id}/`);
+        const {
+          title,
+          match_date,
+          division,
+          match_location,
+          level_filter,
+          details,
+          image,
+          is_owner,
+        } = data;
 
-            const formattedMatchDate = formatMatchDate(match_date); // transforming the date
+        const formattedMatchDate = formatMatchDate(match_date); // transforming the date
 
-            is_owner ? setMatchData({
-                title,
-                match_date: formattedMatchDate,
-                division,
-                match_location,
-                level_filter,
-                details,
-                image
-            }) : history.push('/')
-        } catch {
-          handleError();
-        }
+        is_owner
+          ? setMatchData({
+              title,
+              match_date: formattedMatchDate,
+              division,
+              match_location,
+              level_filter,
+              details,
+              image,
+            })
+          : history.push("/");
+      } catch {
+        handleError();
+      }
     };
     handleMount();
-  }, [history, id, handleError])
+  }, [history, id, handleError]);
 
   const handleChange = (event) => {
     setMatchData({
@@ -101,29 +123,29 @@ function MatchEditForm() {
   // just submitted match event
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const formData = new FormData();
 
-    formData.append('title', title)
-    formData.append('match_date', match_date)
-    formData.append('division', division)
-    formData.append('match_location', match_location)
-    formData.append('level_filter', level_filter)
-    formData.append('details', details)
+    formData.append("title", title);
+    formData.append("match_date", match_date);
+    formData.append("division", division);
+    formData.append("match_location", match_location);
+    formData.append("level_filter", level_filter);
+    formData.append("details", details);
 
-    if (imageInput?.current?.files[0]){
-        formData.append('image', imageInput.current.files[0]);
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
     }
 
     try {
       await axiosReq.put(`matches/${id}/`, formData);
-      history.push(`/matches/${id}`)
+      history.push(`/matches/${id}`);
     } catch (err) {
-      if (err.response?.status !== 401){
-        setErrors(err.response?.data)
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
       }
     }
-  }
+  };
 
   const textFields = (
     <div className="text-center">
@@ -155,7 +177,7 @@ function MatchEditForm() {
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
-      ))}      
+      ))}
 
       <Form.Group>
         <Form.Label>Division</Form.Label>
@@ -247,17 +269,17 @@ function MatchEditForm() {
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
-                  <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Bright}`}
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
+              <figure>
+                <Image className={appStyles.Image} src={image} rounded />
+              </figure>
+              <div>
+                <Form.Label
+                  className={`${btnStyles.Button} ${btnStyles.Bright}`}
+                  htmlFor="image-upload"
+                >
+                  Change the image
+                </Form.Label>
+              </div>
 
               <Form.File
                 id="image-upload"

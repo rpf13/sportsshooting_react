@@ -11,7 +11,7 @@ import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Match from "./Match";
 
-import NoResults from "../../assets/no_results.png"
+import NoResults from "../../assets/no_results.png";
 import Asset from "../../components/Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../helper/utils";

@@ -19,7 +19,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function MatchCreateForm() {
-  useRedirect('loggedOut')
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
 
   const [matchData, setMatchData] = useState({
@@ -32,11 +32,18 @@ function MatchCreateForm() {
     image: "",
   });
 
-  const { title, match_date, division, match_location, level_filter, details, image } =
-    matchData;
+  const {
+    title,
+    match_date,
+    division,
+    match_location,
+    level_filter,
+    details,
+    image,
+  } = matchData;
 
-  const imageInput = useRef(null)
-  const history = useHistory()
+  const imageInput = useRef(null);
+  const history = useHistory();
 
   const handleChange = (event) => {
     setMatchData({
@@ -59,26 +66,26 @@ function MatchCreateForm() {
   // just submitted match event
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const formData = new FormData();
 
-    formData.append('title', title)
-    formData.append('match_date', match_date)
-    formData.append('division', division)
-    formData.append('match_location', match_location)
-    formData.append('level_filter', level_filter)
-    formData.append('details', details)
-    formData.append('image', imageInput.current.files[0])
+    formData.append("title", title);
+    formData.append("match_date", match_date);
+    formData.append("division", division);
+    formData.append("match_location", match_location);
+    formData.append("level_filter", level_filter);
+    formData.append("details", details);
+    formData.append("image", imageInput.current.files[0]);
 
     try {
-      const {data} = await axiosReq.post('/matches/', formData);
-      history.push(`/matches/${data.id}`)
+      const { data } = await axiosReq.post("/matches/", formData);
+      history.push(`/matches/${data.id}`);
     } catch (err) {
-      if (err.response?.status !== 401){
-        setErrors(err.response?.data)
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
       }
     }
-  }
+  };
 
   const textFields = (
     <div className="text-center">
@@ -110,7 +117,7 @@ function MatchCreateForm() {
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
-      ))}      
+      ))}
 
       <Form.Group>
         <Form.Label>Division</Form.Label>

@@ -8,7 +8,7 @@ import Asset from "../../components/Asset";
 
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
-import NoResults from "../../assets/no_results.png"
+import NoResults from "../../assets/no_results.png";
 
 import PopularMatches from "../matches/PopularMatches";
 import { useParams } from "react-router";
@@ -25,25 +25,24 @@ function ProfilePage() {
   const [profile, setProfile] = useState(null);
   const [profileMatches, setProfileMatches] = useState({ results: [] });
   const handleError = useContext(ErrorContext);
-//   useParams is used to fetch the user id out of the URL
-  const {id} = useParams();
-
+  //   useParams is used to fetch the user id out of the URL
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            const [{data: pageProfile}, {data: matches }] = await Promise.all([
-                axiosReq.get(`/profiles/${id}/`),
-                axiosReq.get(`/matches/?owner__profile=${id}`),
-            ]);
-            setProfile(pageProfile);
-            setProfileMatches(matches);
-            setHasLoaded(true);
-        } catch {
-          handleError();
-        }
-    }
-     fetchData() ;
+      try {
+        const [{ data: pageProfile }, { data: matches }] = await Promise.all([
+          axiosReq.get(`/profiles/${id}/`),
+          axiosReq.get(`/matches/?owner__profile=${id}`),
+        ]);
+        setProfile(pageProfile);
+        setProfileMatches(matches);
+        setHasLoaded(true);
+      } catch {
+        handleError();
+      }
+    };
+    fetchData();
   }, [id, handleError]);
 
   const mainProfile = (
@@ -61,28 +60,29 @@ function ProfilePage() {
           <h3 className="m-2">{profile?.owner}</h3>
           <h5>{profile?.club}</h5>
         </Col>
-        <Col lg={3} className="text-lg-right">
-        </Col>
+        <Col lg={3} className="text-lg-right"></Col>
       </Row>
       <Row className="justify-content-center no-gutters font-weight-lighter">
-      <Col className="p-3" sm={8} lg={12}>
-        <Container className={`${appStyles.Content}`}>
-        <p className="text-center p-2"><strong>{profile?.owner}'s Bio</strong></p>
-        {profile?.note && (
+        <Col className="p-3" sm={8} lg={12}>
+          <Container className={`${appStyles.Content}`}>
+            <p className="text-center p-2">
+              <strong>{profile?.owner}'s Bio</strong>
+            </p>
+            {profile?.note && (
               <>
                 <Col className="p-1">{profile?.note}</Col>
               </>
             )}
-
-        </Container>
-        
+          </Container>
         </Col>
       </Row>
 
       <Row className="justify-content-center no-gutters font-weight-lighter">
         <Col className="p-3" sm={8} lg={6}>
           <Container className={`${appStyles.Content}`}>
-            <p className="text-center p-2"><strong>About {profile?.owner}</strong></p>
+            <p className="text-center p-2">
+              <strong>About {profile?.owner}</strong>
+            </p>
             {profile?.name && (
               <>
                 <Col className="p-1">Name: {profile?.name}</Col>
@@ -112,7 +112,9 @@ function ProfilePage() {
         </Col>
         <Col className="p-3" sm={8} lg={6}>
           <Container className={appStyles.Content}>
-            <p className="text-center p-2"><strong>Contact {profile?.owner}</strong></p>
+            <p className="text-center p-2">
+              <strong>Contact {profile?.owner}</strong>
+            </p>
             {profile?.phone && (
               <Col className="p-1">
                 <i className="fa-solid fa-phone-volume"></i> {profile?.phone}

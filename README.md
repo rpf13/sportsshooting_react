@@ -144,7 +144,6 @@ The Wireframes are the prototype of this project and show the base idea and the 
 ![Main Site](docs/wireframes/desktop/d_main.png)
 ![Match Detail](docs/wireframes/desktop/d_match_detail.png)
 ![MySchedule](docs/wireframes/desktop/d_myschedule.png)
-![Shooters](docs/wireframes/desktop/d_shooters.png)
 ![MyGuns](docs/wireframes/desktop/d_myguns.png)
 ![Profile](docs/wireframes/desktop/d_profile.png)
 

@@ -18,7 +18,6 @@ import { fetchMoreData } from "../../helper/utils";
 import AttendingShooters from "./AttendingShooters";
 import { ErrorContext } from "../../App";
 
-
 function MatchPage() {
   const { id } = useParams();
   const handleError = useContext(ErrorContext);
@@ -36,12 +35,12 @@ function MatchPage() {
     // in this API call, we can request multiple data endpoints
     const handleMount = async () => {
       try {
-        const [{ data: match }, {data: comments}] = await Promise.all([
+        const [{ data: match }, { data: comments }] = await Promise.all([
           axiosReq.get(`/matches/${id}`),
-          axiosReq.get(`/comments/?match=${id}`)
+          axiosReq.get(`/comments/?match=${id}`),
         ]);
         setMatch({ results: [match] });
-        setComments(comments)
+        setComments(comments);
       } catch {
         handleError();
       }
@@ -54,9 +53,9 @@ function MatchPage() {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <AttendingShooters
-          mobile 
+          mobile
           matchId={id}
-          attendingsCount={match.results[0]?.attendings_count} 
+          attendingsCount={match.results[0]?.attendings_count}
         />
         {/* import of the match component and all it's data from match.js */}
         <Match {...match.results[0]} setMatches={setMatch} matchPage />
@@ -74,13 +73,14 @@ function MatchPage() {
           ) : null}
           {comments.results.length ? (
             <InfiniteScroll
-              children={comments.results.map(comment => (
-              <Comment
-                // props handed over when Comment is called
-                key={comment.id} {...comment}
-                setMatch={setMatch}
-                setComments={setComments}
-              />
+              children={comments.results.map((comment) => (
+                <Comment
+                  // props handed over when Comment is called
+                  key={comment.id}
+                  {...comment}
+                  setMatch={setMatch}
+                  setComments={setComments}
+                />
               ))}
               dataLength={comments.results.length}
               loader={<Asset spinner />}
@@ -88,9 +88,7 @@ function MatchPage() {
               next={() => fetchMoreData(comments, setComments)}
             />
           ) : currentUser ? (
-            <>
-            {/* empty fragment, since we don't want any text here */}
-            </>
+            <>{/* empty fragment, since we don't want any text here */}</>
           ) : (
             <span className={appStyles.FontLight}>
               No comments yet. SignIn to create a comment.
@@ -99,9 +97,9 @@ function MatchPage() {
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        <AttendingShooters 
+        <AttendingShooters
           matchId={id}
-          attendingsCount={match.results[0]?.attendings_count} 
+          attendingsCount={match.results[0]?.attendings_count}
         />
       </Col>
     </Row>

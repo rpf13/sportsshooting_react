@@ -43,24 +43,31 @@ const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
         <>
           <h5 className="text-center p-3">Participating Shooters</h5>
           {mobile ? (
-            <div className={`d-flex justify-content-center flex-wrap ${appStyles.scrollableContainerMob}`}>
+            <div
+              className={`d-flex justify-content-center flex-wrap ${appStyles.scrollableContainerMob}`}
+            >
               {attendings.map((attending) => (
-                <Link to={`/profiles/${attending.profile_id}`} key={attending.id}>
+                <Link
+                  to={`/profiles/${attending.profile_id}`}
+                  key={attending.id}
+                >
                   <Avatar src={attending.profile_image} />
                   <strong>{attending.owner}</strong>
                 </Link>
               ))}
             </div>
           ) : (
-            <div className={`d-flex flex-wrap justify-content-between ${appStyles.scrollableContainerDsk}`}>
-            {attendings.map((attending) => (
-              <div key={attending.id}>
-              <Link to={`/profiles/${attending.profile_id}`}>
-                <Avatar src={attending.profile_image} />
-                <strong className="ml-3 mr-2">{attending.owner}</strong>
-              </Link>
-              </div>
-            ))}
+            <div
+              className={`d-flex flex-wrap justify-content-between ${appStyles.scrollableContainerDsk}`}
+            >
+              {attendings.map((attending) => (
+                <div key={attending.id}>
+                  <Link to={`/profiles/${attending.profile_id}`}>
+                    <Avatar src={attending.profile_image} />
+                    <strong className="ml-3 mr-2">{attending.owner}</strong>
+                  </Link>
+                </div>
+              ))}
             </div>
           )}
         </>
