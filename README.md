@@ -2,9 +2,9 @@
 
 SportsShooting is a site, which should support Sportsshooters and their related clubs, to create match events or gather information about matches. The main target audience are licensed IPSC (International Practical Shooting Confederation) shooters. [IPSC](https://www.ipsc.org/) is a worldwide organized confederation of practical shooters.
 
-It should build a plattform, where the registered user can gain more information about a particular match. He has the option to "attend" a match by clicking the related button, which will make it possible for other registered user, to see who is attending.
+It should build a plattform, where the registered user can gain more information about a particular match. He has the option to "attend" a match by clicking the related button, which will make it possible for other user, to see who is attending.
 
-We as IPSC Shooters often attend matches and therefore travelling is essential. This app should help to find other IPSC shooters, who attend the same match and therefore can travel together. IPSC Matches are all classified withing "Levels", which have a distinct meaning:
+We as IPSC Shooters often attend matches and therefore travelling is essential. This app should help to find other IPSC shooters, who attend the same match and therefore can travel together. IPSC Matches are all classified within "Levels", which have a distinct meaning:
 
 - Level 1: Club matches, Trainings
 - Level 2: Matches open to participants from different clubs
@@ -16,11 +16,9 @@ For this reason, the plattform provides predefined "Level" filters in order to n
 
 A registered user will also have the possibility to comment on match listings and therefore get in contact with fellow colleagues.
 
-If one is attending lots of matches, it can become difficult to track them, therefore the app shows all upcoming events, where a user has registered for.
+If one is attending lots of matches, it can become difficult to track them, therefore the app shows all upcoming events, where a user has registered for. A dedicated Upcoming Popular Matches component is visibile on many occasions, displaying the most popular matches. It should support the shooter to attend them too.
 
 The plattform also gives the IPSC Shooter the option to create his own and private gun collection site. There he can inventorise his collection.
-
-Further messaging and collaboration featuers are built in.
 
 Link to deployed SportsShooting site: [SportsShooting](https://sportsshooting-rpf13-d2b23798b278.herokuapp.com/)
 
@@ -29,15 +27,7 @@ Link to the deployed backend Django API: [SportsShooting API](https://sportsshoo
 Link to the backend Django API repository: [SportsShooting API Repo](https://github.com/rpf13/sportsshooting_drf)
 
 
-`INSERT AM I RESPONSIVE HERE`
-
----
-
-Workaround for Node Version
-
-In order to run the project correctly on gitpod, one has to use the following node verision command
-
-`nvm install 16 && nvm use 16`
+`INSERT TECHSINI MOCKUP HERE`
 
 ---
 
@@ -131,15 +121,10 @@ In order to run the project correctly on gitpod, one has to use the following no
 
 The Wireframes are the prototype of this project and show the base idea and the skeleton of the app. Even though this repo is mainly used for the API backend, the Wireframes of the frontend application do still have a crucial impact, since they define the data to be consumed.. I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes.
 
-<details>
-<summary>Mobile Wireframe</summary>
 
-
-</details>
 
 <details>
-  
-<summary>Desktop Wireframe</summary>
+<summary>Wireframe</summary>
   
 ![Main Site](docs/wireframes/desktop/d_main.png)
 ![Match Detail](docs/wireframes/desktop/d_match_detail.png)
@@ -151,13 +136,28 @@ The Wireframes are the prototype of this project and show the base idea and the 
 
 ---
 
-# Features
+## Data Model
 
+Create link to DRF backend
 
 ---
 
-## Tools & Technologies Used
+## Features
 
+---
+
+### Features left to implement
+
+
+### Future improvements
+
+---
+
+## Re-useable components and helpers
+
+---
+
+## Frameworks, Libraries & Dependencies
 
 ---
 
@@ -216,6 +216,79 @@ Testing is covered in a separate page, view [TESTING.md](TESTING.md)
 
 ## Deployment
 
+The live deployed application can be found deployed on [Heroku](https://sportsshooting-rpf13-d2b23798b278.herokuapp.com/).
+Since the application is bound ot the Django REST API [SportsShooting API](https://sportsshooting-drf-rpf13-5060e23f8756.herokuapp.com/), there is not direct database, media storage like cloudinary, ... needed. Everything gets consumbed via the API.
+
+### Heroku Deployment
+
+This project uses [Heroku](https://www.heroku.com), a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+
+Deployment steps are as follows, after account setup:
+
+- Select **New** in the top-right corner of your Heroku Dashboard, and select **Create new app** from the dropdown menu.
+- Your app name must be unique, and then choose a region closest to you (EU or USA), and finally, select **Create App**.
+- No environment variables are required
+
+Heroku needs two additional files in order to deploy properly.
+- package.json file
+- Procfile
+
+The **package.json** file gets automatically built, when you install a package via the `npm install` command
+
+The **Procfile** must contain the following command:
+- `web: serve -s build`
+
+For Heroku deployment, follow these steps to connect your own GitHub repository to the newly created app:
+
+Either:
+- Select **Automatic Deployment** from the Heroku app.
+
+Or:
+- In the Terminal/CLI, connect to Heroku using this command: `heroku login -i`
+- Set the remote for Heroku: `heroku git:remote -a app_name` (replace *app_name* with your app name)
+- After performing the standard Git `add`, `commit`, and `push` to GitHub, you can now type:
+	- `git push heroku main`
+
+The project should now be connected and deployed to Heroku!
+
+### Local Deployment
+
+This project can be cloned or forked in order to make a local copy on your own system. Depending on your local setup, npm needs to be installed. Do also make sure, that all required packages as mentioned in the `package.json` file are installed on your local machine.
+
+Depending on the node version you are using on the local environment, a workaround is needed to start the server via the `npm start` command.
+
+Before starting the server, the follwing command has to be entered, which tells nvm - the node version manager - the version he has to use.
+
+`nvm install 16 && nvm use 16`
+
+#### Cloning
+
+You can clone the repository by following these steps:
+
+1. Go to the [GitHub repository](https://github.com/rpf13/sportsshooting_react) 
+2. Locate the Code button above the list of files and click it 
+3. Select if you prefer to clone using HTTPS, SSH, or GitHub CLI and click the copy button to copy the URL to your clipboard
+4. Open Git Bash or Terminal
+5. Change the current working directory to the one where you want the cloned directory
+6. In your IDE Terminal, type the following command to clone my repository:
+	- `git clone https://github.com/rpf13/sportsshooting_react`
+7. Press Enter to create your local clone.
+
+Alternatively, if using Gitpod, you can click below to create your own workspace using this repository.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/rpf13/sportsshooting_react)
+
+Please note that in order to directly open the project in Gitpod, you need to have the browser extension installed.
+A tutorial on how to do that can be found [here](https://www.gitpod.io/docs/configure/user-settings/browser-extension).
+
+#### Forking
+
+By forking the GitHub Repository, we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original owner's repository.
+You can fork this repository by using the following steps:
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/rpf13/sportsshooting_react)
+2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+3. Once clicked, you should now have a copy of the original repository in your own GitHub account!
 
 ---
 
@@ -223,12 +296,54 @@ Testing is covered in a separate page, view [TESTING.md](TESTING.md)
 
 ### Code
 
+I have done lots of research, especially on the Django side, to create this project. The following list will show some of the resources I have used.
+
+| Source | Location | Notes |
+| --- | --- | --- |
+| [Code Institute Tutorials](https://codeinstitute.net/global/) | whole application | The code institute Moments Walkthrough tutorial was extremely helpful |
+| [Very Academy React Project](https://youtu.be/CkQrroDkA98) | whole application | I've watched a lot of the content from Very Academy |
+|  |  |  | 
+|  |  |  | 
+|  |  |  | 
+|  |  |  | 
+|  |  |  |
+
+### Code for jest testing
+
+### Code for Unit Testing
+
+I have used the following resources and articles for creating my Unit Testing for the collection app.
+
+| Source | Location | Notes |
+| --- | --- | --- |
+|  |  |  | 
+|  |  |  | 
+|  |  |  |
+
+
 ### Content
 
 ### Media
+
+I have used the following explicit media files in the project
+
+| Source | Location | Notes |
+| --- | --- | --- |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
 
 
 ---
 
 ### Acknowledgements
 
+- Without the support of my wife and my little son, it would not have been possible to spend endless hours, working on this project and doing research. Many thanks to my little son for giving me a smile and very welcomed distraction, during times I was frustrated.
+- My Mentor Aleksei Knovalov was a big support for this project. He helped me to understand certain concepts and gave me very welcomed guidance. THANK YOU VERY MUCH! You are such a great perons and very skilled developer!
+- A big Thank you to the tutor team from Code Institute team, who has helped me with a few very nasty issues in the project
+- A big thank you also goes to the awesome Code Institute Slack community, who was always very supportive!
+
+---
