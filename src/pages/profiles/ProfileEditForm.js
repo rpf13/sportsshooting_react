@@ -208,6 +208,7 @@ const ProfileEditForm = () => {
         <Form.Label>Mail</Form.Label>
         <Form.Control
           type="email"
+          placeholder="shooter@shooter.com"
           value={mail}
           onChange={handleChange}
           name="mail"
@@ -222,7 +223,8 @@ const ProfileEditForm = () => {
       <Form.Group>
         <Form.Label>Social Media</Form.Label>
         <Form.Control
-          type="text"
+          type="url"
+          placeholder="https://example.com"
           value={social_media}
           onChange={handleChange}
           name="social_media"
