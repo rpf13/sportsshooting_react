@@ -4,6 +4,8 @@ SportsShooting is a site, which should support Sportsshooters and their related 
 
 It should build a plattform, where the registered user can gain more information about a particular match. He has the option to "attend" a match by clicking the related button, which will make it possible for other user, to see who is attending.
 
+![SportsShooting Mockup](docs/images/techsini_mockup.png)
+
 We as IPSC Shooters often attend matches and therefore travelling is essential. This app should help to find other IPSC shooters, who attend the same match and therefore can travel together. IPSC Matches are all classified within "Levels", which have a distinct meaning:
 
 - Level 1: Club matches, Trainings
@@ -25,9 +27,6 @@ Link to deployed SportsShooting site: [SportsShooting](https://sportsshooting-rp
 Link to the deployed backend Django API: [SportsShooting API](https://sportsshooting-drf-rpf13-5060e23f8756.herokuapp.com/)
 
 Link to the backend Django API repository: [SportsShooting API Repo](https://github.com/rpf13/sportsshooting_drf)
-
-
-`INSERT TECHSINI MOCKUP HERE`
 
 ---
 
@@ -106,22 +105,36 @@ Link to the backend Django API repository: [SportsShooting API Repo](https://git
 
 ## UX & Design
 
+The overalll goal of the application was to achieve the desired functionality with a minimalistic and clear design. Colours should only be used to give an accent to something or display a certain funciont, like the buttons or the navbar active elements.
+Overall, the application is mobile friendly, the use of mobile devices has always been part of the design decision process.
 
 ### Color Scheme
 
+[Coolors.co](https://coolors.co/) hase been used to create the color palette. There is two sets of color schemes used in the application, where as they have many similarities. The main application uses a mixture of white / grey colors, paired with red to give some accents. The main background is `#f5f5f5`, which is a light grey color. It should give a simple accent over the pure white `#ffffff` navbar and component background.
+Since also the individual match and gun collection items use the pure white as background, scrolling over the elements gives a nice "floating" effect.
+
+![Main Colors](docs/images/coolors%20app.png)
+
+The navbar but mostly the buttons are using a mixture of red colors paired with either black or sort of grey. Two sorts of red are used, either the standard red `#ff0000` or the `#fff1f1`. Either the background or the font color is using one of them, also the hover effect is done with red. The background of the buttons is otherwise mostly the grey'ish `#cfced3` paired with red or black font color.
+
+![Button Colors](docs/images/coolors_button_search.png)
+
+I am aware of the fact that this combination does partially not fullfil the contrast check. However, it is almost impossible to pair red with any other light color and pass a contrast check. Since the whole color scheme is around the SportsShooting Logo, which contains a red centered target, I wanted to use it throughout the site. However, I am pretty confident that due to the fact that the contrast issue is only on a few button and hover effect occation, it would also be very well usable for visual impaired users.
 
 ---
 
 ### Typography
 
+[Google Fonts](https://fonts.google.com) has been used to create the fonts. The logo uses the quite special `Milonga` font, which gives a nice touch to the image of the logo.
+The rest of the document uses `Roboto` with a alternative font of `sans-serif`.
+
+![Milonga Font](docs/images/font_milonga.png) ![Roboto](docs/images/font_roboto.png)
 
 ---
 
 ### Wireframes
 
-The Wireframes are the prototype of this project and show the base idea and the skeleton of the app. Even though this repo is mainly used for the API backend, the Wireframes of the frontend application do still have a crucial impact, since they define the data to be consumed.. I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes.
-
-
+The Wireframes are the prototype of this project and show the base idea and the skeleton of the app. They have been slightly adjusted during the development of the project but they main concept and design idea never changed. I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes.
 
 <details>
 <summary>Wireframe</summary>
@@ -138,15 +151,155 @@ The Wireframes are the prototype of this project and show the base idea and the 
 
 ## Data Model
 
-Create link to DRF backend
+This application, built with [React](https://react.dev/) has not data model by itself, since it consumes API's from the back end. The whole code and documentation of the the data model can be found in the coresponding DRF API repository: [SportsShooting API Repo](https://github.com/rpf13/sportsshooting_drf)
 
 ---
 
 ## Features
 
+This section will explain each feature of the application
+
+### Navigation (Navbar)
+
+The navbar is the heart of the whole application. It welcomes the user with a very clear and distinct design. The usage should be pretty clear by looking at it.
+
+![Navbar unauthenticated](docs/images/feat_nav_unauth.png)
+
+As a (new) user entering the page, it will be in unauthenticated state. The navbar displays the distinct logo, which is an active link where as clicking on it, will bring the user always back to the home url. furthermore, the user can see three icons
+- Matches
+- SignIn
+- SignUp
+
+The matches icon appears red because it is active, it is the home url. This should give the user already hint about the functionality.
+Hovering over the SignIn or SignUp icons will change their color, indicating that the user can click on it. Once clocked, the icon remains acive and hence turns color to red.
+
+![Navbar authenticated](docs/images/feat_nav_auth.png)
+
+If a user is authenticated, the navbar looks slightly different but keeping the previously mentioned concept of functionality and design.
+The following additional icons will show up:
+- Add Match -> redirects to the form to create a new match entry
+- Add Gun -> redirects to the form to create a new gun database entry
+- MySchedule -> displays the user's personal match schedule
+- MyGuns -> redirects to the "private" gun database
+- SignOut
+- Avatar with the currently logged in username next to it
+
+### SignUp | SignIn
+
+A user who wants to interract on the site and not just watch some content, needs to create a profile and therefore sign up. The SignUp icon on the navbar will bring him to the form, where he has to add minimal data. The form uses auto validation of the fields, meaning for example a too short password will display an error.
+
+The image on the signup site shows some bullets, once in upward position. It should illustrate the purpose of this form, to "sign up".
+If someone has clicked on the sing up by accident but already has an account, there is a cross link to the sign in form.
+
+![SignUp](docs/images/feat_signup.png)
+
+The sign in form welcomes the user with the sentence "Are you ready". This is taken from the IPSC rules, which we follow as part of our sport. It is basically one of the commands the shooter gets told, before he can start his run on a particular stage.
+The image should illustrate the ready condition as well, the bullet comes from the magazine and gets loaded into the barrel.
+
+![SignIn](docs/images/feat_signin.png)
+
+Once the user is signed in, the sign out icon is always visible in the navbar.
+
+### Matches | Main Site
+
+The matches site is the main and home view of the application. It consists of different reusable components, which will show up independently on other sites.
+
+![Matches](docs/images/feat_matches_main.png)
+
+The following elemets are part of the matches main site:
+- search bar
+- match level selection field
+- main match component
+- upcoming popular matches component
+
+All of theses elements are available to all users, independet of their sign in status.
+The matches list is sorted showing the last added match first. This will help users to see the latest additions quite easily, without searching a lot. Furthermore, the list will also contain matches from the past, since this part of the application should also act as kind of archive.
+
+There is an infinite scroll of matches in place, while loading from the back end, a loading spinner will be dispalyed to the user.
+
+#### Matches search & Level filter
+
+The search bar on top of the matches site give the user the ability to search after the most common keywords like *title, location, advertiser*
+
+![Matches search](docs/images/feat_matches_search.png)
+
+There is also a pre defined *Level Filter* in place. As explained in the introduction section of this application, in IPSC shooting, all matches are categorised into levels, each of them having a clear meaning.
+
+![Matches filter](docs/images/feat_matches_filter.png)
+
+The two features can be combined to further filter down possible matches. This is exactly what a shooter who is looking after matches, wants. Search and Level filter will give this option:
+
+![Search & Level Filter](docs/images/feat_matches_filter_search.png)
+
+#### Matches attend & comments
+
+Besides match detail information, each match is also displaying the two active elements of *attending* with its *attendings count* as well as the *comment* and *comments count*
+
+![Matches active components](docs/images/feat_matches_attending_comment.png)
+
+If a user is logged in, he can click the attend icon to add himself to the list of attending shooters. If so, the icon will be transform to red and keep this color until the logged in user clicks again on it to unattend.
+It is **important** to note, that also the user who added the match can attend *his own* match. This is a must have feature. The count displays how many shooters are attending.
+Furthermore, he can click on the comments icon, which brings him to the match detail site, where he can see and add a comment. The count displays how many comments have been written.
+
+If a user is not logged in, he can see both components, however, he will not be able to attend a match. While trying to attend, a message will be displayed that only logged in users can use this feature.
+
+![Matches active components unauth](docs/images/feat_matches_attending_comment_unauth.png)
+
+Clicking on the comments field will also bring this user to the match detail site, where he can read the comments *but is unable* to add a comment.
+
+#### Upcoming popular Matches Component
+
+The Upcoming popular Matches component is a dedicated separated component, visible on the matches site. It contains a list of the most popular matches, measured on how many shooters are attending. To keep the list kind of visible, it is limited to 6 entries on desktop and 4 entries on mobile.
+
+![Upcoming Popular Matches](docs/images/feat_pop_matches.png)
+
+The list only contains matches hapening in the future, popular matches from past are filtered out. Furthermore it is sorted by the most recent match being first in the list. If the user is hovering over the events, the will change the color to red, to show it is an active link. With this, the navigation is inline with the rest of the site.
+Clicking on such a link will bring the user to the match detail page.
+
+### Match Detail
+
+Once the user clicks on an individual match in the matches list, or he clicks on one of the listed matches in the *Upcoming Popular Matches* component, he will be presented with the details of the particular match, which contains a variety of additional information but still keep the design minimalistic.
+
+![Match Detail](docs/images/feat_match_detail.png)
+
+On the top, the avatar and username of the *advertiser*, the one who added the match, is displayed. There is an active link behind, if clicked, the user profile will be displayed. Furthermore the date when the event was last updated is shown, next to the edit icon.
+
+Besides the displayed image, the main title of the match, together with the event date is shown. Further infos like the match location, IPSC Level, Division and match details are shown.
+Underneath that, the two active components *attending* with its *attendings count* as well as the *comment* and *comments count* are displyed. Their usage has already been explained in the matches section.
+
+#### Comments
+
+The comments section lets the users see all comments, the logged in user will also see the form to add a comment. The avatar is again an active link to the user's profile.
+
+![Comment add](docs/images/feat_comment_add.png)
+
+The user has also the option to edit or delete his comment. All comments of the logged in user will display the edit icon, which will give the option to edit or delete.
+
+![Comment edit](docs/images/feat_comment_edit.png)
+
+The comments section is also using the infinite scroll, displaying a loading spinner once more data is fetched from the API.
+
+#### Participating Shooters
+
+The Participating Shooters component, is a reusable component, which got added here.
+
+![Participating Shooters Desktop](docs/images/feat_attending_desktop.png)
+
+This component displays all shooters who have clicked *attend*. It should give the user or a possible organisator / advertiser of a match, an overview on how many will attend and who. It is also interesting for fellow shooters, since some have preferences.
+The list can be extensively long, therefore I have implemented a limit in size. On desktop the component is allowed to grow max. to 400px in height, on mobile it is limited to only 90px height, which is just engough to display two rows of avatars. The rest of the content, if exceeding the limit, will be hidden and accessible via the scrollbar.
+
+![Participating Shooters Mobile](docs/images/feat_attending_mobile_scroll.png)
+
+If the user clicks on an avatar, he will be redirected to the respective user profile component.
+
 ---
 
 ### Features left to implement
+
+
+### Future Features
+
+- smart logic to automatically delete historical events after 1 year
 
 
 ### Future improvements
