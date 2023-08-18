@@ -30,7 +30,7 @@ const NavBar = () => {
 
   const addMatchIcon = (
     <NavLink
-        className={styles.NavLink}
+        className={`${styles.NavLink} ${styles.SpecificIcon}`}
         activeClassName={styles.Active}
         to="/matches/create"
       >
@@ -40,7 +40,7 @@ const NavBar = () => {
 
   const addGunIcon = (
     <NavLink
-        className={styles.NavLink}
+        className={`${styles.NavLink} ${styles.SpecificIcon}`}
         activeClassName={styles.Active}
         to="/guns/create"
       >
@@ -102,7 +102,7 @@ const NavBar = () => {
 
   return (
     <Navbar expanded={expanded} className={styles.NavBar} expand="lg" fixed="top">
-      <Container>
+      <Container className={styles.CustomContainer}>
         <NavLink to="/">
           <Navbar.Brand>
             <img src={logo} alt="logo" height="80" />

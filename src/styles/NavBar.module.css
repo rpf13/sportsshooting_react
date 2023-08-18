@@ -11,3 +11,28 @@
 .Active i {
     color: red;
 }
+
+@media (max-width: 460px) {
+    .SpecificIcon {
+        font-size: 0.9rem;
+    }
+
+    .SpecificIcon i {
+        font-size: 0.9rem;
+    }
+}
+
+@media(max-width: 389px) {
+    .SpecificIcon {
+        font-size: 0.85rem;
+    }
+
+    .SpecificIcon i {
+        font-size: 0.85rem;
+    }
+
+    /* overwrite bootstrap css */
+    :global(.navbar-toggler) {
+        font-size: 1rem !important;
+    }
+}
