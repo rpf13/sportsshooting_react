@@ -279,6 +279,48 @@ The user has also the option to edit or delete his comment. All comments of the 
 
 The comments section is also using the infinite scroll, displaying a loading spinner once more data is fetched from the API.
 
+### Add Match
+
+The *Add Match* icon on the havbar will redirect the logged in user to a form, where he can create a new match entry.
+
+![Add Match](docs/images/feat_match_add.png)
+
+The form gives the option to add the following mandatory fields:
+- Title
+- Match Date
+- Location
+- Image
+
+These fields are mandatory becasue without them, an advertisement of a match does not make sense...furthermore the application is based on "visuals", hence a match entry without an image would not be nice.
+The image upload is limited to max. 2MB or 4096 x 4096 pixels in order to stay within the Cloudinary's free hosting plan.
+If the user tries to submit the form and violating one of the mandatory fields, a respective error is displayed.
+
+The following fields are optional:
+- Division
+- Level is a choice field, per default it will be Level-1
+- Details
+
+Clicking on the cancel button will bring the user back to the site he came from.
+
+### Edit | Delete Match
+
+If the owner of a particular match is logged in and has navigated to the match detail view of a particular match, he has the option to edit.
+The respective icon is only visible for the owner of the match and once clicked, the icon becomes active and displays the opton to delete or edit a match.
+
+![Edit & Delete](docs/images/feat_match_edit_delete.png)
+
+The delete functionality is straight forward, however in order to prevent unwanted deletion, a confirmation modal message is presenten upon pressing the delete button.
+
+![Match Delete Modal](docs/images/feat_match_delete_modal.png)
+
+The user has then the choice to either cancel deletion or confirm it. Deleting the match entry will delete all related child entries like comments, attendings, ...
+
+If the user decides to edit a match, he can do so via clicking the respective icon.
+
+![Match Edit](docs/images/feat_match_edit.png)
+
+The edit form gets displayed where all the fields are pre populated with the existing data. The user can adjust any of them or choose to cancel the operation, which will bring him back to the match detail view. All the attendings or comments are kept in any case (updating or cancellign the update operation).
+
 #### Participating Shooters
 
 The Participating Shooters component, is a reusable component, which got added here.
@@ -292,6 +334,116 @@ The list can be extensively long, therefore I have implemented a limit in size. 
 
 If the user clicks on an avatar, he will be redirected to the respective user profile component.
 
+### MySchedule
+
+MySchedule is only accessible for a logged in user. It is not a component or a page by itself, it is only re-using existing parts and components. This showcases the beauty of such a React app.
+
+![MySchedule](docs/images/feat_myschedule.png)
+
+It's look is almost identical to the Matches page, but this time it is optimised for a particular user. The MySchedule site, as the name implies, is personal. It will display all matches a particular user is attending. The main pourpose is to help the shooter to have a list of his upcoming events.
+All filter functionality, including the additional featurs of attending an event or commenting on an event, remain the same as for the matches site.
+Clicking on a particular match, will bring the user again to the match detail view, which has been previously described.
+In addition to the personal schedule, alos the component with the *Upcoming popular Matches* is displayed again, which should help the shooter to see whether he is missing an popular event or not.
+
+### MyGuns
+
+The MyGuns site is also only available for logged in user. Furthermore it is personal. A user cannot see content of another user.
+
+![MyGuns](docs/images/feat_myguns.png)
+
+This site acts as a personal database of the shooters own gun collection. It is not really related to the IPSC sport, he can add whatever gun he wishes. Many shooters are also in other clubs, for example for precision rifle shooting, long distance shooting.
+This part of the application should give the option to store and sort the collection.
+
+The main component is the gun database entry itself, dispalying the add and updated fields. This can be great value, depending on how a collector is managing his collection. By default the list of guns is sorted with the most recent entry first.
+Below the image section, there is the brand and type field - probalby the most important fields. In addition to that, the type field (pre defined as either handgun or rifle) can be seen. The last field is the content field, where the user can add whatever he wants in order to describe the item.
+
+#### MyGuns Search and Type filter
+
+On the top, the user gets displayed the (familiar) search and selection option. He can search based on a brand, model or serailnumber.
+The filter option is there to differentiate between handgun and rifle. If a user has a large collection, this can be a handy feature. Furthermore, filter and search can be combined.
+
+![MyGuns Search & Filter](docs/images/feat_myguns_search_filter.png)
+
+#### MyGuns Upcoming Popular Matches Component
+
+Like in the match detail view, also in the MyGuns list as well as in the Gun detail view, the *Upcoming popular Matches* component gets reused. Since this site has its primary focus on matches listing, it should encourage the user as much as possible to attend as well.
+In a future version, another component will be added at this place, see [Future Features](#future-features) section.
+
+#### Add Gun
+
+The Gun add icon, located in the navbar, will direct the logged in user to the gun create form.
+
+![Gun Create](docs/images/feat_gun_create.png)
+
+Mandatory fields are
+- Brand
+- Gun Model
+- Image
+
+If these fields are not filled, an error message will be displayed.
+
+![Gun Form Error](docs/images/feat_gun_form_error.png)
+
+The other fields are optional:
+- Type field is a choice field and the default is set to handgun.
+- Serial Number
+- Details
+
+If the user decides to cancel, he will be redirected back to where he came from.
+
+### Gun Detail | Edit & Delete
+
+Once the user clicks on a particular entry in his gun database, he will see the details of such an entry.
+
+![Gun Detail](docs/images/feat_gun_detail.png)
+
+The information, which he will be presented is pretty much the same as on the list view, but here he has the option to edit or delete an entry. The concept is the same like on match entry. If he selects deletion, a modal will be presented to ask for confirmation. Cancel will bring him back to the detail view.
+
+![Gun Delete](docs/images/feat_gun_delete_modal.png)
+
+The edit buton will open the edit form, with all the data pre populated. The user can edit all data, including the image. The cancel button will close the form and bring him back to the detail view.
+
+![Gun edit](docs/images/feat_gun_edit.png)
+
+### Profiles
+
+The last section is the profiles site. The site itself is accessible for all visitors, even if not signed in. When the profile / avatar is clicked in any of the components as well as the navbar, the user will be displayed the profile page.
+
+![Profile Page](docs/images/feat_profiles.png)
+
+The difference between a signed in and a signed out user is, that once the user is signed in and visiting his own profile, he will be displayed the *edit profile* button.
+
+The site displays hte bio of the shooter aas well as some more club and shooter related information. As separate section with contact details is shown.
+The site will also display all matches, created by this particular user. This can be very handy and an alterntive way, besides the search functionality, to find content of a particular shooter.
+Clicking on a match event, will bring him to the match detail site.
+
+The *Upcoming popular Matches* component is reused again. The functionality of it has been described previously.
+
+### Edit Profile
+
+Initially, once the user has signed up, all fields will be empty, so it is very much desired, that a user visits this section.
+The signed in user can edit his profile via clicking on the edit icon.
+
+![Profile Edit](docs/images/feat_profile_edit.png)
+
+He is displayed with the option to edit his username, his password or the profile. Edit username or password will bring him to the respective form, where as its containing cancel button will bring him back to the profile section.
+
+![Edit Username](docs/images/feat_profile_edit_username.png) ![Edit Password](docs/images/feat_profile_edit_password.png)
+
+The edit profile section will let him update all the fields. 
+
+![Profile Edit Form](docs/images/profile_edit_form.png)
+
+All of the profile edit form fields are optional, meaning no error gets displayed, if the user submits an empty form. This is intentionally correct because instead of pressing the cancel button, the user might just press submit.
+Also the avatar image is not mandatory, if not change, the default image will be used further.
+The mail and social media fields contain a placeholder text, just to make sure the user will add them in the correct form. If not, an error will be shown - however, the fields can be left blank.
+
+If the new user cancels the form submission or submits it empty, he will be sent back to the profile details. If everything is empty and he did not add a match yet, the *empty logo* will be displayed.
+
+![Empty Profile](docs/images/feat_profile_empty.png)
+
+Certianly a profile update and submussion will result in updating the profile section as well as updating the avatar image on all components and related comments, match entries.
+
 ---
 
 ### Features left to implement
@@ -300,6 +452,7 @@ If the user clicks on an avatar, he will be redirected to the respective user pr
 ### Future Features
 
 - smart logic to automatically delete historical events after 1 year
+- add api for guns
 
 
 ### Future improvements
