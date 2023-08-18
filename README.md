@@ -448,22 +448,67 @@ Certianly a profile update and submussion will result in updating the profile se
 
 ### Features left to implement
 
+Keeping the deadline of this project in mind and also the agile approach of development, the current state covers a great MVP solution. However, the application can be improved in future product iterations.
+One feature in particular did not make it to the front end implementation and that was the usermessage feature. It is covered with the user stories
+- [Create a message](https://github.com/rpf13/sportsshooting_react/issues/42)
+- [Receive a message](https://github.com/rpf13/sportsshooting_react/issues/43)
+
+where as both of them would have been part of a new *Shooters* Component, covered with the stories
+- [List all Shooters](https://github.com/rpf13/sportsshooting_react/issues/40)
+- [Shooters Search Functionality](https://github.com/rpf13/sportsshooting_react/issues/41)
+
+The aim should be to create a new component, dedicated to the shooters, listing all of them and give a variety of filter and choice field options. Furthermore it should act a the "direct messaging" center, where it is possible for a logged in user to send messages to another user. Maybe the whole idea could be transformed even futher into a live chat functionality.
+
+Anyway, the back end part of the messaging feature got already implemented as a stretch objective of the DRF API project. In the [README of the back end project](https://github.com/rpf13/sportsshooting_drf/tree/main#usermessages), there is a [chapter](https://github.com/rpf13/sportsshooting_drf/tree/main#usermessages) dedicated to the usermessages, including the related code. The code got removed on the final deployed project, since no unused code should be deployed.
 
 ### Future Features
 
+In future iterations some more additional features could be implemented. Here some examples, which are on the list:
+
 - smart logic to automatically delete historical events after 1 year
-- add api for guns
-
-
-### Future improvements
+- create new component to be added in the MyGuns section, which displays content of the [gunbroker.com](https://www.gunbroker.com) plattform via using their [REST API](https://api.gunbroker.com/User/Help). Gunbroker.com is a very large trading plattform for selling guns and accessories. It would be a very cool feature to have something like that as a dedicated component in the MyGuns section.
+- it would be a good feature if the user can delete his own profile. This has not been done yet and it is already adressed via a future story in the back end DRF repo. See the [following story](https://github.com/rpf13/sportsshooting_drf/issues/7) for this feature.
+- the JWT json web token feature should be refactored to use the more secure httpOnly cookie, which is not accessible by java script. This is also already added as [future story](https://github.com/rpf13/sportsshooting_drf/issues/40) in the DRF back end repo.
 
 ---
 
 ## Re-useable components and helpers
 
+- error message context provider
+- datetime helper
+- avatar
+- delete modal
+- more dropdown
+- not found
+
 ---
 
-## Frameworks, Libraries & Dependencies
+## Custom Hooks
+
+---
+
+## Technologies used
+
+## Libraries & Dependencies
+
+### Tools, Frameworks
+
+- [React](https://react.dev/) has been used as the front end framework
+- [React Bootstrap](https://react-bootstrap-v4.netlify.app/) has been used as the CSS framework for React
+- [Git](https://git-scm.com) used for version control. (`git add`, `git commit`, `git push`)
+- [GitHub](https://github.com) used for secure online code storage.
+- [Gitpod](https://gitpod.io) used as a cloud-based IDE for development.
+- [Heroku](https://www.heroku.com) used for hosting the deployed back-end site.
+- [Cloudinary](https://cloudinary.com) used for dynamic file storage for all images.
+- [Markdown Builder by Tim Nelson](https://traveltimn.github.io/markdown-builder) used to help generate the Markdown files.
+- [Freelogodesign](https://www.freelogodesign.org) has been used to create the logo and upload images
+- [jest](https://jestjs.io/) has been used for the JS unit testing
+- [Balsamiq](https://balsamiq.com/) has been used to create the wireframes
+- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) plugin for chrome used to check performance
+- [Responsive Design Checker](https://www.responsivedesignchecker.com/) has been used to test the responsiveness of the site
+- [ESlint ES7+ React](https://open-vsx.org/extension/dsznajder/es7-react-js-snippets) has been used as as plugin on Gitpod in order to validate the JS code. This has been a very big help finding missing semi colons, ...
+- [Coolors](https://coolors.co) has been used to create the color palettes
+- [Google Fonts](https://fonts.google.com) has been used for the fonts
 
 ---
 
@@ -608,40 +653,40 @@ I have done lots of research, especially on the Django side, to create this proj
 | --- | --- | --- |
 | [Code Institute Tutorials](https://codeinstitute.net/global/) | whole application | The code institute Moments Walkthrough tutorial was extremely helpful |
 | [Very Academy React Project](https://youtu.be/CkQrroDkA98) | whole application | I've watched a lot of the content from Very Academy |
-|  |  |  | 
-|  |  |  | 
-|  |  |  | 
-|  |  |  | 
-|  |  |  |
+| [React Context Handling](https://reactjs.org/docs/context.html) | Error.context.Provider in App.js | Used to understand the context provider and how to add the error context provider | 
+| [React Hooks](https://legacy.reactjs.org/docs/hooks-intro.html) | whole application | I needed to read more about hooks in general | 
+| [Try Catch Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) | whole application | I've used this MDN site to understand more about the try, catch, (finally) error handling | 
+| [React Bootstrap Modal](https://react-bootstrap-v4.netlify.app/components/modal/) | Modal | used to implement the modal for the delete verification | 
+| [React Functional Components](https://legacy.reactjs.org/docs/components-and-props.html#function-and-class-components) | whole site | helped me to understand the concepts |
+| [Components & Props](https://legacy.reactjs.org/docs/components-and-props.html) | whole site | helped me to understand more about props. Really had some issues to understand that |
+| [JS logial OR](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR) | whole site | used in the date formater, revisited this article |
+| [JS replace](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace) | date formater | used this method in the date formater helper |
+| [Conditional Ternary Operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator) | whole app | I had to read more about the conecpt, had some issues with nesting them |
 
-### Code for jest testing
+### Code for jest unit testing
 
-### Code for Unit Testing
+Besides the CI content for jest tsting, I have used the following resources and articles for creating my Unit Testing for some of the components. In particular, the *NavBar*, the *DeleteModal* and the *NotFound* component have been tested via jest.
 
-I have used the following resources and articles for creating my Unit Testing for the collection app.
-
-| Source | Location | Notes |
-| --- | --- | --- |
-|  |  |  | 
-|  |  |  | 
-|  |  |  |
-
-
-### Content
+- Main JEST Documentation to review the global concept [Link](https://jestjs.io/)
+- Mock functions as used in the DeleteModal test [Link](https://jestjs.io/docs/mock-functions)
+- Matchers like the `.toHaveBeenCalled()` as used in the DeleteModal [Link](https://jestjs.io/docs/expect)
+- Main React Testing Library Documentation [Link](https://testing-library.com/docs/react-testing-library/intro)
+- Queries lke the `getByText` as used in the Modal [Link](https://testing-library.com/docs/queries/bytext/)
+- User Events like `fireEvent` [Link](https://testing-library.com/docs/ecosystem-user-event/)
+- Async Utilitiees like `findBy` [Link](https://testing-library.com/docs/dom-testing-library/api-async/)
 
 ### Media
 
-I have used the following explicit media files in the project
+I have used the following media files and resources
 
-| Source | Location | Notes |
-| --- | --- | --- |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-
+- [Unsplash](https://unsplash.com) has been used to get demo images for all the guns and matches. I did not want to use real match images of real events, since I was unsure about the respective license. In order to have images to showcase the functionaltiy, I did search through unsplash.com
+- [Uxwing](https://uxwing.com/accurate-targeting-icon/) has been used for the favicon. After this favicon, I did crate a matching logo
+- [FreeLogoDesign](https://logo-maker.freelogodesign.org/?companyName=sportsshooting&tag=gun) has been used to create the Logo
+- [FreeLogoDesign](https://logo-maker.freelogodesign.org/en/logo/edit/55de76b675ea4643a4a77445cb13985f) has been used to create the match upload image
+- [FreeLogoDesign](https://logo-maker.freelogodesign.org/en/logo/edit/55de76b675ea4643a4a77445cb13985f) has been used to create the gun upload image
+- [FreeLogoDesign](https://logo-maker.freelogodesign.org/en/logo/edit/04ea26db34b04722b7ef5d105c7b5992?store=local&companyName=sportsshooting) has been used to create the empty search and empty content image
+- [Unsplash](https://unsplash.com/photos/btOjqwIkYdw) used for the sign in image
+- [Unsplash](https://unsplash.com/photos/dEXFa9qJeRM) used for the sign up image
 
 ---
 
