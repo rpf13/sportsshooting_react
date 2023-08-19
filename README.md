@@ -474,22 +474,228 @@ In future iterations some more additional features could be implemented. Here so
 
 ## Re-useable components and helpers
 
-- error message context provider
-- datetime helper
-- avatar
-- delete modal
-- more dropdown
-- not found
+### `Asset.js (spinner)`
+
+The `Asset` component is a reuseable component to display a spinner, an image, or a message based on the props passed to it. 
+
+- If the `spinner` prop is provided and set to `true`, a spinner from the "react-bootstrap" library will be displayed.
+- If the `src` prop is provided, an image with that source URL will be rendered with the `alt` attribute set to the `message` prop's value.
+- If the `message` prop is provided, a paragraph text with the given message will be displayed beneath the image or spinner.
+
+The `Asset` component uses some further styling, which is defined in the `Asset.module.css` file. This component has been used widely in the application to display the loading spinner, while fetching more data from the API.
+
+
+### `Avatar.js`
+
+The `Avatar` component provides a reuseable component, mainly used in our app for the user profiles.
+
+- The component accepts a `src` prop which stands for the image source URL for the avatar.
+- It has a default height of `45` pixels for the image which can be overridden with the `height` prop. In the app, it gets overwritten on a few places.
+- The width of the image is set to be the same as its height, ensuring the image maintains a square shape.
+- An optional `text` prop can be passed to display a label or description alongside the avatar image.
+
+The styling comes from the `Avatar.module.css` file.
+
+### `DeleteModal.js`
+
+The `DeleteModal` component is used in two places of the application, when deleting a match or when deleting a gun object.
+It uses the following elements
+
+- **Hidden or Visible**: It uses the `show` prop to determine if the modal should be displayed or hidden.
+  
+- **Confirmation Prompt**: The modal displays the question to the user – "Are you sure you want to delete this item?" – ensuring the user is aware of the consequenses when deleting the object.
+
+- **User Actions**:
+  - **Cancel**: A "Cancel" button allows the user to dismiss the modal without performing any action. This triggers the `handleClose` callback when clicked and the user will stay on the detail element (match or gun object), where he came from.
+  - **Delete**: The "Delete" button confirms the users intention to delete. Clicking this button triggers the `handleConfirm` callback and will delete the object.
+
+I did not use any custom styling since I think the bootstrap styling for this modal looks great.
+
+### `ErrorModal.js`
+
+The ErrorModal component serves as a notification system for displaying error messages to the user. Since it is not a nice and good idea to keep all the console.log elements in the code, I wanted to create something "useful" from user perspective. The `try, catch` blocks are set, why also not using the catch?
+
+The `ErrorModal` component serves as a notification system for displaying error messages to the user.
+
+- **Visibility**: Its visibility is managed by the `show` prop. When `show` is `true`, the modal is visible, and when its `false`, the modal is hidden.
+  
+- **Message**: The modal displays a generic message – "Sorry, something went wrong! Try again later!" – which makes it suitable for general unexpected error scenarios.
+
+- **Close Button**: The modal includes a "Close" button, allowing users to dismiss the error message. This button triggers the `onClose` callback
+
+I did not leave the styling to the default bootstrap modal styling, which I think looks good.
+
+**Integration into the App**:
+
+To provide centralized management of the error state and to make the modal accessible throughout the application, the `ErrorModal` was integrated using React's Context API [Link](https://legacy.reactjs.org/docs/context.html)
+
+- **Error Context Creation**: An Error Context was created, which provides both the current error state and a function to set the error. This allows any component in the app to trigger the modal by setting an error. This was my target goal for creating this funcitonality, since I think it is a great use of the react context functionality....and it did force me to read the documentation for it 
+
+- **Provider Setup**: The main `App.js` file wraps the entire application inside the Error Context `Provider`. This ensures that any component, regardless of its depth in the component tree, has access to the error state and the function to set an error. This was exactly, what brought me back to the iniital explanation of a context via showing the problem of "handing over functionality" down the tree
+
+- **State Management**: Within `App.js`, a state variable is maintained to control the visibility of the `ErrorModal`. Whenever an error is set, the modal is displayed, and the user can dismiss it using the `onClose` functionality.
+
+- **Utility**: This setup allows any component in the application to display the `ErrorModal` by simply updating the error context, making it a versatile and reusable error handling mechanism.
+
+### `MoreDropdown.js`
+
+The `MoreDropdown` component, provides a dropdown menu represented by the three dots (`...`), visible on any content, where a user respectively the owner of an object, can edit it. It contains two main actions: "Edit" and "Delete". When clicked, each respective action is taken.
+
+- **ThreeDots**: This is a custom toggle for the dropdown menu. The use of `React.forwardRef` ensures that the dropdown gets access to the DOM for positioning.
+  
+- **Dropdown Toggle**: It uses the `ThreeDots` component as the toggle button for the dropdown.
+  
+- **Dropdown Menu**: This contains two items:
+  1. Edit: Represented by a pencil icon, when clicked, it triggers the `handleEdit` function.
+  2. Delete: Represented by a trash can icon, when clicked, it trigggers the `handleDelete` function.
+
+**Profile Edit Dropdown**
+
+The `ProfileEditDropdown` is a similar dropdown like the `MoreDropdown` but specifically for the profile actions. Instead of general actions like the `MoreDropdown`, it contains three actions that relate are used in the profile section: "Edit Profile", "Change Username", and "Change Password".
+
+- **Dropdown Menu**: This contains three items:
+  1. Edit Profile: Navigates the user to the profile edit page.
+  2. Change Username: Navigates the user to the username change page.
+  3. Change Password: Navigates the user to the password change page.
+
+The component uses the `useHistory` hook to handle navigation for each dropdown action.
+
+The styling is handled by the `MoreDropdown.module.css` file
+
+### `NotFound.js`
+
+The `NotFound` component is used to inform users that the page they're trying to access doesn't exist or cannot be found. This component provides a user-friendly response to potential navigation errors or mistyped URLs.
+
+- **Asset Component Usage**: The `NotFound` component reuses the previously explained `Asset` component, which displays an image and a message. Here, it's used to show a `NoResults` image alongside a message: "Sorry, the page you're looking for doesn't exist".
+It is a perfect example to show how the `Asset component` can be used
+
+Styling is defined in the `NotFound.module.css`.
+
+### `FormatDay.js` helper
+
+I did set the dateTime format already in the backend to a custom value. However, in the front end, I wanted that there is a dot after the day, like 13. Jun 2023. I am so used to this format, that I wanted to have it in my app.
+
+So the `FormatDay` function is an utility that formats the date string to include a dot after the day segment.
+
+- **Input**: This function takes in `props` as its argument, which can have one of three date-related attributes: `match_date`, `updated_at`, or `created_at`. These are the three date props, I have used throughout the app.
+
+- **Functionality**: The core functionality of this function is to append a dot (.) right after the day segment in a date string. It uses a regular expression `/(\d+)/` to identify the day segment and then appends a dot to it.
+
+- **Output**: The function returns the newly formatted date string with the dot added.
+
+### Page components
+
+If we look at the individual pages used for "MyGuns" as well as "Matches", they also make use of of reuseable components or elements. The `Match.js` and the `Gun.js` are also reused inside the pages. The "singular form", like `Gun.js` is always the base, fetching the data. Then `GunPage.js` and `GunsPage.js` take it a step further, use other components like the `ÀttendingShooters` or `PopularMatches`, and integrate them.
 
 ---
 
 ## Custom Hooks
 
+The following custom hooks are used in this project
+
+### `useClickOutsideToggle` 
+The `useClickOutsideToggle` is a custom hook, which provides a mechanism to handle the expanded state of our navbar dropdown compnent and toggles it off when a click is detected outside of the component.
+It uses the React embedded hooks `useEffect, useRef, useState` It initialises the state via the `useState` hook and sets the value to `false`. The `useRef` hook also gets initialise with a value of `null`, the ref will then be assigned to a DOM element.
+The `useEffect` hook adds the event Listener to the document, that check if there is a mouse Up event. Inside the `handleClickOutside` function, it checks if the click event's target is outside the element referred to by `ref`. If it is, it sets expanded to false. 
+The `useEffect` also returns a cleanup function, which makes sure, that the event listener is removed when the component that uses this hook is unmounted or if the ref changes
+The return value of the hook is the object with the `expanded state`, the `setExpanded` function to toggle this state, and the `ref` that is assigned to the DOM element to detect clicks outside of it.
+
+<details>
+<summary>Code snippet</summary>
+
+```jsx
+
+import { useEffect, useRef, useState } from "react";
+
+const useClickOutsideToggle = () => {
+  // functionality to expand and close the navbar
+  const [expanded, setExpanded] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setExpanded(false);
+      }
+    };
+    document.addEventListener("mouseup", handleClickOutside);
+    return () => {
+      document.removeEventListener("mouseup", handleClickOutside);
+    };
+  }, [ref]);
+
+  return { expanded, setExpanded, ref };
+};
+
+export default useClickOutsideToggle;
+
+```
+</details>
+
+### `useRedirect` 
+`useRedirect` is another custom hook used in this project. It listens for changes in the user's authentication status. When there's a change, it tries to refresh the users authentication token. Depending on if thats a success or failure and the passed userAuthStatus, it redirects the user to the main route, which is the matches list.
+
+The `useRedirect` Hook takes a single parameter, `userAuthStatus`, which indicates the user's authentication status. It makes use of the `useEffect` hook, which contains an async function of `handleMount`. A POST request is made to `/dj-rest-auth/token/refresh/` to refresh the users authentication token. If the request is successful and the `userAuthStatus` is "loggedIn", the user will be redirected to the root path, which is the matches list. If the request fails and hence, the user is logged out, it will also be redirected to the same root path.
+
+It gets used on various places in the application.
+
+<details>
+<summary>Code snippet</summary>
+
+```jsx
+
+import axios from "axios";
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
+export const useRedirect = (userAuthStatus) => {
+  const history = useHistory();
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        await axios.post("/dj-rest-auth/token/refresh/");
+        // if user is logged in, the following code will run
+        if (userAuthStatus === "loggedIn") {
+          history.push("/");
+        }
+      } catch (err) {
+        // if user is not logged in, 401 error, following code will run
+        if (userAuthStatus === "loggedOut") {
+          history.push("/");
+        }
+      }
+    };
+    handleMount();
+  }, [history, userAuthStatus]);
+};
+
+```
+</details>
+
 ---
 
-## Technologies used
+## Technologies, Libraries & Dependencies
 
-## Libraries & Dependencies
+There are a variety of libraries and dependencies required to run this project. The `package.json` file contains a list of required packages, in order to have the deployed version used the correct ones. The following list is a summary of the packages, including a link to the reference and a short description.
+
+- **@testing-library/jest-dom** [Link](https://github.com/testing-library/jest-dom) Custom matchers to use with Jest in the context of Testing Library.
+- **@testing-library/react** [Link](https://testing-library.com/docs/react-testing-library/intro/) Lightweight utility functions for testing React components.
+- **@testing-library/user-event** [Link](https://github.com/testing-library/user-event) Simulate user events for testing React components.
+- **axios** [Link](https://axios-http.com/docs/intro) Promise-based HTTP client for JavaScript which can be used in both the browser and Node.js environments. Used throughout the project to execute the API calls.
+- **bootstrap** [Link](https://getbootstrap.com/docs/4.6/getting-started/introduction/) Framework for building responsive, mobile-first websites and web applications.
+- **jwt-decode** [Link](https://github.com/auth0/jwt-decode) Allows decoding of JSON Web Tokens (JWT) to extract payload information.
+- **react** [Link](https://reactjs.org/docs/getting-started.html) JavaScript library for building user interfaces.
+- **react-bootstrap** [Link](https://react-bootstrap.github.io/) Bootstrap components built with React.
+- **react-dom** [Link](https://reactjs.org/docs/react-dom.html) React package for working with the DOM (Document Object Model).
+- **react-infinite-scroll-component** [Link](https://github.com/ankeetmaini/react-infinite-scroll-component) An infinite scroll component built with React.
+- **react-router-dom** [Link](https://reactrouter.com/web/guides/quick-start) DOM bindings for React Router, a routing library for React.
+- **react-scripts** [Link](https://github.com/facebook/create-react-app/tree/master/packages/react-scripts) Scripts and configuration used by Create React App.
+- **web-vitals** [Link](https://web.dev/vitals/) Provides utility functions to measure performance metrics for a website.
+- **msw (devDependency)** [Link](https://mswjs.io/) Mock Service Worker, an API mocking library for browser and Node.
+- **Node.js** [Link](https://nodejs.org/docs/) JavaScript runtime built on Chrome's V8 JavaScript engine. It allows for the development of scalable network applications using JavaScript
+- **npm** [Link](https://docs.npmjs.com/) The package manager for JavaScript, used to install and manage packages (libraries and applications)
+- **babel-eslint** [Link](https://github.com/babel/babel-eslint) A wrapper around the Babel parser that makes it compatible with ESLint.
 
 ### Tools, Frameworks
 
@@ -514,7 +720,7 @@ In future iterations some more additional features could be implemented. Here so
 
 ## Development
 
-The following chapters describe why and how I have choosen to code certain parts the way they are. This section should give an explanation to my thinking process and explain the reader some conceptual decisions.
+The following chapter describes how I made use of the very useful commit message feature.
 
 ### Commit messages
 
@@ -533,10 +739,10 @@ I have decided to use (mostly) multiline commits, but using tags as described th
 ## Agile Development Process
 
 ### Github Projects
-[Github Projects](https://github.com/users/rpf13/projects/7) has been used as the Agile tool during the development phase of this project. The Kanban board was very useful to keep track on the tasks. I have created 4 columns (ToDo, In Progress, On Hold, Done) and moved the stories accordingly. 
+[Github Projects](https://github.com/users/rpf13/projects/7) has been used as the Agile tool during the development phase of this project. The Kanban board was very useful to keep track on the tasks. I have created  columns (ToDo, In Progress, On Hold, Done) and moved the stories accordingly. 
 The On Hold column has served as a "parking spaces", when a story was partially done, but not completely finished.
 
-`ADD IMAGE TO KANBAN BOARD`
+![Github Kanban](docs/images/github_kanban.png)
 
 ### GitHub Issues
 [Github Issues](https://github.com/rpf13/sportsshooting_react/issues) has been used to create all the stories, before they were placed on the projects Kanban board. I have created an issues templates to simplify creation.
@@ -544,7 +750,7 @@ Each issue has a label for the MoSCoW prioritization.
 
 Once a story has been created via the template, it will be automatically added to the Kanban board in the Todo column.
 
-`ADD IMAGE TO GITHUB ISSUES`
+![Github Issues](docs/images/github_issues.png)
 
 ### MoSCoW Prioritization
 
