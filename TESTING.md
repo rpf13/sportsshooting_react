@@ -46,6 +46,7 @@ The following table shows a summary of testcases executed. The the `DeleteModal`
 ## Manual Testing
 
 ### User Story Testing
+`OPEN TO DO`
 
 I have tested the functional user stories and listed in the following table, together with a screenshot. Since I did also add user stories for admin tasks like documentation, app submission, I did not include them in the table - since snapshots are difficult for those. However, they are also clearly documented in the README section.
 
@@ -85,6 +86,7 @@ I have tested the functional user stories and listed in the following table, tog
 ## Code Validation
 
 ### W3C HTML Validation
+`OPEN TO DO`
 
 I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files.
 
@@ -123,6 +125,7 @@ In the following table, all W3C testing is presented with snapshots.
 ---
 
 ### W3C CSS Validation
+`OPEN TO DO`
 
 I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate my CSS files.
 
@@ -148,6 +151,7 @@ After finishing my project, no more errors were shown on the console.
 ---
 
 ### Browser Compatibility
+`OPEN TO DO`
 
 I've tested my deployed project on multiple browsers to check for compatibility issues.
 I have tested it on Chrome, Safari and Firefox on OSX. I did not test with Edge Browser, since it is also based on Chromium, I would expect the same result as for Chrome browser.
@@ -170,13 +174,81 @@ In the table below you can find snapshots of each browser. I did a "walkthrough"
 
 ### Responsiveness
 
-https://www.responsivedesignchecker.com/
+I have tested the application on various devices in terms of responsiveness. I could not find any blocking issue. Furthermore, I did take great care and have added some media queries, just for the small screens, because I did not like some of the components, when they were small.
+I have to say, all in all, it looks good also on small devices. However, on very small screens, some part could be "more beautiful", but in my opition, this would require to redesign the app or enhance massively. 
+I think, the current state is quite good in terms of responsiveness.
+
+Below a table, where I did chooce a set of *testcases* to be run on each device. It includes a variety of mobile devices, starts with the iPhone SE, which is a *medium* screen, over the iPhone 12 Pro, which has a *larger* screen. To verify the app on a very small screen, I have chosen the Samsung Galaxy Fold.
+In order to test the tablet category, the iPad Air has been used.
+
+<details>
+<summary>Responsiveness Testing Mobile Devices</summary>
+
+| Device | Site | Snapshot | Result |
+| --- | --- | --- | --- |
+| iPhone SE |  |  |  |
+|  | Match Add | ![snapshot](docs/testing/match_add_iphone_se.png) | no issues found |
+|  | Match Detail | ![snapshot](docs/testing/match_detail_iphone_se.png) | no issues found |
+|  | Matches List | ![snapshot](docs/testing/matches_iphone_se.png) | no issues found |
+|  | MyGuns Add | ![snapshot](docs/testing/myguns_add_iphone_se.png) | no issues found |
+|  | MyGuns Delete Modal | ![snapshot](docs/testing/myguns_delete_modal_iphone_se.png) | no issues found |
+|  | MyGuns List | ![snapshot](docs/testing/myguns_iphone_se.png) | no issues found |
+|  | MyGuns Serach Fail | ![snapshot](docs/testing/myguns_search_fail_iphone_se.png) | no issues found |
+|  | MySchedule List | ![snapshot](docs/testing/myschedule_iphone_se.png) | no issues found |
+|  | NavBar | ![snapshot](docs/testing/navbar_iphone_se.png) | no issues found |
+|  | Profile Edit | ![snapshot](docs/testing/profile_edit_iphone_se.png) | no issues found |
+|  | Profile List | ![snapshot](docs/testing/profile_iphone_se.png) | no issues found |
+|  | SignIn | ![snapshot](docs/testing/sign_in_iphone_se.png) | no issues found |
+| iPhone 12 Pro |  |  |  |
+|  | Match Add | ![snapshot](docs/testing/match_add_iphone_12pro.png) | no issues found |
+|  | Match Detail | ![snapshot](docs/testing/match_detail_iphone_12pro.png) | no issues found |
+|  | Matches List | ![snapshot](docs/testing/matches_iphone_12pro.png) | no issues found |
+|  | MyGuns Add | ![snapshot](docs/testing/myguns_add_iphone_12pro.png) | no issues found |
+|  | MyGuns Delete Modal | ![snapshot](docs/testing/myguns_delete_modal_iphone_12pro.png) | no issues found |
+|  | MyGuns List | ![snapshot](docs/testing/myguns_iphone_12pro.png) | no issues found |
+|  | MyGuns Serach Fail | ![snapshot](docs/testing/myguns_search_fail_iphone_12pro.png) | no issues found |
+|  | MySchedule List | ![snapshot](docs/testing/myschedule_iphone_12pro.png) | no issues found |
+|  | NavBar | ![snapshot](docs/testing/navbar_iphone_12pro.png) | no issues found |
+|  | Profile Edit | ![snapshot](docs/testing/profile_edit_iphone_12pro.png) | no issues found |
+|  | Profile List | ![snapshot](docs/testing/profile_iphone_12pro.png) | no issues found |
+|  | SignIn | ![snapshot](docs/testing/sign_in_iphone_12pro.png) | no issues found |
+| Samsung Galaxy Fold |  |  |  |
+|  | Match Add | ![snapshot](docs/testing/match_add_galaxy_fold.png) | no issues found |
+|  | Match Detail | ![snapshot](docs/testing/match_detail_galaxy_fold.png) | no issues found |
+|  | Matches List | ![snapshot](docs/testing/matches_galaxy_fold.png) | no issues found |
+|  | MyGuns Add | ![snapshot](docs/testing/myguns_add_galaxy_fold.png) | no issues found |
+|  | MyGuns Delete Modal | ![snapshot](docs/testing/myguns_delete_modal_galaxy_fold.png) | no issues found |
+|  | MyGuns List | ![snapshot](docs/testing/myguns_galaxy_fold.png) | no issues found |
+|  | MyGuns Serach Fail | ![snapshot](docs/testing/myguns_search_fail_galaxy_fold.png) | no issues found |
+|  | MySchedule List | ![snapshot](docs/testing/myschedule_galaxy_fold.png) | no issues found |
+|  | NavBar | ![snapshot](docs/testing/navbar_galaxy_fold.png) | no issues found |
+|  | Profile Edit | ![snapshot](docs/testing/profile_edit_galaxy_fold.png) | no issues found |
+|  | Profile List | ![snapshot](docs/testing/profile_galaxy_fold.png) | no issues found |
+|  | SignIn | ![snapshot](docs/testing/sign_in_galaxy_fold.png) | no issues found |
+| iPad Air |  |  |  |
+|  | Match Add | ![snapshot](docs/testing/match_add_ipad_air.png) | no issues found |
+|  | Match Detail | ![snapshot](docs/testing/match_detail_ipad_air.png) | no issues found |
+|  | Matches List | ![snapshot](docs/testing/matches_ipad_air.png) | no issues found |
+|  | MyGuns Add | ![snapshot](docs/testing/myguns_add_ipad_air.png) | no issues found |
+|  | MyGuns Delete Modal | ![snapshot](docs/testing/myguns_delete_modal_ipad_air.png) | no issues found |
+|  | MyGuns List | ![snapshot](docs/testing/myguns_ipad_air.png) | no issues found |
+|  | MyGuns Serach Fail | ![snapshot](docs/testing/myguns_search_fail_ipad_air.png) | no issues found |
+|  | MySchedule List | ![snapshot](docs/testing/myschedule_ipad_air.png) | no issues found |
+|  | NavBar | ![snapshot](docs/testing/navbar_ipad_air.png) | no issues found |
+|  | Profile Edit | ![snapshot](docs/testing/profile_edit_ipad_air.png) | no issues found |
+|  | Profile List | ![snapshot](docs/testing/profile_ipad_air.png) | no issues found |
+|  | SignIn | ![snapshot](docs/testing/sign_in_ipad_air.png) | no issues found |
+
+</details>
+
+---
 
 ### WAVE WebAim Testing
 
 `CHECK IF THIS HAS TO BE DONE OR NOT`
 
 ### Lighthouse Audit
+`OPEN TO DO`
 
 I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
 
