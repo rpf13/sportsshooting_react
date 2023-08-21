@@ -469,6 +469,7 @@ In future iterations some more additional features could be implemented. Here so
 - create new component to be added in the MyGuns section, which displays content of the [gunbroker.com](https://www.gunbroker.com) plattform via using their [REST API](https://api.gunbroker.com/User/Help). Gunbroker.com is a very large trading plattform for selling guns and accessories. It would be a very cool feature to have something like that as a dedicated component in the MyGuns section.
 - it would be a good feature if the user can delete his own profile. This has not been done yet and it is already adressed via a future story in the back end DRF repo. See the [following story](https://github.com/rpf13/sportsshooting_drf/issues/7) for this feature.
 - the JWT json web token feature should be refactored to use the more secure httpOnly cookie, which is not accessible by java script. This is also already added as [future story](https://github.com/rpf13/sportsshooting_drf/issues/40) in the DRF back end repo.
+- I really want to dig deeper into the *cross origin problem* and the relation to the different browsers. I have figured out that, especially on mobile or the iPhone, it can become a challenge. However, there must be solutions for it, also in case the front-, and back end projects deployed on different applications. In real world, this is the case so many times. I want to understand this fact and then adjust my application.
 
 ---
 
@@ -853,7 +854,7 @@ You can fork this repository by using the following steps:
 
 ### Code
 
-I have done lots of research, especially on the Django side, to create this project. The following list will show some of the resources I have used.
+I have done lots of research, especially on the React side, to create this project. The following list will show some of the resources I have used. First and foremost, the Code Institute's own material, like the "Moments" walkthrough project, was extremely helpful and gave a general guidance, many of the taught concepts have been reused and adopted for my application.
 
 | Source | Location | Notes |
 | --- | --- | --- |

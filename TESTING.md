@@ -64,6 +64,12 @@ I have tested the functional user stories and listed in the following table, tog
 
 ### Defensive Programming
 
+The following section will show a table, where I have tested the app, whith Chrome browser, for various cases and error cases. It should test if the application behaves as intended and gives a great user experience. It is worth noting that, I'm pretty sure *someone* can break the application, but the main intention of this project was not to create a bullet proof app, it should be about learning React and DRF API. However, *great care has been taken* to catch as many potential errors as possible.
+
+Please note that this section is not the only section, where the application has been tested. Throughout the whole testing procedure, I did choose many different use cases in order to check the behaviour. So this means also the responsive testing or the browser compatibility testing have indirectly checked the functionality.
+This gave me confidence, that the application works also with different browsers and resolutions.
+
+
 | Page | User Action | Expected Result | Pass/Fail | Comments |
 | --- | --- | --- | --- | --- |
 | Main Site |  |  |  |  |
@@ -151,22 +157,65 @@ After finishing my project, no more errors were shown on the console.
 ---
 
 ### Browser Compatibility
-`OPEN TO DO`
 
 I've tested my deployed project on multiple browsers to check for compatibility issues.
 I have tested it on Chrome, Safari and Firefox on OSX. I did not test with Edge Browser, since it is also based on Chromium, I would expect the same result as for Chrome browser.
 
-In the table below you can find snapshots of each browser. I did a "walkthrough" of the most important features / workflow, which a user would execute.
+In the table below you can find snapshots of each browser. I did a "walkthrough" of the most important features / workflow, which a user would execute. Note that I did also test some *error cases*, since I've tried to combine the browser compatibility testing with defensive programming testing.
 
 <details>
 <summary>Browser Compatibility Testing Table with Snapshots</summary>
 
-| Browser | OS | Screenshot | Notes |
-| --- | --- | --- | --- |
-| Chrome | OSX | ![screenshot](docs/testing) | Works as expected |
-| Chrome | OSX | ![screenshot](docs/testing) | Works as expected |
-| Chrome | OSX | ![screenshot](docs/testing) | Works as expected |
-| Chrome | OSX | ![screenshot](docs/testing) | Works as expected |
+| Site | Browser | OS | Screenshot | Notes |
+| --- | --- | --- | --- | --- |
+| Main Site unauthorized |  |  |  |  |
+|  | Chrome | OSX | ![screenshot](docs/testing/main_unauth_chrome.png) | Works as expected |
+|  | Firefox | OSX | ![screenshot](docs/testing/main_unauth_firefox.png) | Works as expected |
+|  | Safari | OSX | ![screenshot](docs/testing/main_unauth_safari.png) | Works as expected |
+| Match Delete Modal |  |  |  |  |
+|  | Chrome | OSX | ![screenshot](docs/testing/match_delete_modal_chrome.png) | Works as expected |
+|  | Firefox | OSX | ![screenshot](docs/testing/match_delete_modal_firefox.png) | Works as expected |
+|  | Safari | OSX | ![screenshot](docs/testing/match_delete_modal_safari.png) | Works as expected |
+| Match Detail & Comments |  |  |  |  |
+|  | Chrome | OSX | ![screenshot](docs/testing/match_detail_comment_chrome.png) | Works as expected |
+|  | Firefox | OSX | ![screenshot](docs/testing/match_detail_comment_firefox.png) | Works as expected |
+|  | Safari | OSX | ![screenshot](docs/testing/match_detail_comment_safari.png) | Works as expected |
+| Match Edit Form |  |  |  |  |
+|  | Chrome | OSX | ![screenshot](docs/testing/match_edit_chrome.png) | Works as expected |
+|  | Firefox | OSX | ![screenshot](docs/testing/match_edit_firefox.png) | Works as expected |
+|  | Safari | OSX | ![screenshot](docs/testing/match_edit_safari.png) | Works as expected |
+| Matches Filter & Search |  |  |  |  |
+|  | Chrome | OSX | ![screenshot](docs/testing/matches_filter_chrome.png) | Works as expected |
+|  | Firefox | OSX | ![screenshot](docs/testing/matches_filter_firefox.png) | Works as expected |
+|  | Safari | OSX | ![screenshot](docs/testing/matches_filter_safari.png) | Works as expected |
+| Matches List |  |  |  |  |
+|  | Chrome | OSX | ![screenshot](docs/testing/matches_list_chrome.png) | Works as expected |
+|  | Firefox | OSX | ![screenshot](docs/testing/matches_list_firefox.png) | Works as expected |
+|  | Safari | OSX | ![screenshot](docs/testing/matches_list_safari.png) | Works as expected |
+| MyGuns Add empty form |  |  |  |  |
+|  | Chrome | OSX | ![screenshot](docs/testing/myguns_add_empty_form_chrome.png) | Works as expected |
+|  | Firefox | OSX | ![screenshot](docs/testing/myguns_add_empty_form_firefox.png) | Works as expected |
+|  | Safari | OSX | ![screenshot](docs/testing/myguns_add_empty_form_safari.png) | Works as expected |
+| MyGuns Filter |  |  |  |  |
+|  | Chrome | OSX | ![screenshot](docs/testing/myguns_filter_chrome.png) | Works as expected |
+|  | Firefox | OSX | ![screenshot](docs/testing/myguns_filter_firefox.png) | Works as expected |
+|  | Safari | OSX | ![screenshot](docs/testing/myguns_filter_safari.png) | Works as expected |
+| MySchedule |  |  |  |  |
+|  | Chrome | OSX | ![screenshot](docs/testing/myschedule_chrome.png) | Works as expected |
+|  | Firefox | OSX | ![screenshot](docs/testing/myschedule_firefox.png) | Works as expected |
+|  | Safari | OSX | ![screenshot](docs/testing/myschedule_safari.png) | Works as expected |
+| Try accessing not existing site - unauthenticated |  |  |  |  |
+|  | Chrome | OSX | ![screenshot](docs/testing/not_existing_unauth_chrome.png) | Works as expected |
+|  | Firefox | OSX | ![screenshot](docs/testing/not_existing_unauth_firefox.png) | Works as expected |
+|  | Safari | OSX | ![screenshot](docs/testing/not_existing_unauth_safari.png) | Works as expected |
+| Profile |  |  |  |  |
+|  | Chrome | OSX | ![screenshot](docs/testing/profile_chrome.png) | Works as expected |
+|  | Firefox | OSX | ![screenshot](docs/testing/profile_firefox.png) | Works as expected |
+|  | Safari | OSX | ![screenshot](docs/testing/profile_safari.png) | Works as expected |
+| SignIn Form |  |  |  |  |
+|  | Chrome | OSX | ![screenshot](docs/testing/signin_chrome.png) | Works as expected |
+|  | Firefox | OSX | ![screenshot](docs/testing/signin_firefox.png) | Works as expected |
+|  | Safari | OSX | ![screenshot](docs/testing/signin_safari.png) | Works as expected |
 
 </details>
 
