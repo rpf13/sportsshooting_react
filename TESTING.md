@@ -41,7 +41,8 @@ The following table shows a summary of testcases executed. The the `DeleteModal`
 |  | renders logged-in navigation items when user is authenticated | links for authenticated user "Add match & Add gun & MySchedule & MyGuns & signOut" are all present |  |
 | NotFound.js |  |  |  |
 |  | renders NotFound component with correct message | image in form of "img" is present with error message "Sorry, the page you're looking for doesn't exist"  |  |
-|  |  |  |  |
+
+---
 
 ## Manual Testing
 
@@ -49,14 +50,16 @@ The following table shows a summary of testcases executed. The the `DeleteModal`
 `OPEN TO DO`
 
 I have tested the functional user stories and listed in the following table, together with a screenshot. Since I did also add user stories for admin tasks like documentation, app submission, I did not include them in the table - since snapshots are difficult for those. However, they are also clearly documented in the README section.
-
-`REUSE TABLE FROM README`
-
+In the user stories, I did use the expression "As a Developer..." but this can be interchangeably used with "As a User..."
 
 <details>
 <summary>User story testing Table with Snapshots</summary>
 
-`REUSE TABLE FROM README`
+| Section | User Story | Screenshot | Comment |
+| --- | --- | --- | --- |
+| Nav & Auth |  |  |  |
+|  |  |  |  |
+
 
 </details>
 

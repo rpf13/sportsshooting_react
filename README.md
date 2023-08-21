@@ -470,6 +470,7 @@ In future iterations some more additional features could be implemented. Here so
 - it would be a good feature if the user can delete his own profile. This has not been done yet and it is already adressed via a future story in the back end DRF repo. See the [following story](https://github.com/rpf13/sportsshooting_drf/issues/7) for this feature.
 - the JWT json web token feature should be refactored to use the more secure httpOnly cookie, which is not accessible by java script. This is also already added as [future story](https://github.com/rpf13/sportsshooting_drf/issues/40) in the DRF back end repo.
 - I really want to dig deeper into the *cross origin problem* and the relation to the different browsers. I have figured out that, especially on mobile or the iPhone, it can become a challenge. However, there must be solutions for it, also in case the front-, and back end projects deployed on different applications. In real world, this is the case so many times. I want to understand this fact and then adjust my application.
+- I have to do more research about `DateTime` formats. Even though I did some tweaking of the DateTime format in my app, via the back end in the Django REST part, in combination with the *day adjustment* including a dot (as described in this README), I want to bring it to a better, next level based on the back end.
 
 ---
 
