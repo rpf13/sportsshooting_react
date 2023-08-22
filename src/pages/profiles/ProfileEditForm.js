@@ -130,8 +130,9 @@ const ProfileEditForm = () => {
   const textFields = (
     <>
       <Form.Group>
-        <Form.Label>Real Name</Form.Label>
+        <Form.Label htmlFor="realName">Real Name</Form.Label>
         <Form.Control
+          id="realName"
           type="text"
           value={name}
           onChange={handleChange}
@@ -145,8 +146,9 @@ const ProfileEditForm = () => {
       ))}
 
       <Form.Group>
-        <Form.Label>Club</Form.Label>
+        <Form.Label htmlFor="profileClub">Club</Form.Label>
         <Form.Control
+          id="profileClub"
           type="text"
           value={club}
           onChange={handleChange}
@@ -160,8 +162,9 @@ const ProfileEditForm = () => {
       ))}
 
       <Form.Group>
-        <Form.Label>Country</Form.Label>
+        <Form.Label htmlFor="profileCountry">Country</Form.Label>
         <Form.Control
+          id="profileCountry"
           type="text"
           value={country}
           onChange={handleChange}
@@ -175,8 +178,9 @@ const ProfileEditForm = () => {
       ))}
 
       <Form.Group>
-        <Form.Label>Division</Form.Label>
+        <Form.Label htmlFor="profileDivision">Division</Form.Label>
         <Form.Control
+          id="profileDivision"
           type="text"
           value={division}
           onChange={handleChange}
@@ -190,8 +194,9 @@ const ProfileEditForm = () => {
       ))}
 
       <Form.Group>
-        <Form.Label>License</Form.Label>
+        <Form.Label htmlFor="profileLicense">License</Form.Label>
         <Form.Control
+          id="profileLicense"
           type="text"
           value={license}
           onChange={handleChange}
@@ -205,8 +210,9 @@ const ProfileEditForm = () => {
       ))}
 
       <Form.Group>
-        <Form.Label>Mail</Form.Label>
+        <Form.Label htmlFor="profileMail">Mail</Form.Label>
         <Form.Control
+          id="profileMail"
           type="email"
           placeholder="shooter@shooter.com"
           value={mail}
@@ -221,8 +227,9 @@ const ProfileEditForm = () => {
       ))}
 
       <Form.Group>
-        <Form.Label>Social Media</Form.Label>
+        <Form.Label htmlFor="socialMedia">Social Media</Form.Label>
         <Form.Control
+          id="socialMedia"
           type="url"
           placeholder="https://example.com"
           value={social_media}
@@ -237,8 +244,9 @@ const ProfileEditForm = () => {
       ))}
 
       <Form.Group>
-        <Form.Label>Bio</Form.Label>
+        <Form.Label htmlFor="profileBio">Bio</Form.Label>
         <Form.Control
+          id="profileBio"
           as="textarea"
           value={note}
           onChange={handleChange}

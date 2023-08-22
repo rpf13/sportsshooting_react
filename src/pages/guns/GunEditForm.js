@@ -105,8 +105,9 @@ function GunEditForm() {
   const textFields = (
     <div className="text-center">
       <Form.Group>
-        <Form.Label>Brand</Form.Label>
+        <Form.Label htmlFor="gunBrand">Brand</Form.Label>
         <Form.Control
+          id="gunBrand"
           type="text"
           name="brand"
           value={brand}
@@ -120,8 +121,9 @@ function GunEditForm() {
       ))}
 
       <Form.Group>
-        <Form.Label>Gun Model</Form.Label>
+        <Form.Label htmlFor="gunModel">Gun Model</Form.Label>
         <Form.Control
+          id="gunModel"
           type="text"
           name="gun_model"
           value={gun_model}
@@ -135,8 +137,9 @@ function GunEditForm() {
       ))}      
 
       <Form.Group>
-        <Form.Label>Type</Form.Label>
+        <Form.Label htmlFor="gunType">Type</Form.Label>
         <Form.Control
+          id="gunType"
           as="select"
           name="type"
           value={type}
@@ -153,8 +156,9 @@ function GunEditForm() {
       ))}      
 
       <Form.Group>
-        <Form.Label>Serial Number</Form.Label>
+        <Form.Label htmlFor="serialNumber">Serial Number</Form.Label>
         <Form.Control
+          id="serialNumber"
           type="text"
           name="serial_number"
           value={serial_number}
@@ -168,8 +172,9 @@ function GunEditForm() {
       ))}      
 
       <Form.Group>
-        <Form.Label>Details</Form.Label>
+        <Form.Label htmlFor="gunDetails">Details</Form.Label>
         <Form.Control
+          id="gunDetails"
           as="textarea"
           rows={4}
           name="details"

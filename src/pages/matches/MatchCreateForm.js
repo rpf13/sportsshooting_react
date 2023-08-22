@@ -90,8 +90,9 @@ function MatchCreateForm() {
   const textFields = (
     <div className="text-center">
       <Form.Group>
-        <Form.Label>Title</Form.Label>
+        <Form.Label htmlFor="matchTitle">Title</Form.Label>
         <Form.Control
+          id="matchTitle"
           type="text"
           name="title"
           value={title}
@@ -105,8 +106,9 @@ function MatchCreateForm() {
       ))}
 
       <Form.Group>
-        <Form.Label>Match Date</Form.Label>
+        <Form.Label htmlFor="matchDate">Match Date</Form.Label>
         <Form.Control
+          id="matchDate"
           type="date"
           name="match_date"
           value={match_date}
@@ -120,8 +122,9 @@ function MatchCreateForm() {
       ))}
 
       <Form.Group>
-        <Form.Label>Division</Form.Label>
+        <Form.Label htmlFor="matchDivision">Division</Form.Label>
         <Form.Control
+          id="matchDivision"
           type="text"
           name="division"
           value={division}
@@ -135,8 +138,9 @@ function MatchCreateForm() {
       ))}
 
       <Form.Group>
-        <Form.Label>Location</Form.Label>
+        <Form.Label htmlFor="matchLocation">Location</Form.Label>
         <Form.Control
+          id="matchLocation"
           type="text"
           name="match_location"
           value={match_location}
@@ -150,8 +154,9 @@ function MatchCreateForm() {
       ))}
 
       <Form.Group>
-        <Form.Label>Level</Form.Label>
+        <Form.Label htmlFor="matchLevel">Level</Form.Label>
         <Form.Control
+          id="matchLevel"
           as="select"
           name="level_filter"
           value={level_filter}
@@ -171,8 +176,9 @@ function MatchCreateForm() {
       ))}
 
       <Form.Group>
-        <Form.Label>Details</Form.Label>
+        <Form.Label htmlFor="matchDetails">Details</Form.Label>
         <Form.Control
+          id="matchDetails"
           as="textarea"
           rows={4}
           name="details"
