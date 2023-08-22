@@ -63,8 +63,9 @@ const AttendingShooters = ({ matchId, mobile, attendingsCount }) => {
             >
               {attendings.map((attending) => (
                 <div key={attending.id}>
-                  <Link to={`/profiles/${attending.profile_id}`}>
-                    aria-label={`Profile of shooter ${attending.owner}`}
+                  <Link to={`/profiles/${attending.profile_id}`}
+                  aria-label={`Profile of shooter ${attending.owner}`}
+                  >
                     <Avatar src={attending.profile_image} />
                     <strong className="ml-3 mr-2">{attending.owner}</strong>
                   </Link>
