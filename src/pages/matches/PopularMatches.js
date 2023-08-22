@@ -50,7 +50,10 @@ const PopularMatches = ({ mobile }) => {
                 .slice(0, 3)
                 .map((match) => (
                   <p key={match.id}>
-                    <Link to={`/matches/${match.id}`}>
+                    <Link
+                      to={`/matches/${match.id}`}
+                      aria-label={`Details for match titled ${match.title}`}
+                    >
                       <strong>{match.title}</strong> -{" "}
                       <FormatDay match_date={match.match_date} />
                     </Link>
@@ -66,7 +69,10 @@ const PopularMatches = ({ mobile }) => {
               .slice(0, 5)
               .map((match) => (
                 <p key={match.id}>
-                  <Link to={`/matches/${match.id}`}>
+                  <Link
+                    to={`/matches/${match.id}`}
+                    aria-label={`Details for match titled ${match.title}`}
+                  >
                     <strong>{match.title}</strong> -{" "}
                     <FormatDay match_date={match.match_date} />
                   </Link>

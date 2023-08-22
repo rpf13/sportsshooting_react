@@ -1,14 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from "react";
 import styles from "../../styles/Gun.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import Card from 'react-bootstrap/Card';
-import Media from 'react-bootstrap/Media';
+import Card from "react-bootstrap/Card";
+import Media from "react-bootstrap/Media";
 import { Link, useHistory } from "react-router-dom";
-import { MoreDropdown } from '../../components/MoreDropdown';
-import { axiosRes } from '../../api/axiosDefaults';
-import FormatDay from '../../helper/FormatDay';
-import DeleteModal from '../../components/DeleteModal';
-import { ErrorContext } from '../../App';
+import { MoreDropdown } from "../../components/MoreDropdown";
+import { axiosRes } from "../../api/axiosDefaults";
+import FormatDay from "../../helper/FormatDay";
+import DeleteModal from "../../components/DeleteModal";
+import { ErrorContext } from "../../App";
 
 const Gun = (props) => {
   const {
@@ -42,7 +42,7 @@ const Gun = (props) => {
   const handleConfirmDelete = async () => {
     try {
       await axiosRes.delete(`/guns/${id}/`);
-      history.push('/');
+      history.push("/");
     } catch {
       handleError();
     }
@@ -82,7 +82,10 @@ const Gun = (props) => {
             </div>
           </Media>
         </Card.Body>
-        <Link to={`/guns/${id}`}>
+        <Link
+          to={`/guns/${id}`}
+          aria-label={`Details for gun ${brand} - ${gun_model}`}
+        >
           <Card.Img src={image} alt={gun_model} />
         </Link>
         <Card.Body>
@@ -105,6 +108,6 @@ const Gun = (props) => {
       />
     </>
   );
-}
+};
 
-export default Gun
+export default Gun;

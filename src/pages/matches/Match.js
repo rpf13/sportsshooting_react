@@ -110,7 +110,10 @@ const Match = (props) => {
       <Card className={styles.Match}>
         <Card.Body>
           <Media className="align-items-center justify-content-between">
-            <Link to={`/profiles/${profile_id}`}>
+            <Link
+              to={`/profiles/${profile_id}`}
+              aria-label={`Profile of ${owner}`}
+            >
               <Avatar src={profile_image} height={55} />
               {owner}
             </Link>
@@ -130,7 +133,7 @@ const Match = (props) => {
             </div>
           </Media>
         </Card.Body>
-        <Link to={`/matches/${id}`}>
+        <Link to={`/matches/${id}`} aria-label={`Details for match ${title}`}>
           <Card.Img src={image} alt="{title}" />
         </Link>
         <Card.Body>
@@ -173,7 +176,10 @@ const Match = (props) => {
               </OverlayTrigger>
             )}
             {attendings_count}
-            <Link to={`/matches/${id}`}>
+            <Link
+              to={`/matches/${id}`}
+              aria-label={`Details for match ${title}`}
+            >
               <i className="fa-regular fa-comments" />
             </Link>
             {comments_count}
