@@ -51,6 +51,7 @@ The following table shows a summary of testcases executed. The the `DeleteModal`
 
 I have tested the functional user stories and listed in the following table, together with a screenshot. Since I did also add user stories for admin tasks like documentation, app submission, I did not include them in the table - since snapshots are difficult for those. However, they are also clearly documented in the README section.
 In the user stories, I did use the expression "As a Developer..." but this can be interchangeably used with "As a User..."
+User Story testing has been executed with Chrome browser on OSX.
 
 <details>
 <summary>User story testing Table with Snapshots</summary>
@@ -58,7 +59,37 @@ In the user stories, I did use the expression "As a Developer..." but this can b
 | Section | User Story | Screenshot | Comment |
 | --- | --- | --- | --- |
 | Nav & Auth |  |  |  |
-|  |  |  |  |
+|  | View Navbar: As a user I can view a navbar from every page so that I can navigate easily between pages: [Link](https://github.com/rpf13/sportsshooting_react/issues/1#issue-1818297489) | ![Screenshot](docs/testing/us_01_view_navbar.png) | navbar is shown throughout testing |
+|  | Sign up: As a user I can create a new account so that I can access all the features for signed up users: [Link](https://github.com/rpf13/sportsshooting_react/issues/2) | ![Screenshot](docs/testing/us_01_signup.png) | no issues found |
+|  | Sign in: As a user I can sign in to the app so that I can access functionality for logged in users: [Link](https://github.com/rpf13/sportsshooting_react/issues/3) | ![Screenshot](docs/testing/us_01_signin.png) | no issues found |
+|  | Logged in Status: As a user I can tell if I am logged in or not so that I can log in if I need to: [Link](https://github.com/rpf13/sportsshooting_react/issues/4) | ![Screenshot](docs/testing/us_01_logged_in_status.png) | no issues found |
+|  | Refreshing access tokens: As a user I can maintain my logged-in status until I choose to log out so that my user experience is not compromised: [Link](https://github.com/rpf13/sportsshooting_react/issues/5) | ![Screenshot](docs/testing/us_01_access_token.png) | no issues found |
+|  | Conditional rendering: As a logged out user I can see sign in and sign up options so that I can sign in/sign up: [Link](https://github.com/rpf13/sportsshooting_react/issues/6) | ![Screenshot](docs/testing/us_01_cond_render_signed_in.png) & ![Screenshot](docs/testing/us_01_cond_render_signed_out.png) | no issues found |
+|  | Avatar: As a user I can view user's avatars so that I can easily identify users of the application: [Link](https://github.com/rpf13/sportsshooting_react/issues/7) | ![Screenshot](docs/testing/us_01_avatar.png) | no issues found |
+| Matches Add & Attend |  |  |  |
+|  | Create a match: As a logged in user I can create matches so that I can share the event to fellow shooters: [Link](https://github.com/rpf13/sportsshooting_react/issues/8) | ![Screenshot](docs/testing/us_02_match_create.png) | no issues found |
+|  | View a match: As a user I can view the details of a single match so that I can learn more about it: [Link](https://github.com/rpf13/sportsshooting_react/issues/9) | ![Screenshot](docs/testing/us_02_match_details.png) | no issues found |
+|  | Attend a match: As a logged in user I can attend a match via clicking the related button so that I can show that I am attending: [Link](https://github.com/rpf13/sportsshooting_react/issues/10) | ![Screenshot](docs/testing/us_02_match_attend_foreign.png) & ![Screenshot](docs/testing/us_02_match_attend_own.png) | note that user must be able to attend a match he has advertised! |
+|  | Remove Attend a match: As a logged in user I can remove the attend a match via clicking the related button so that I can remove my participation info.: [Link](https://github.com/rpf13/sportsshooting_react/issues/11) | ![Screenshot](docs/testing/us_02_match_attend_remove.png) | no issues found |
+|  | View most recent matches: As a user I can view all the most recent matches, ordered by most recently created first so that I am up to date with the newest content: [Link](https://github.com/rpf13/sportsshooting_react/issues/12) | ![Screenshot](docs/testing/us_02_matches_most_recent.png) | no issues found |
+|  | Search functionality: As a user, I can search for matches with keywords, so that I can find the matches I am most interested in.: [Link](https://github.com/rpf13/sportsshooting_react/issues/13) | ![Screenshot](docs/testing/us_02_matches_search.png) | no issues found |
+|  | Filter functionality: As a user, I can Filter for matches based on the IPSC Levels, so that I can find the matches I am most interested in.: [Link](https://github.com/rpf13/sportsshooting_react/issues/14) | ![Screenshot](docs/testing/us_02_matches_filter.png) | no issues found |
+|  | Infinite scroll: As a user I can keep scrolling through the matches on the site, that are loaded for me automatically so that I don't have to click on "next page" etc: [Link](https://github.com/rpf13/sportsshooting_react/issues/15) | ![Screenshot](docs/testing/us_02_matches_infinite_scroll_start.png) & ![Screenshot](docs/testing/us_02_machtes_infinite_scroll_end.png) | I cannot create a snapshot showing the loading spinner. Therefore take attention to the highlighted scrollbar, showing the loading progress |
+|  | Popular Matches: As a user I can see a widget of the most popular matches so that I can have a impression of the most wanted matches and decide whether I also want to attend or not [Link](https://github.com/rpf13/sportsshooting_react/issues/29) | ![Screenshot](docs/testing/us_02_matches_popular.png) | no issues found |
+| Match Detail |  |  |  |
+|  |  | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing) | no issues found |
 
 
 </details>
