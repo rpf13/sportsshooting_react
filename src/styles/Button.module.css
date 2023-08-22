@@ -39,7 +39,6 @@
 .Bright {
   background-color: #e3dedb;
   color: red;
-  /* font-size: 0.9rem; */
 }
 .Bright:hover {
   background-color: #FF1F1F;

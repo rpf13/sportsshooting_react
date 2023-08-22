@@ -10,7 +10,6 @@ test("renders NavBar", () => {
     </Router>
   );
 
-//   screen.debug();
 const signInLink = screen.getByRole("link", { name: "SignIn" });
 expect(signInLink).toBeInTheDocument();
 });
@@ -69,6 +68,3 @@ test('renders logged-in navigation items when user is authenticated', async () =
     expect(screen.getByRole('link', { name: /MyGuns/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /SignOut/i })).toBeInTheDocument();
   });
-
-
-

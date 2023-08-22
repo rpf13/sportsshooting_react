@@ -2,6 +2,7 @@ import { rest } from "msw";
 
 const baseURL = "https://sportsshooting-drf-rpf13-5060e23f8756.herokuapp.com/";
 
+// Mock service worker used for jest testing
 export const handlers = [
   rest.get(`${baseURL}dj-rest-auth/user/`, (req, res, ctx) => {
     return res(
