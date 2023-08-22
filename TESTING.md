@@ -112,6 +112,8 @@ User Story testing has been executed with Chrome browser on OSX.
 
 ### Defensive Programming
 
+`TODO`
+
 The following section will show a table, where I have tested the app, whith Chrome browser, for various cases and error cases. It should test if the application behaves as intended and gives a great user experience. It is worth noting that, I'm pretty sure *someone* can break the application, but the main intention of this project was not to create a bullet proof app, it should be about learning React and DRF API. However, *great care has been taken* to catch as many potential errors as possible.
 
 Please note that this section is not the only section, where the application has been tested. Throughout the whole testing procedure, I did choose many different use cases in order to check the behaviour. So this means also the responsive testing or the browser compatibility testing have indirectly checked the functionality.
@@ -318,14 +320,30 @@ In order to test the tablet category, the iPad Air has been used.
 
 ---
 
-### WAVE WebAim Testing
-
-`CHECK IF THIS HAS TO BE DONE OR NOT`
-
 ### Lighthouse Audit
-`OPEN TO DO`
 
-I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
+I've tested my deployed project using the Lighthouse Audit tool to check for any major issues. There were now major issues found. The preformance report for the mobile version is rather low, but lighthouse stated, that there are performance issues due to some plugins I have active. Well, I have quite many active, trying to toggle some of the did not help. However, without theses "strange" plugins of mine, it should be better.
+The minor issue with the contrast was already described in the *Color Scheme* part of the README.
+
+<details>
+<summary>Lighthouse Testing Table with Snapshots</summary>
+
+| Page | Size | Screenshot |
+| --- | --- | --- |
+| Gun | Desktop | ![screenshot](docs/testing/lighthouse_d_gun.png) |
+| Gun | Mobile | ![screenshot](docs/testing/lighthouse_m_gun.png) |
+| Match | Desktop | ![screenshot](docs/testing/lighthouse_d_match.png) |
+| Match | Mobile | ![screenshot](docs/testing/lighthouse_m_match.png) |
+| Matches | Desktop | ![screenshot](docs/testing/lighthouse_d_matches.png) |
+| Matches | Mobile | ![screenshot](docs/testing/lighthouse_m_matches.png) |
+| MyGuns | Desktop | ![screenshot](docs/testing/lighthouse_d_myguns.png) |
+| MyGuns | Mobile | ![screenshot](docs/testing/lighthouse_m_myguns.png) |
+| MySchedule | Desktop | ![screenshot](docs/testing/lighthouse_d_myschedule.png) |
+| MySchedule | Mobile | ![screenshot](docs/testing/lighthouse_m_myschedule.png) |
+| Profile | Desktop | ![screenshot](docs/testing/lighthouse_d_profile.png) |
+| Profile | Mobile | ![screenshot](docs/testing/lighthouse_m_profile.png) |
+
+</details>
 
 ---
 
