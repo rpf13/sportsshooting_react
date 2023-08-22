@@ -54,11 +54,14 @@ function ProfilePage() {
             className={styles.ProfileImage}
             roundedCircle
             src={profile?.image}
+            alt={`Profile picture of ${profile?.owner}`}
           />
         </Col>
         <Col lg={6}>
           <h3 className="m-2">{profile?.owner}</h3>
-          <h5>{profile?.club}</h5>
+          <p className="lead">
+            <strong>{profile?.club}</strong>
+          </p>
         </Col>
         <Col lg={3} className="text-lg-right"></Col>
       </Row>
