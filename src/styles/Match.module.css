@@ -1,28 +1,27 @@
 .Match {
-    background-color: #ffffff;
-    border: 1px solid #dadadf;
-    border-radius: 2px;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-  
-  .Match figure,
-  h5 {
-    margin: 0 0;
-  }
-  
-  .Attend {
-    color: #f85032;
-  }
-  
-  .Attend:hover {
-    color: #f85032;
-  }
-  
-  .AttendOutline:hover {
-    color: #f85032;
-  }
+  background-color: #ffffff;
+  border: 1px solid #dadadf;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  text-align: center;
+}
 
-  .AttendUnauth:hover {
-    color: black;
-  }
+.Match figure,
+h5 {
+  margin: 0 0;
+}
+
+.Attend {
+  color: #f85032;
+}
+
+.Attend:hover {
+  color: #f85032;
+}
+
+.AttendOutline:hover {
+  color: #f85032;
+}
+.AttendUnauth:hover {
+  color: black;
+}

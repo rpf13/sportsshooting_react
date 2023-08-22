@@ -139,59 +139,37 @@ This gave me confidence, that the application works also with different browsers
 
 ## Code Validation
 
-### W3C HTML Validation
-`OPEN TO DO`
-
-I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files.
-
-As my project uses jsx syntax, it will not validate properly if I copy and paste into the HTML validator straight from my source files.
-
-Usually in order to properly validate these types of files, it's recommended to
-[validate by uri](https://validator.w3.org/#validate_by_uri) from the deployed Heroku pages.
-
-Unfortunately, nearly all of the pages on this site require a user to be logged-in and authenticated,
-and will not work using this method, due to the fact that the HTML Validator (W3C) doesn't have
-access to login to the pages.
-
-In order to properly validate my HTML pages with Jinja syntax for authenticated pages, I followed these steps:
-
-- Navigate to the deployed pages which require authentication
-- Right-click anywhere on the page, and select **View Page Source** (usually `CTRL+U` or `⌘+U` on Mac).
-- This will display the entire "compiled" code, without any Jinja syntax.
-- Copy everything, and use the [validate by input](https://validator.w3.org/#validate_by_input) method.
-- Repeat this process for every page that requires a user to be logged-in/authenticated.
-
-In the following table, all W3C testing is presented with snapshots.
-
-<details>
-<summary>W3C Validation Table with Snapshots</summary>
-
-| Page | W3C URL | Screenshot | Notes |
-| --- | --- | --- | --- |
-| Main | [W3C]() | ![screenshot](docs/testing) | No Errors / Warnings |
-| Main | [W3C]() | ![screenshot](docs/testing) | No Errors / Warnings |
-| Main | [W3C]() | ![screenshot](docs/testing) | No Errors / Warnings |
-| Main | [W3C]() | ![screenshot](docs/testing) | No Errors / Warnings |
-| Main | [W3C]() | ![screenshot](docs/testing) | No Errors / Warnings |
-
-</details>
-
----
-
 ### W3C CSS Validation
-`OPEN TO DO`
 
 I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate my CSS files.
+There were no critical errors. Since the `:global` is valid code, used with such a css.module based application and W3C validation not understanding it, it shows an error. However, searching the web, the official [CSS Module Documentation](https://github.com/css-modules/css-modules#composing-from-global-class-names) says that it is valid.
 
-| File | Jigsaw URL | Screenshot | Notes |
-| --- | --- | --- | --- |
-| .module.css | [Jigsaw]() | ![screenshot](docs/testing) | Pass: No Errors |
-| .module.css | [Jigsaw]() | ![screenshot](docs/testing) | Pass: No Errors |
-| .module.css | [Jigsaw]() | ![screenshot](docs/testing) | Pass: No Errors |
-| .module.css | [Jigsaw]() | ![screenshot](docs/testing) | Pass: No Errors |
-| .module.css | [Jigsaw]() | ![screenshot](docs/testing) | Pass: No Errors |
-| .module.css | [Jigsaw]() | ![screenshot](docs/testing) | Pass: No Errors |
-| .module.css | [Jigsaw]() | ![screenshot](docs/testing) | Pass: No Errors |
+<details>
+<summary>W3C CSS Validation with snapshots</summary>
+
+| File | Screenshot | Notes |
+| --- | --- | --- |
+| Asset.module.css | ![screenshot](docs/testing/w3c_css_asset.png) | Pass: No Errors |
+| AttendingShooters.module.css | ![screenshot](docs/testing/w3c_css_attendingshooters.png) | Pass: No Errors |
+| Avatar.module.css | ![screenshot](docs/testing/w3c_css_avatar.png) | Pass: No Errors |
+| Button.module.css | ![screenshot](docs/testing/w3c_css_button.png) | Pass: No Errors |
+| CommentForm.module.css | ![screenshot](docs/testing/w3c_css_comment_form.png) | Pass: No Errors |
+| Comment.module.css | ![screenshot](docs/testing/w3c_css_comment.png) | Pass: No Errors |
+| GunCreateEditForm.module.css | ![screenshot](docs/testing/w3c_css_guncreateeditform.png) | Pass: No Errors |
+| Gun.module.css | ![screenshot](docs/testing/w3c_css_gun.png) | Pass: No Errors |
+| GunsPage.module.css | ![screenshot](docs/testing/w3c_css_gunspage.png) | Pass: No Errors |
+| MatchCreateEditForm.module.css | ![screenshot](docs/testing/w3c_css_matchcreateeditform.png) | Pass: No Errors |
+| MatchesPage.module.css | ![screenshot](docs/testing/w3c_css_matchespage.png) | Pass: No Errors |
+| Match.module.css | ![screenshot](docs/testing/w3c_css_match.png) | Pass: No Errors |
+| MoreDropdown.module.css | ![screenshot](docs/testing/w3c_css_moredropdown.png) | Pass: No Errors |
+| NavBar.module.css | ![screenshot](docs/testing/w3c_css_navbar_error.png) | Error for `:global` see explanation |
+| NotFound.module.css | ![screenshot](docs/testing/w3c_css_notfound.png) | Pass: No Errors |
+| PopularMatches.module.css | ![screenshot](docs/testing/w3c_css_popularmatches.png) | Pass: No Errors |
+| ProfilePage.module.css | ![screenshot](docs/testing/w3c_css_profilepage.png) | Pass: No Errors |
+| SignInUpForm.module.css | ![screenshot](docs/testing/w3c_css_signinupform.png) | Pass: No Errors |
+| App.module.css | ![screenshot](docs/testing/w3c_css_app_warning.png) | Warning for webkit |
+
+</details>
 
 ---
 
