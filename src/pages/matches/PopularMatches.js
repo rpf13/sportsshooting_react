@@ -39,7 +39,9 @@ const PopularMatches = ({ mobile }) => {
     >
       {popularMatches.results.length ? (
         <>
-          <h5 className="text-center p-3">Upcoming popular Matches</h5>
+          <p className="lead text-center p-3">
+            <strong>Upcoming popular Matches</strong>
+          </p>
           {mobile ? (
             <div>
               {popularMatches.results
