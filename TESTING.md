@@ -47,7 +47,6 @@ The following table shows a summary of testcases executed. The the `DeleteModal`
 ## Manual Testing
 
 ### User Story Testing
-`OPEN TO DO`
 
 I have tested the functional user stories and listed in the following table, together with a screenshot. Since I did also add user stories for admin tasks like documentation, app submission, I did not include them in the table - since snapshots are difficult for those. However, they are also clearly documented in the README section.
 In the user stories, I did use the expression "As a Developer..." but this can be interchangeably used with "As a User..."
@@ -87,23 +86,24 @@ User Story testing has been executed with Chrome browser on OSX.
 |  | Delete comments: As an owner of a comment I can delete my comment so that I can control removal of my comment: [Link](https://github.com/rpf13/sportsshooting_react/issues/23) | ![Screenshot](docs/testing/us_03_delete_comment.png) | no issues found |
 |  | Attending Shooters: As a user I can see which users are attending a match so that I can get useful information: [Link](https://github.com/rpf13/sportsshooting_react/issues/24) | ![Screenshot](docs/testing/us_03_attending_shooters.png) | no issues found |
 | Profile |  |  |  |
-|  | Profile page: As a user I can view other users profiles so that I can see their posted match events and learn more about them: [Link](https://github.com/rpf13/sportsshooting_react/issues/25) | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing/us_04_profile_page.png) | no issues found |
-|  | Edit profile: As a logged in user I can edit my profile so that I can change my profile picture and infos: [Link](https://github.com/rpf13/sportsshooting_react/issues/26) | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing/us_04_edit_profile_form.png) & ![Screenshot](docs/testing/us_04_edit_profile_success.png) | full update of the profile, as a user would / should do to give most information about himself |
+|  | Profile page: As a user I can view other users profiles so that I can see their posted match events and learn more about them: [Link](https://github.com/rpf13/sportsshooting_react/issues/25) | ![Screenshot](docs/testing/us_04_profile_page.png)| no issues found |
+|  | Edit profile: As a logged in user I can edit my profile so that I can change my profile picture and infos: [Link](https://github.com/rpf13/sportsshooting_react/issues/26) | ![Screenshot](docs/testing/us_04_edit_profile_form.png) & ![Screenshot](docs/testing/us_04_edit_profile_success.png) | full update of the profile, as a user would / should do to give most information about himself |
 |  | Update username and password: As a logged in user I can update my username and password so that I can change my display name and keep my profile secure: [Link](https://github.com/rpf13/sportsshooting_react/issues/27) | ![Screenshot](docs/testing/us_04_update_username_form.png) & ![Screenshot](docs/testing/us_04_update_username_success.png) & ![Screenshot](docs/testing/us_04_update_password.png) | no issues found |
 | MySchedule |  |  |  |
 |  | List matches: As a logged in user I can view a list of all matches I am attending, so that I can have a simple view and scheduling option: [Link](https://github.com/rpf13/sportsshooting_react/issues/28) | ![Screenshot](docs/testing/us_05_myschedule_list_matches.png) | no issues found |
 |  | Search functionality: As a logged in user, I can search within the list of myschedule with keywords, so that I can find the match I am looking for: [Link](https://github.com/rpf13/sportsshooting_react/issues/30) | ![Screenshot](docs/testing/us_05_myschedule_search.png) | no issues found |
 | MyGuns |  |  |  |
-|  |  | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing) | no issues found |
+|  | Create an entry: As a logged in user I can create an entry in my gun database so that I can create my collection of guns: [Link](https://github.com/rpf13/sportsshooting_react/issues/31) | ![Screenshot](docs/testing/us_06_myguns_create.png) | no issues found |
+|  | List entries: As a logged in user I can list all entries in my gun database so that I can have an overview about my gun collection: [Link](https://github.com/rpf13/sportsshooting_react/issues/32) | ![Screenshot](docs/testing/us_06_myguns_list.png) | no issues found |
+|  | Edit an entry: As a logged in user / owner of an entry I can edit an entry so that I can fix or update my existing item: [Link](https://github.com/rpf13/sportsshooting_react/issues/33) | ![Screenshot](docs/testing/us_06_edit_entry_form.png) & ![Screenshot](docs/testing/us_06_edit_entry_success.png) | note that not only text but also the image got updated |
+|  | Delete an entry: As a logged in user / owner of an entry I can delete an item so that I can remove it from my gun database: [Link](https://github.com/rpf13/sportsshooting_react/issues/34) | ![Screenshot](docs/testing/us_06_delete_modal.png) & ![Screenshot](docs/testing/us_06_delete_success.png) | no issues found |
+|  | Search functionality: As a logged in user, I can search for guns with keywords, so that I can find the gun I am looking for: [Link](https://github.com/rpf13/sportsshooting_react/issues/35) | ![Screenshot](docs/testing/us_06_search.png) | no issues found |
+|  | Filter functionality: As logged in user, I can Filter my gun database based on type “rifle” or “handgun”, so that I can find the item in the related category: [Link](https://github.com/rpf13/sportsshooting_react/issues/36) | ![Screenshot](docs/testing/us_06_filter_w_search_no_result.png) & ![Screenshot](docs/testing/us_06_filter_success.png) | note that filter search combination is checked, which should fail in this case, as it successfully does. |
+| **STRETCH** Shooters - Messages |  |  |  |
+|  | Shooters - List all Shooters: As a logged in user I can see a list of all registered shooters so I can learn more about who is who: [Link](https://github.com/rpf13/sportsshooting_react/issues/40) | Nothing to show | not implemented |
+|  | Shooters - Search functionality: As a user I can search among all registered shooters, so I can quickly find the user I want: [Link](https://github.com/rpf13/sportsshooting_react/issues/41) | Nothing to show | not implemented |
+|  | Shooters Message - Create a message: As a logged in user I can create a message sent to another user, so I can communicate privately: [Link](https://github.com/rpf13/sportsshooting_react/issues/42) | [Link to DRF Repo](https://github.com/rpf13/sportsshooting_drf/tree/main#usermessages) | only implemented in DRF back end but not in deployed code. Check README of DRF Repo, full code and checks are added |
+|  | Shooters Message - Receive a message: As a logged in user I can receive a message sent to me, so I can read and reply to it. -> CouldHave: [Link](https://github.com/rpf13/sportsshooting_react/issues/43) | [Link to DRF Repo](https://github.com/rpf13/sportsshooting_drf/tree/main#usermessages) | only implemented in DRF back end but not in deployed code. Check README of DRF Repo, full code and checks are added |
 
 
 </details>
