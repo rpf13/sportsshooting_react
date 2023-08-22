@@ -77,11 +77,25 @@ User Story testing has been executed with Chrome browser on OSX.
 |  | Infinite scroll: As a user I can keep scrolling through the matches on the site, that are loaded for me automatically so that I don't have to click on "next page" etc: [Link](https://github.com/rpf13/sportsshooting_react/issues/15) | ![Screenshot](docs/testing/us_02_matches_infinite_scroll_start.png) & ![Screenshot](docs/testing/us_02_machtes_infinite_scroll_end.png) | I cannot create a snapshot showing the loading spinner. Therefore take attention to the highlighted scrollbar, showing the loading progress |
 |  | Popular Matches: As a user I can see a widget of the most popular matches so that I can have a impression of the most wanted matches and decide whether I also want to attend or not [Link](https://github.com/rpf13/sportsshooting_react/issues/29) | ![Screenshot](docs/testing/us_02_matches_popular.png) | no issues found |
 | Match Detail |  |  |  |
-|  |  | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing) | no issues found |
-|  |  | ![Screenshot](docs/testing) | no issues found |
+|  | View Details: As a user I can view the individual match page so that I can read the details comments about the match: [Link](https://github.com/rpf13/sportsshooting_react/issues/16) | ![Screenshot](docs/testing/us_03_view_details.png) | no issues found |
+|  | Edit Match: As a match event owner I can edit my event title and description so that I can make corrections or update my event after it was created: [Link](https://github.com/rpf13/sportsshooting_react/issues/17) | ![Screenshot](docs/testing/us_03_edit_match_form.png) & ![Screenshot](docs/testing/us_03_edit_match_saved.png) | update of the content and the date |
+|  | Delete Match: As a match event owner I can delete my match event so that all details and comments are deleted: [Link](https://github.com/rpf13/sportsshooting_react/issues/18) | ![Screenshot](docs/testing/us_03_delete_match_modal.png) & ![Screenshot](docs/testing/us_03_delete_match_success.png) | after deleting the only match of *tester11*, the list in his profile is empty, as it should |
+|  | Create a comment: As a logged in user I can add match comments to a event so that I can share my thoughts about the event: [Link](https://github.com/rpf13/sportsshooting_react/issues/19) | ![Screenshot](docs/testing/us_03_comment_create.png) | no issues found |
+|  | Comment date: As a user I can see how long ago a comment was made so that I know how old a comment is: [Link](https://github.com/rpf13/sportsshooting_react/issues/20) | ![Screenshot](docs/testing/us_03_comment_date.png) | no issues found |
+|  | View comments: As a user I can read comments on match events so that I can read what other users think about the match: [Link](https://github.com/rpf13/sportsshooting_react/issues/21) | ![Screenshot](docs/testing/us_03_view_comments.png) | no issues found |
+|  | Edit a comment: As an owner of a comment I can edit my comment so that I can fix or update my existing comment: [Link](https://github.com/rpf13/sportsshooting_react/issues/22) | ![Screenshot](docs/testing/us_03_edit_comment.png) | no issues found |
+|  | Delete comments: As an owner of a comment I can delete my comment so that I can control removal of my comment: [Link](https://github.com/rpf13/sportsshooting_react/issues/23) | ![Screenshot](docs/testing/us_03_delete_comment.png) | no issues found |
+|  | Attending Shooters: As a user I can see which users are attending a match so that I can get useful information: [Link](https://github.com/rpf13/sportsshooting_react/issues/24) | ![Screenshot](docs/testing/us_03_attending_shooters.png) | no issues found |
+| Profile |  |  |  |
+|  | Profile page: As a user I can view other users profiles so that I can see their posted match events and learn more about them: [Link](https://github.com/rpf13/sportsshooting_react/issues/25) | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing/us_04_profile_page.png) | no issues found |
+|  | Edit profile: As a logged in user I can edit my profile so that I can change my profile picture and infos: [Link](https://github.com/rpf13/sportsshooting_react/issues/26) | ![Screenshot](docs/testing) | no issues found |
+|  |  | ![Screenshot](docs/testing/us_04_edit_profile_form.png) & ![Screenshot](docs/testing/us_04_edit_profile_success.png) | full update of the profile, as a user would / should do to give most information about himself |
+|  | Update username and password: As a logged in user I can update my username and password so that I can change my display name and keep my profile secure: [Link](https://github.com/rpf13/sportsshooting_react/issues/27) | ![Screenshot](docs/testing/us_04_update_username_form.png) & ![Screenshot](docs/testing/us_04_update_username_success.png) & ![Screenshot](docs/testing/us_04_update_password.png) | no issues found |
+| MySchedule |  |  |  |
+|  | List matches: As a logged in user I can view a list of all matches I am attending, so that I can have a simple view and scheduling option: [Link](https://github.com/rpf13/sportsshooting_react/issues/28) | ![Screenshot](docs/testing/us_05_myschedule_list_matches.png) | no issues found |
+|  | Search functionality: As a logged in user, I can search within the list of myschedule with keywords, so that I can find the match I am looking for: [Link](https://github.com/rpf13/sportsshooting_react/issues/30) | ![Screenshot](docs/testing/us_05_myschedule_search.png) | no issues found |
+| MyGuns |  |  |  |
 |  |  | ![Screenshot](docs/testing) | no issues found |
 |  |  | ![Screenshot](docs/testing) | no issues found |
 |  |  | ![Screenshot](docs/testing) | no issues found |
