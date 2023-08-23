@@ -471,6 +471,7 @@ In future iterations some more additional features could be implemented. Here so
 - the JWT json web token feature should be refactored to use the more secure httpOnly cookie, which is not accessible by java script. This is also already added as [future story](https://github.com/rpf13/sportsshooting_drf/issues/40) in the DRF back end repo.
 - I really want to dig deeper into the *cross origin problem* and the relation to the different browsers. I have figured out that, especially on mobile or the iPhone, it can become a challenge. However, there must be solutions for it, also in case the front-, and back end projects deployed on different applications. In real world, this is the case so many times. I want to understand this fact and then adjust my application.
 - I have to do more research about `DateTime` formats. Even though I did some tweaking of the DateTime format in my app, via the back end in the Django REST part, in combination with the *day adjustment* including a dot (as described in this README), I want to bring it to a better, next level based on the back end.
+- Refactor the ErrorMessage Modal in order to accept dynamic inputs in order to have it even more generic and reusable. See also explanation in [Code Notes](#code-notes) chapter.
 
 ---
 
@@ -723,6 +724,142 @@ There are a variety of libraries and dependencies required to run this project. 
 ## Development
 
 The following chapter describes how I made use of the very useful commit message feature.
+
+### Code Notes
+
+At the final stage of the application, once doing the *defensive programming* tests, I did find quite some things, which are maybe not *optimal*. I have spent many hours trying to find solutions or alternative ways on how to tackle an issue. However, some things cannot just be changed, they would cause a redesign of the app.
+
+One can say, that this is the *lessons learned* part and I somehow agree. I have learnt many things. For example I did not know until the end, that if I use react-bootstrap and "technically" just hide some content in the mobile view, it still gets rendered from a DOM perspective. So this fact causes some *nasty* problems and is also not very supportive for the loading time.
+
+One particular change I did at the end I want to point out, is the following: I did change the behavior on how the `MyGuns` site behaves. Initially I had the below visible code in it. It would cover the case that if an *unauthenticated user* is trying to access the guns site, via directly entering the url in the browser like `/guns`, he would see a message telling: *"You are not authorized to view this content. Create an account and login first."*
+
+However, I did not like that...I mean, this is just for a case, where the user is trying to do something, which he is not intended to do. Therefore I did implement current solution of redirecting the user back to the main route `"/"` if he tries to do the above mentioned.
+Now in such cases it would be nice to display a particular error Modal message, which brought me to the problem that my ErrorModal implementaiton would have to be refactored to accept dynamic inputs. I did not want to refactor this at the stage the app has been, fully tested and ready to submit. I did open a "future feature" for it.
+
+Here the code snippet for the `GunsPage.js` with the previously mentioned error message to be displayed (imports not included in the snippet).
+
+<details>
+<summary>Code snippet</summary>
+
+```jsx
+
+function GunsPage({ message }) {
+  useRedirect('loggedOut')
+  const [guns, setGuns] = useState({ results: [] });
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const { pathname } = useLocation();
+  const currentUser = useCurrentUser();
+
+  // used for search query
+  const [query, setQuery] = useState("");
+  const [gunType, setGunType] = useState("");
+
+  useEffect(() => {
+    const fetchGuns = async () => {
+      try {
+        const { data } = await axiosReq.get(`/guns?search=${query}&type=${gunType}`);
+        setGuns(data);
+        setHasLoaded(true);
+      } catch {
+        setHasError(true);
+        setHasLoaded(true);
+      }
+    };
+
+    // Only fetch guns when a user is logged in
+    if (currentUser) {
+      setHasLoaded(false);
+      const timer = setTimeout(() => {
+        fetchGuns();
+      }, 1000);
+      return () => {
+        clearTimeout(timer);
+      };
+    } else {
+      // If no user is logged in, set 'hasLoaded' and 'hasError' to true
+      // which will cause re-render and display the not authorized error
+      setHasLoaded(true);
+      setHasError(true);
+      setGuns({ results: [] }); // clear the guns state
+    }
+  }, [pathname, query, currentUser, gunType]);
+
+  return (
+    <Row className="h-100">
+      <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <PopularMatches mobile />
+        <i className={`fas fa-search ${styles.SearchIcon}`} />
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <FormControl
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search by brand, model, serialnumber"
+          />
+
+          <Form.Control
+            as="select"
+            placeholder="Choose GunType"
+            value={gunType}
+            onChange={(event) => setGunType(event.target.value)}
+            className="mb-3"
+          >
+            <option value="">All Gun Types or Select</option>
+            <option>Handgun</option>
+            <option>Rifle</option>
+          </Form.Control>
+        </Form>
+        {hasLoaded ? (
+          hasError ? (
+            <Container className={appStyles.Content}>
+              <p>
+                You are not authorized to view this content.
+                <br />
+                Create an account and login first.
+              </p>
+            </Container>
+          ) : (
+            <>
+              {guns.results.length ? (
+                <InfiniteScroll
+                  children={guns.results.map((gun) => {
+                    return <Gun key={gun.id} {...gun} setGuns={setGuns} />;
+                  })}
+                  dataLength={guns.results.length}
+                  loader={<Asset spinner />}
+                  hasMore={!!guns.next}
+                  next={() => fetchMoreData(guns, setGuns)}
+                />
+              ) : (
+                <Container className={appStyles.Content}>
+                  <Asset src={NoResults} message={message} />
+                </Container>
+              )}
+            </>
+          )
+        ) : (
+          <Container className={appStyles.Content}>
+            <Asset spinner />
+          </Container>
+        )}
+      </Col>
+      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+        <PopularMatches />
+      </Col>
+    </Row>
+  );
+}
+
+export default GunsPage;
+```
+
+</details>
+
 
 ### Commit messages
 
