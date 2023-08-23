@@ -112,30 +112,139 @@ User Story testing has been executed with Chrome browser on OSX.
 
 ### Defensive Programming
 
-`TODO`
-
-The following section will show a table, where I have tested the app, whith Chrome browser, for various cases and error cases. It should test if the application behaves as intended and gives a great user experience. It is worth noting that, I'm pretty sure *someone* can break the application, but the main intention of this project was not to create a bullet proof app, it should be about learning React and DRF API. However, *great care has been taken* to catch as many potential errors as possible.
+The following section will show a table, where I have tested the app, whith Chrome browser, for various cases and error cases. It should test if the application behaves as intended and gives a great user experience. It is worth to mention, that I'm pretty sure *someone* can break the application, but the main intention of this project was not to create a bullet proof app, it should be about learning React and DRF API. However, *great care has been taken* to catch as many potential errors as possible.
 
 Please note that this section is not the only section, where the application has been tested. Throughout the whole testing procedure, I did choose many different use cases in order to check the behaviour. So this means also the responsive testing or the browser compatibility testing have indirectly checked the functionality.
 This gave me confidence, that the application works also with different browsers and resolutions.
 
+In the **first part**, tests are done with **an unauthenticated user**, which as such, has (intentionally) access to many parts of the site:
+
+<details>
+<summary>Test with unauthenticated user</summary>
 
 | Page | User Action | Expected Result | Pass/Fail | Comments |
 | --- | --- | --- | --- | --- |
 | Main Site |  |  |  |  |
-|  | Click on Logo in Navbar | Redirect / Refresh Home | Pass |  |
-|  |  |  | Pass |  |
-|  |  |  | Pass |  |
-|  |  |  | Pass |  |
-|  |  |  | Pass |  |
-|  |  |  | Pass |  |
-|  |  |  | Pass |  |
-|  |  |  | Pass |  |
-|  |  |  | Pass |  |
-|  |  |  | Pass |  |
-|  |  |  | Pass |  |
-|  |  |  | Pass |  |
-|  |  |  | Pass |  |
+|  | Access site | Navbar, Matches content visible | Pass |  |
+|  | Browse through matches / main site | Infinite scroll, all content visible | Pass |  |
+|  | Loading spinner while infinite scroll is loading | Loading spinner shows up | Pass |  |
+|  | Using search to find match | Related match item or items matching search appear | Pass |  |
+|  | Loading spinner while search is fetching data | Loading spinner shows up | Pass |  |
+|  | Level filter can be combined with search | proper result is showing up | Pass |  |
+|  | trying to attend a match displays overlay text | text stating that login required is displayed | Pass |  |
+|  | click on match image | user gets presented with the match detail view | Pass |  |
+|  | upcoming popular matches component | the upcoming popular matches component is visible, sorted by date | Pass |  |
+|  | hover over upcoming particular match | text turns red, active link indicated | Pass |  |
+|  | using forward and backward swipe gesture on mouse / touchpad | user gets sent back or forward a site | Pass |  |
+|  | click on active link on popular matches component | user gets presented with detail site of match | Pass |  |
+|  | click on comments icon of match | user gets presented with the match detail view including the comments | Pass |  |
+| Match Detail Site |  |  |  |  |
+|  | trying to add comment | comments visible on match detail view but form not present | Pass |  |
+|  | trying to add comment on match detail view | if there are now comments yet, text showing up that no comments are present and login required | Pass |  |
+|  | click on matches icon in navbar | user gets sent (back) to the matches list site | Pass |  |
+|  | participating shooters visible | on match detail page, participating shooters component is visible | Pass |  |
+|  | using forward and backward swipe gesture on mouse / touchpad | user gets sent back or forward a site | Pass |  |
+|  | participating shooters component | component shows up and displays avatar and username | Pass |  |
+|  | click on participating shooter | user gets sent to profiles page of that user | Pass |  |
+| Profiles Page |  |  |  |  |
+|  | accessing profiles page vial clicking on any avatar / username | profiles page is showing up with all content | Pass |  |
+|  | upcoming popular matches component | visible and active links when hovering | Pass |  |
+|  | click on upcoming popular match link | user gets sent to particular match detail | Pass |  |
+|  | scolling matches on profiles page | infinite scroll, loading spinner shows up | Pass | only matches of that particular owners profile show up |
+|  | click on match image or comment icon | user gets sent to match detail view | Pass |  |
+|  | click on sportsshooting logo or matches icon in navbar | user is sent to matches list / main site | Pass |  |
+| SignUp / SignIn |  |  |  |  |
+|  | click on signup / signin | respective site is shown with form | Pass |  |
+|  | signup with only 3 character password | error message displayd that 8 characters are required | Pass |  |
+|  | signup with whitespace in username | error message shown with guidance on which characters are valid | Pass |  |
+|  | click on link to either signup or signin | user gets sent to respective site | Pass | signup & signin have a link to each other |
+|  | sign up with valid characters | user gets sent to signin site | Pass |  |
+|  | sign in witch correct credentials | user gets redirected to `/` main site | Pass |  |
+|  | sign in attempt with wrong credentials | error message gets displayed | Pass |  |
+| General / invalid actions |  |  |  |  |
+|  | entering invalid url like `/tester` | user gets displayed error message site, that this site does not exist | Pass |  |
+|  | entering valid url which requires authentication like `/guns` | user gets redirected to the matches list / main site | Pass |  |
+
+</details>
+
+In the **second part**, tests are done with an **authenticated user**, starting from creating an account do delete part of his content.
+
+<details>
+<summary>Test with authenticated user</summary>
+
+| Page | User Action | Expected Result | Pass/Fail | Comments |
+| --- | --- | --- | --- | --- |
+| Main Site |  |  |  |  |
+|  | Sign in with valid credentials | user gets redirected to main matches site. Navbar shows additional icons. Username next to avatar visible in the navbar | Pass |  |
+|  | Browse through matches / main site | Infinite scroll, all content visible | Pass |  |
+|  | Loading spinner while infinite scroll is loading | Loading spinner shows up | Pass |  |
+|  | Using search to find match | Related match item or items matching search appear | Pass |  |
+|  | clicking refresh button in browser or using shortcut | page refresh occurs, user still logged in | Pass |  |
+|  | Loading spinner while search is fetching data | Loading spinner shows up | Pass |  |
+|  | Level filter can be combined with search | proper result is showing up | Pass |  |
+|  | click to attend | icon turns red, counter is increased by 1 | Pass |  |
+|  | click on match image | user gets presented with the match detail view | Pass |  |
+|  | upcoming popular matches component | the upcoming popular matches component is visible, sorted by date | Pass |  |
+|  | hover over upcoming particular match | text turns red, active link indicated | Pass |  |
+|  | using forward and backward swipe gesture on mouse / touchpad | user gets sent back or forward a site | Pass |  |
+|  | click on active link on popular matches component | user gets presented with detail site of match | Pass |  |
+|  | click on comments icon of match | user gets presented with the match detail view including the comments | Pass |  |
+| Match Detail Site |  |  |  |  |
+|  | add comment | comments visible on match detail and able to write comment(s) | Pass |  |
+|  | add comment on match detail view | if there are now comments yet, text showing to add comment | Pass |  |
+|  | edit comment | comment can be updated, if I am the owner of the comment | Pass |  |
+|  | delete a comment | comment can be deleted if I am the owner of the comment | Pass |  |
+|  | click on matches icon in navbar | user gets sent (back) to the matches list site | Pass |  |
+|  | participating shooters visible | on match detail page, participating shooters component is visible | Pass |  |
+|  | using forward and backward swipe gesture on mouse / touchpad | user gets sent back or forward a site | Pass |  |
+|  | participating shooters component | component shows up and displays avatar and username | Pass |  |
+|  | click on participating shooter | user gets sent to profiles page of that user | Pass |  |
+|  | click to unattend match | icon turns color from red to grey, count decreases by one and participating shooters component will remove the avatar / username of "me" | Pass |  |
+| Profiles Page |  |  |  |  |
+|  | accessing profiles page vial clicking on any avatar / username | profiles page is showing up with all content | Pass |  |
+|  | upcoming popular matches component | visible and active links when hovering | Pass |  |
+|  | click on upcoming popular match link | user gets sent to particular match detail | Pass |  |
+|  | scolling matches on profiles page | infinite scroll, loading spinner shows up | Pass | only matches of that particular owners profile show up |
+|  | click on match image or comment icon | user gets sent to match detail view | Pass |  |
+|  | click on sportsshooting logo or matches icon in navbar | user is sent to matches list / main site | Pass |  |
+|  | click on edit profile and cancel | user is sent back to profiles page | Pass |  |
+|  | edit profile add wrong email format | error message telling me correct format | Pass |  |
+|  | edit profile add invalid url for social media | error message telling me correct format | Pass |  |
+|  | edit profile click on save without any changes | user gets sent back to profiles page | Pass |  |
+|  | edit profile change image and cancel choice | still on edit profile site | Pass |  |
+|  | edit profile change image and click to change image again | image gets successfully updated | Pass |  |
+|  | edit profile and change all fields click save | user sent back to display (updated) profile. Avatar image got updated in Navbar and attending shooters | Pass |  |
+|  | change username and click cancel | form to update username gets closed, user sent back to profiel | Pass |  |
+|  | change username and navigate through the form only with keyboard | form can be successfully saved, user is sent back to profile details site, username in navbar and attenings / matches gets updated | Pass |  |
+|  | change password and click cancel | form closes and user is sent back to profiels page | Pass |  |
+|  | change password | password gets correctly updated | Pass |  |
+| MySchedule |  |  |  |  |
+|  | click on myschedule link in navbar | myschedule site opens, telling that I do not have any match I am attending | Pass |  |
+|  | click on any match to attend and return to myschedule | attending match shows up, upcoming popular matches shows up | Pass |  |
+|  | filter and search combination | respechtive match shows up after search & filter or using only one of them | Pass |  |
+|  | click on any other active element in match | repective functionality getes executed | Pass |  |
+| Add match |  |  |  |  |
+|  | click on add match and just click save | error displayed for mandatory fields | Pass |  |
+|  | click on add match and click cancel | user is sent back from where he came from | Pass |  |
+|  | click on add match and fill in form click on save | match is published, available for any user with all functions | Pass |  |
+|  | click on attend *my own match* | normal behaviour, attend count increases, icon turns red participating shooters updates | Pass |  |
+|  | comment my new match | comment can be added, also for my own match | Pass |  |
+|  | click on match update | any field can be updated, also the image | Pass |  |
+|  | click on match delete and cancel on modal | modal pops up to verify, if canceled user is sent back | Pass |  |
+|  | click on match delete and confirm on modal | match and all related data gets deleted | Pass |  |
+| Add gun |  |  |  |  |
+|  | click add gun fill in form and add huge image | error message gest dispalyed that the image does not comply with the max size rules | Pass |  |
+|  | click on change image and remove all form fields | error displayed for missing mandator fields. Image gets changed though in the preview | Pass |  |
+|  | correct form and click on save | gun gets correctly saved and displayed. Upcoming popular matches component also visible | Pass |  |
+| MyGuns |  |  |  |  |
+|  | click on myguns icon | myguns site is shown including popular matches component | Pass |  |
+|  | search or filter or combine | any of the actions lists the related content, if filter does not match anything, related error message is shown | Pass |  |
+|  | click on edit gun and cancel | edit form closes and user is sent back to gun detail site | Pass |  |
+|  | click on edit gun and edit any field | update successful visible after pressing save | Pass |  |
+|  | sign out and trying to access url of particular gun object | generic error message is shown | Pass |  |
+|  | delete all gun objects and return to myguns site | message displayed that no entries are in list | Pass |  |
+
+</details>
 
 ---
 
