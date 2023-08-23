@@ -364,6 +364,8 @@ As previously mentioned, I did only start "counting" bugs when doing the testing
 | --- | --- |
 | [Profile Social Media URL Error](https://github.com/rpf13/sportsshooting_react/issues/44) | resolved |
 | [Gun Create form image validation error missing](https://github.com/rpf13/sportsshooting_react/issues/45) | resolved |
+| [Controll ID on Forms](https://github.com/rpf13/sportsshooting_react/issues/47) | resolved |
+| [Potential Memory Leak with PopularMatches Component](https://github.com/rpf13/sportsshooting_react/issues/48) | resolved |
 
 **Open Issues**
 

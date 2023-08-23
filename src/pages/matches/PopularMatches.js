@@ -15,20 +15,31 @@ const PopularMatches = ({ mobile }) => {
   const handleError = useContext(ErrorContext);
 
   useEffect(() => {
+    // check if component is mounted
+    let isMounted = true;
+
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(
           "/matches/?ordering=-attendings_count"
         );
-        setMatchData((prevState) => ({
-          ...prevState,
-          popularMatches: data,
-        }));
+        // if component is still mounted, update data
+        if (isMounted) {
+          setMatchData((prevState) => ({
+            ...prevState,
+            popularMatches: data,
+          }));
+        }
       } catch {
         handleError();
       }
     };
     handleMount();
+
+    // cleanup when the component is unmounted, update variable
+    return () => {
+      isMounted = false;
+    };
   }, [handleError]);
 
   return (
