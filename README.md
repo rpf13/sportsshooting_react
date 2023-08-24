@@ -2,7 +2,9 @@
 
 SportsShooting is a site, which should support Sportsshooters and their related clubs, to create match events or gather information about matches. The main target audience are licensed IPSC (International Practical Shooting Confederation) shooters. [IPSC](https://www.ipsc.org/) is a worldwide organized confederation of practical shooters.
 
-It should build a plattform, where the registered user can gain more information about a particular match. He has the option to "attend" a match by clicking the related button, which will make it possible for other user, to see who is attending.
+The site is not limited to licensed IPSC shooters, it can also be used for other shooting club related events.
+
+It should build a plattform, where the registered user can gain more information about a particular match. He has, for example, the option to "attend" a match by clicking the related button, which will make it possible for other user, to see who is attending.
 
 ![SportsShooting Mockup](docs/images/techsini_mockup.png)
 
@@ -105,12 +107,13 @@ Link to the backend Django API repository: [SportsShooting API Repo](https://git
 
 ## UX & Design
 
-The overalll goal of the application was to achieve the desired functionality with a minimalistic and clear design. Colours should only be used to give an accent to something or display a certain funciont, like the buttons or the navbar active elements.
+The overalll goal of the application was to achieve the desired functionality with a minimalistic and clear design. Colors should only be used to give an accent to something or display a certain function, like the buttons or the navbar active elements.
 Overall, the application is mobile friendly, the use of mobile devices has always been part of the design decision process.
 
 ### Color Scheme
 
-[Coolors.co](https://coolors.co/) hase been used to create the color palette. There is two sets of color schemes used in the application, where as they have many similarities. The main application uses a mixture of white / grey colors, paired with red to give some accents. The main background is `#f5f5f5`, which is a light grey color. It should give a simple accent over the pure white `#ffffff` navbar and component background.
+[Coolors.co](https://coolors.co/) has been used to create the color palette. There are two sets of color schemes used in the application, where as they have many similarities. The main application uses a mixture of white / grey colors, paired with red to give some accents. The main background is `#f5f5f5`, which is a light grey color. It should give a simple accent over the pure white `#ffffff` navbar and component background.
+
 Since also the individual match and gun collection items use the pure white as background, scrolling over the elements gives a nice "floating" effect.
 
 ![Main Colors](docs/images/coolors%20app.png)
@@ -119,7 +122,7 @@ The navbar but mostly the buttons are using a mixture of red colors paired with 
 
 ![Button Colors](docs/images/coolors_button_search.png)
 
-I am aware of the fact that this combination does partially not fullfil the contrast check. However, it is almost impossible to pair red with any other light color and pass a contrast check. Since the whole color scheme is around the SportsShooting Logo, which contains a red centered target, I wanted to use it throughout the site. However, I am pretty confident that due to the fact that the contrast issue is only on a few button and hover effect occation, it would also be very well usable for visual impaired users.
+**I am aware of the fact that this combination does partially not fullfil the contrast check.** However, it is almost impossible to pair red with any other light color and pass a contrast check. Since the whole color scheme is around the SportsShooting Logo, which contains a red centered target, I wanted to use it throughout the site. However, I am pretty confident that due to the fact that the contrast issue is only on a few button and hover effect occasion, it would also be very well usable for visual impaired users.
 
 ---
 
@@ -134,15 +137,24 @@ The rest of the document uses `Roboto` with a alternative font of `sans-serif`.
 
 ### Wireframes
 
-The Wireframes are the prototype of this project and show the base idea and the skeleton of the app. They have been slightly adjusted during the development of the project but they main concept and design idea never changed. I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes.
+The Wireframes are the prototype of this project and show the base idea and the skeleton of the app. They have been slightly adjusted during the development of the project but their main concept and design idea never changed. I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes.
 
 <details>
 <summary>Wireframe</summary>
-  
+
+Main site
 ![Main Site](docs/wireframes/desktop/d_main.png)
+
+Match Detail
 ![Match Detail](docs/wireframes/desktop/d_match_detail.png)
+
+MySchedule
 ![MySchedule](docs/wireframes/desktop/d_myschedule.png)
+
+MyGuns
 ![MyGuns](docs/wireframes/desktop/d_myguns.png)
+
+Profile
 ![Profile](docs/wireframes/desktop/d_profile.png)
 
 </details>
@@ -151,7 +163,7 @@ The Wireframes are the prototype of this project and show the base idea and the 
 
 ## Data Model
 
-This application, built with [React](https://react.dev/) has not data model by itself, since it consumes API's from the back end. The whole code and documentation of the the data model can be found in the coresponding DRF API repository: [SportsShooting API Repo](https://github.com/rpf13/sportsshooting_drf)
+This application, built with [React](https://react.dev/) has not a data model by itself, since it consumes API's from the back end. The whole code and documentation of the data model can be found in the corresponding DRF API repository: [SportsShooting API Repo](https://github.com/rpf13/sportsshooting_drf)
 
 ---
 
@@ -170,12 +182,12 @@ As a (new) user entering the page, it will be in unauthenticated state. The navb
 - SignIn
 - SignUp
 
-The matches icon appears red because it is active, it is the home url. This should give the user already hint about the functionality.
-Hovering over the SignIn or SignUp icons will change their color, indicating that the user can click on it. Once clocked, the icon remains acive and hence turns color to red.
+The matches icon appears red because it is active, it is the home url. This should give the user already a hint about the functionality.
+Hovering over the SignIn or SignUp icons will change their color, indicating that the user can click on it. Once clicked, the icon remains acive and hence turns color to red.
 
 ![Navbar authenticated](docs/images/feat_nav_auth.png)
 
-If a user is authenticated, the navbar looks slightly different but keeping the previously mentioned concept of functionality and design.
+If a user is authenticated, the navbar looks slightly different but keeps the previously mentioned concept of functionality and design.
 The following additional icons will show up:
 - Add Match -> redirects to the form to create a new match entry
 - Add Gun -> redirects to the form to create a new gun database entry
@@ -227,7 +239,7 @@ There is also a pre defined *Level Filter* in place. As explained in the introdu
 
 ![Matches filter](docs/images/feat_matches_filter.png)
 
-The two features can be combined to further filter down possible matches. This is exactly what a shooter who is looking after matches, wants. Search and Level filter will give this option:
+The two features can be combined to further filter down possible matches. This is exactly what a shooter who is looking after matches, wants. Search and Level filter will give this option.
 
 ![Search & Level Filter](docs/images/feat_matches_filter_search.png)
 
@@ -237,8 +249,9 @@ Besides match detail information, each match is also displaying the two active e
 
 ![Matches active components](docs/images/feat_matches_attending_comment.png)
 
-If a user is logged in, he can click the attend icon to add himself to the list of attending shooters. If so, the icon will be transform to red and keep this color until the logged in user clicks again on it to unattend.
-It is **important** to note, that also the user who added the match can attend *his own* match. This is a must have feature. The count displays how many shooters are attending.
+If a user is logged in, he can click the attend icon to add himself to the list of attending shooters. If so, the icon will be transformed to red and keep this color until the logged in user clicks again on it to unattend.
+
+It is **important** to note, that also **the user who added the match can attend *his own* match.** This is a must have feature. The count displays how many shooters are attending.
 Furthermore, he can click on the comments icon, which brings him to the match detail site, where he can see and add a comment. The count displays how many comments have been written.
 
 If a user is not logged in, he can see both components, however, he will not be able to attend a match. While trying to attend, a message will be displayed that only logged in users can use this feature.
@@ -249,7 +262,7 @@ Clicking on the comments field will also bring this user to the match detail sit
 
 #### Upcoming popular Matches Component
 
-The Upcoming popular Matches component is a dedicated separated component, visible on the matches site. It contains a list of the most popular matches, measured on how many shooters are attending. To keep the list kind of visible, it is limited to 6 entries on desktop and 4 entries on mobile.
+The Upcoming popular Matches component is a dedicated separated component, visible on the matches site. It contains a list of the most popular matches, measured on how many shooters are attending. To keep the list kind of visible, it is limited to 5 entries on desktop and 4 entries on mobile.
 
 ![Upcoming Popular Matches](docs/images/feat_pop_matches.png)
 
@@ -265,7 +278,7 @@ Once the user clicks on an individual match in the matches list, or he clicks on
 On the top, the avatar and username of the *advertiser*, the one who added the match, is displayed. There is an active link behind, if clicked, the user profile will be displayed. Furthermore the date when the event was last updated is shown, next to the edit icon.
 
 Besides the displayed image, the main title of the match, together with the event date is shown. Further infos like the match location, IPSC Level, Division and match details are shown.
-Underneath that, the two active components *attending* with its *attendings count* as well as the *comment* and *comments count* are displyed. Their usage has already been explained in the matches section.
+Underneath that, the two active components *attending* with its *attendings count* as well as the *comment* and *comments count* are displayed. Their usage has already been explained in the matches section.
 
 #### Comments
 
@@ -281,7 +294,7 @@ The comments section is also using the infinite scroll, displaying a loading spi
 
 ### Add Match
 
-The *Add Match* icon on the havbar will redirect the logged in user to a form, where he can create a new match entry.
+The *Add Match* icon on the navbar will redirect the logged in user to a form, where he can create a new match entry.
 
 ![Add Match](docs/images/feat_match_add.png)
 
@@ -341,6 +354,7 @@ MySchedule is only accessible for a logged in user. It is not a component or a p
 ![MySchedule](docs/images/feat_myschedule.png)
 
 It's look is almost identical to the Matches page, but this time it is optimised for a particular user. The MySchedule site, as the name implies, is personal. It will display all matches a particular user is attending. The main pourpose is to help the shooter to have a list of his upcoming events.
+
 All filter functionality, including the additional featurs of attending an event or commenting on an event, remain the same as for the matches site.
 Clicking on a particular match, will bring the user again to the match detail view, which has been previously described.
 In addition to the personal schedule, alos the component with the *Upcoming popular Matches* is displayed again, which should help the shooter to see whether he is missing an popular event or not.
@@ -359,7 +373,7 @@ Below the image section, there is the brand and type field - probalby the most i
 
 #### MyGuns Search and Type filter
 
-On the top, the user gets displayed the (familiar) search and selection option. He can search based on a brand, model or serailnumber.
+On the top, the user gets displayed the (familiar) search and selection option. He can search based on a brand, model or serialnumber.
 The filter option is there to differentiate between handgun and rifle. If a user has a large collection, this can be a handy feature. Furthermore, filter and search can be combined.
 
 ![MyGuns Search & Filter](docs/images/feat_myguns_search_filter.png)
@@ -413,7 +427,7 @@ The last section is the profiles site. The site itself is accessible for all vis
 
 The difference between a signed in and a signed out user is, that once the user is signed in and visiting his own profile, he will be displayed the *edit profile* button.
 
-The site displays hte bio of the shooter aas well as some more club and shooter related information. As separate section with contact details is shown.
+The site displays the bio of the shooter aas well as some more club and shooter related information. As separate section with contact details is shown.
 The site will also display all matches, created by this particular user. This can be very handy and an alterntive way, besides the search functionality, to find content of a particular shooter.
 Clicking on a match event, will bring him to the match detail site.
 
@@ -435,7 +449,7 @@ The edit profile section will let him update all the fields.
 ![Profile Edit Form](docs/images/profile_edit_form.png)
 
 All of the profile edit form fields are optional, meaning no error gets displayed, if the user submits an empty form. This is intentionally correct because instead of pressing the cancel button, the user might just press submit.
-Also the avatar image is not mandatory, if not change, the default image will be used further.
+Also the avatar image is not mandatory, if not changed, the default image will be used further.
 The mail and social media fields contain a placeholder text, just to make sure the user will add them in the correct form. If not, an error will be shown - however, the fields can be left blank.
 
 If the new user cancels the form submission or submits it empty, he will be sent back to the profile details. If everything is empty and he did not add a match yet, the *empty logo* will be displayed.
@@ -490,7 +504,7 @@ The `Asset` component uses some further styling, which is defined in the `Asset.
 
 ### `Avatar.js`
 
-The `Avatar` component provides a reuseable component, mainly used in our app for the user profiles.
+The `Avatar` component provides a reuseable component, mainly used in the app for the user profiles.
 
 - The component accepts a `src` prop which stands for the image source URL for the avatar.
 - It has a default height of `45` pixels for the image which can be overridden with the `height` prop. In the app, it gets overwritten on a few places.
@@ -516,7 +530,7 @@ I did not use any custom styling since I think the bootstrap styling for this mo
 
 ### `ErrorModal.js`
 
-The ErrorModal component serves as a notification system for displaying error messages to the user. Since it is not a nice and good idea to keep all the console.log elements in the code, I wanted to create something "useful" from user perspective. The `try, catch` blocks are set, why also not using the catch?
+The ErrorModal component serves as a notification system for displaying error messages to the user. Since it is not a nice and good idea to keep all the console.log elements in the code, I wanted to create something "useful" from user perspective. The `try, catch` blocks are set, why also not using the `catch`?
 
 The `ErrorModal` component serves as a notification system for displaying error messages to the user.
 
@@ -526,7 +540,7 @@ The `ErrorModal` component serves as a notification system for displaying error 
 
 - **Close Button**: The modal includes a "Close" button, allowing users to dismiss the error message. This button triggers the `onClose` callback
 
-I did not leave the styling to the default bootstrap modal styling, which I think looks good.
+I did leave the styling to the default bootstrap modal styling, which I think looks good.
 
 **Integration into the App**:
 
@@ -599,7 +613,9 @@ The following custom hooks are used in this project
 ### `useClickOutsideToggle` 
 The `useClickOutsideToggle` is a custom hook, which provides a mechanism to handle the expanded state of our navbar dropdown compnent and toggles it off when a click is detected outside of the component.
 It uses the React embedded hooks `useEffect, useRef, useState` It initialises the state via the `useState` hook and sets the value to `false`. The `useRef` hook also gets initialise with a value of `null`, the ref will then be assigned to a DOM element.
+
 The `useEffect` hook adds the event Listener to the document, that check if there is a mouse Up event. Inside the `handleClickOutside` function, it checks if the click event's target is outside the element referred to by `ref`. If it is, it sets expanded to false. 
+
 The `useEffect` also returns a cleanup function, which makes sure, that the event listener is removed when the component that uses this hook is unmounted or if the ref changes
 The return value of the hook is the object with the `expanded state`, the `setExpanded` function to toggle this state, and the `ref` that is assigned to the DOM element to detect clicks outside of it.
 
@@ -635,7 +651,8 @@ export default useClickOutsideToggle;
 ```
 </details>
 
-### `useRedirect` 
+### `useRedirect`
+
 `useRedirect` is another custom hook used in this project. It listens for changes in the user's authentication status. When there's a change, it tries to refresh the users authentication token. Depending on if thats a success or failure and the passed userAuthStatus, it redirects the user to the main route, which is the matches list.
 
 The `useRedirect` Hook takes a single parameter, `userAuthStatus`, which indicates the user's authentication status. It makes use of the `useEffect` hook, which contains an async function of `handleMount`. A POST request is made to `/dj-rest-auth/token/refresh/` to refresh the users authentication token. If the request is successful and the `userAuthStatus` is "loggedIn", the user will be redirected to the root path, which is the matches list. If the request fails and hence, the user is logged out, it will also be redirected to the same root path.
@@ -1038,8 +1055,8 @@ I have used the following media files and resources
 ### Acknowledgements
 
 - Without the support of my wife and my little son, it would not have been possible to spend endless hours, working on this project and doing research. Many thanks to my little son for giving me a smile and very welcomed distraction, during times I was frustrated.
-- My Mentor Aleksei Knovalov was a big support for this project. He helped me to understand certain concepts and gave me very welcomed guidance. THANK YOU VERY MUCH! You are such a great perons and very skilled developer!
-- A big Thank you to the tutor team from Code Institute team, who has helped me with a few very nasty issues in the project
-- A big thank you also goes to the awesome Code Institute Slack community, who was always very supportive!
+- My Mentor Aleksei Konovalov was a big support for this project. He helped me to understand certain concepts and gave me very welcomed guidance. THANK YOU VERY MUCH! You are such a great person and very skilled developer!
+- A big Thank You to the tutor team from Code Institute, who has helped me with a few very nasty issues in the project
+- A big Thank You also goes to the awesome Code Institute Slack community, who was always very supportive!
 
 ---
