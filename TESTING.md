@@ -46,7 +46,7 @@ The following table shows a summary of testcases executed. The the `DeleteModal`
 
 ## Manual Testing
 
-### User Story Testing
+### User Story Testing
 
 I have tested the functional user stories and listed in the following table, together with a screenshot. Since I did also add user stories for admin tasks like documentation, app submission, I did not include them in the table - since snapshots are difficult for those. However, they are also clearly documented in the README section.
 In the user stories, I did use the expression "As a Developer..." but this can be interchangeably used with "As a User..."
@@ -112,7 +112,7 @@ User Story testing has been executed with Chrome browser on OSX.
 
 ### Defensive Programming
 
-The following section will show a table, where I have tested the app, whith Chrome browser, for various cases and error cases. It should test if the application behaves as intended and gives a great user experience. It is worth to mention, that I'm pretty sure *someone* can break the application, but the main intention of this project was not to create a bullet proof app, it should be about learning React and DRF API. However, *great care has been taken* to catch as many potential errors as possible.
+The following section shows a table, where I have tested the app, with Chrome browser, for various cases and error cases. It should test, if the application behaves as intended and gives a great user experience. It is worth to mention, that I'm pretty sure *someone* can break the application, but the main intention of this project was not to create a bullet proof app, it should be about learning React and DRF API. However, *great care has been taken* to catch as many potential errors as possible.
 
 Please note that this section is not the only section, where the application has been tested. Throughout the whole testing procedure, I did choose many different use cases in order to check the behaviour. So this means also the responsive testing or the browser compatibility testing have indirectly checked the functionality.
 This gave me confidence, that the application works also with different browsers and resolutions.
@@ -364,7 +364,7 @@ I have tested the application on various devices in terms of responsiveness. I c
 I have to say, all in all, it looks good also on small devices. However, on very small screens, some part could be "more beautiful", but in my opition, this would require to redesign the app or enhance massively. 
 I think, the current state is quite good in terms of responsiveness.
 
-Below a table, where I did chooce a set of *testcases* to be run on each device. It includes a variety of mobile devices, starts with the iPhone SE, which is a *medium* screen, over the iPhone 12 Pro, which has a *larger* screen. To verify the app on a very small screen, I have chosen the Samsung Galaxy Fold.
+Below a table, where I did chooce a set of *testcases* to be run on each device. It includes a variety of mobile devices, starts with the **iPhone SE**, which is a *medium* screen, over the **iPhone 12 Pro**, which has a *larger* screen. To verify the app on a very small screen, I have chosen the **Samsung Galaxy Fold**.
 In order to test the tablet category, the iPad Air has been used.
 
 <details>

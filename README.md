@@ -651,7 +651,8 @@ export default useClickOutsideToggle;
 ```
 </details>
 
-### `useRedirect`
+
+### `useRedirect`
 
 `useRedirect` is another custom hook used in this project. It listens for changes in the user's authentication status. When there's a change, it tries to refresh the users authentication token. Depending on if thats a success or failure and the passed userAuthStatus, it redirects the user to the main route, which is the matches list.
 
